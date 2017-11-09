@@ -1,9 +1,14 @@
 {
-    "require": {
-        "doctrine/dbal": "^2.6",
-        "smarty/smarty": "^3.1",
-        "monolog/monolog": "^1.23",
-        "querypath/querypath": "^3.0",
-        "nesbot/carbon": "^1.22"
+  "require": {
+    "doctrine/dbal": "^2.6",
+    "smarty/smarty": "^3.1",
+    "monolog/monolog": "^1.23",
+    "querypath/querypath": "^3.0",
+    "nesbot/carbon": "^1.22"
+  },
+  "autoload": {
+    "psr-4": {
+      "Armbreaker\\": "src/"
     }
+  }
 }
