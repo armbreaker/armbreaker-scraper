@@ -1,0 +1,55 @@
+body {
+	font-family: "Open Sans", sans-serif;
+}
+
+#perdayview .all .bars rect {
+	stroke-width: 0;
+	fill: #ae161e;
+	shape-rendering: crispEdges;
+}
+
+#perdayview .all .bars .hovering {
+	fill: #ae4e53;
+}
+
+#perdayview .all .axes .xaxis .tick text {
+	display: none;
+}
+
+.dataline {
+	fill: none;
+	stroke-width: 1pt;
+	stroke: #000;
+}
+
+.normalline {
+	fill: none;
+	stroke-width: 1pt;
+	stroke: #666666;
+}
+
+.tooltipDot {
+
+}
+
+.tooltipline1, .tooltipline2 {
+	font-size: 12pt;
+	fill: white;
+	text-anchor: middle;
+}
+
+.tooltipguide {
+	fill: none;
+	stroke-width: 1pt;
+	stroke: #000;
+}
+
+.tooltiptext rect {
+	fill: rgba(0, 0, 0, 0.8);
+	stroke-width: 1pt;
+	stroke: #000000;
+}
+
+text {
+	font-family: "Open Sans", sans-serif;
+}
