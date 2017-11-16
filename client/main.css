@@ -1,5 +1,7 @@
 body {
 	font-family: "Open Sans", sans-serif;
+	background-color: #eee;
+	color: #444;
 }
 
 #perdayview .all .bars rect {
@@ -8,8 +10,8 @@ body {
 	shape-rendering: crispEdges;
 }
 
-#perdayview .all .bars .hovering {
-	fill: #ae4e53;
+#perdayview .all .bars rect:hover {
+	fill: #FF0000;
 }
 
 #perdayview .all .axes .xaxis .tick text {

@@ -250,7 +250,6 @@ class PerDayView {
 		   .attr("x", d=>this.xscale(d[0]))
 		   .attr("y", d=>this.height - this.yscale(d[1]))
 		   .on("mouseover", function(d, i){
-		   		d3.select(this).classed("hovering", true);
 		   		myself.svg.selectAll(".tooltip").style("display", "inherit");
 
 		   		let sparkline_y = myself.sparklinescale(myself.sparkdata[i][1]);
@@ -275,9 +274,6 @@ class PerDayView {
 				// also move the entire tooltip
 				myself.svg.select(".tooltiptext")
 					.attr("transform", `translate(${x},${y - 30})`);
-		   })
-		   .on("mouseout", function(){
-		   		d3.select(this).classed("hovering", false);
 		   });
 	    this.svg.select("rect")
 	        .on("click", function(){
