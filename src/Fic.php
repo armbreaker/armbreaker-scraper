@@ -31,7 +31,7 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class Fic {
+class Fic implements \JsonSerializable {
 
   /**
    * @var int
@@ -43,9 +43,19 @@ class Fic {
    */
   public $name;
 
+  /**
+   *
+   * @var PostCollection
+   */
+  public $posts;
+
   public function __construct(int $id, string $name) {
     $this->id   = $id;
     $this->name = $name;
+  }
+
+  public function loadPosts(bool $loadLikes = false) {
+    $this->posts = PostFactory::getPostsInFic($this, $loadLikes);
   }
 
   public function sync() {
@@ -55,6 +65,17 @@ class Fic {
     $sql->bindValue(2, $this->name);
     $sql->bindValue(3, \Carbon\Carbon::now());
     $sql->execute();
+  }
+
+  public function jsonSerialize() {
+    $r = [
+        'id'   => $this->id,
+        'name' => $this->name,
+    ];
+    if ($this->posts instanceof PostCollection) {
+      $r['posts'] = $this->posts;
+    }
+    return $r;
   }
 
 }

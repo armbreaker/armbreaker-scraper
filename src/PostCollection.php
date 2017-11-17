@@ -27,72 +27,81 @@
 namespace Armbreaker;
 
 /**
- * Description of Post
+ * Description of PostCollection
  *
  * @author sylae and skyyrunner
  */
-class Post implements \JsonSerializable {
+class PostCollection implements \Iterator, \Countable, \JsonSerializable {
 
   /**
-   *
    * @var int
    */
-  public $id;
+  private $position = 0;
+
+  /**
+   * @var array
+   */
+  private $posts = [];
 
   /**
    *
-   * @var Fic
-   */
-  public $fic;
-
-  /**
-   *
-   * @var string
-   */
-  public $title;
-
-  /**
-   *
-   * @var LikeCollection
-   */
-  public $likes;
-
-  /**
    * @var \Carbon\Carbon
    */
-  public $time;
+  public $earliest;
 
-  public function __construct(int $pid, Fic $fic, string $title, \Carbon\Carbon $time) {
-    $this->id    = $pid;
-    $this->fic   = $fic;
-    $this->title = $title;
-    $this->time  = $time;
+  /**
+   *
+   * @var \Carbon\Carbon
+   */
+  public $latest;
+
+  public function addPost(Post $post): void {
+    $this->posts[] = $post;
+    $this->setRange();
   }
 
-  public function sync() {
-    $sql = DatabaseFactory::get()->prepare('INSERT INTO armbreaker_posts (pid, tid, title, postTime, lastUpdated) VALUES(?, ?, ?, ?, ?)
-         ON DUPLICATE KEY UPDATE likeTime=VALUES(likeTime), lastUpdated=VALUES(lastUpdated);', ['integer', 'integer', 'string', 'datetime', 'datetime']);
-    $sql->bindValue(1, $this->id);
-    $sql->bindValue(2, $this->fic->id);
-    $sql->bindValue(3, $this->title);
-    $sql->bindValue(4, $this->time);
-    $sql->bindValue(5, \Carbon\Carbon::now());
-    $sql->execute();
-  }
-
-  public function loadLikes() {
-    Log::l()->debug("Loading likes for post id {$this->id}.");
-    $this->likes = LikeFactory::getLikesInPost($this);
+  private function setRange() {
+    if (count($this->posts) == 1) {
+      $this->earliest = clone $this->posts[0]->time;
+      $this->latest   = clone $this->posts[0]->time;
+      return;
+    }
+    foreach ($this->posts as $post) {
+      $this->earliest = clone $post->time->min($this->earliest);
+      $this->latest   = clone $post->time->max($this->latest);
+    }
   }
 
   public function jsonSerialize() {
     return [
-        'id'          => $this->id,
-        'fic'         => $this->fic->id,
-        'title'       => $this->title,
-        'lastUpdated' => $this->time->toAtomString(),
-        'likes'       => $this->likes,
+        'earliest' => $this->earliest->toAtomString(),
+        'latest'   => $this->latest->toAtomString(),
+        'posts'    => $this->posts,
     ];
+  }
+
+  public function rewind() {
+    $this->position = 0;
+  }
+
+  public function current(): Post {
+    return $this->posts[$this->position];
+  }
+
+  public function key(): int {
+    return $this->position;
+  }
+
+  public function next() {
+    ++$this->position;
+  }
+
+  public function valid(): bool {
+    return isset($this->posts[$this->position]);
+  }
+
+  public function count(): int {
+    return count($posts);
   }
 
 }

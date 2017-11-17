@@ -31,7 +31,7 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class User {
+class User implements \JsonSerializable {
 
   /**
    * @var int
@@ -55,6 +55,13 @@ class User {
     $sql->bindValue(2, $this->name);
     $sql->bindValue(3, \Carbon\Carbon::now());
     $sql->execute();
+  }
+
+  public function jsonSerialize() {
+    return [
+        'id'   => $this->id,
+        'name' => $this->name,
+    ];
   }
 
 }

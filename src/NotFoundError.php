@@ -27,41 +27,10 @@
 namespace Armbreaker;
 
 /**
- * Create a Fic object
+ * Description of PublicError
  *
  * @author sylae and skyyrunner
  */
-class FicFactory {
-
-  public static function getFic(int $id): Fic {
-    // todo: caching
-    $sql = DatabaseFactory::get()->prepare("select * from armbreaker_fics where tid= ?");
-    $sql->bindValue(1, $id, 'integer');
-    $sql->execute();
-    $fic = $sql->fetchAll();
-    if (count($fic) == 1) {
-      return new Fic($fic[0]['tid'], $fic[0]['title']);
-    } elseif (count($fic) == 0) {
-      throw new NotFoundError("Fic ID not found :(");
-    } else {
-      throw new \LogicException("More than one Fic ID matched?");
-    }
-  }
-
-  public static function createFic(int $id, string $name): Fic {
-    $fic = new Fic($id, $name);
-    $fic->sync();
-    return $fic;
-  }
-
-  public static function getAllFics(): FicCollection {
-    $sql  = DatabaseFactory::get()->prepare("select * from armbreaker_fics");
-    $sql->execute();
-    $fics = new FicCollection();
-    foreach ($sql->fetchAll() as $fic) {
-      $fics->addFic(new Fic($fic['tid'], $fic['title']));
-    }
-    return $fics;
-  }
-
+class NotFoundError extends \Exception {
+  //put your code here
 }

@@ -27,41 +27,52 @@
 namespace Armbreaker;
 
 /**
- * Create a Fic object
+ * Description of FicCollection
  *
  * @author sylae and skyyrunner
  */
-class FicFactory {
+class FicCollection implements \Iterator, \Countable, \JsonSerializable {
 
-  public static function getFic(int $id): Fic {
-    // todo: caching
-    $sql = DatabaseFactory::get()->prepare("select * from armbreaker_fics where tid= ?");
-    $sql->bindValue(1, $id, 'integer');
-    $sql->execute();
-    $fic = $sql->fetchAll();
-    if (count($fic) == 1) {
-      return new Fic($fic[0]['tid'], $fic[0]['title']);
-    } elseif (count($fic) == 0) {
-      throw new NotFoundError("Fic ID not found :(");
-    } else {
-      throw new \LogicException("More than one Fic ID matched?");
-    }
+  /**
+   * @var int
+   */
+  private $position = 0;
+
+  /**
+   * @var array
+   */
+  private $fics = [];
+
+  public function addFic(Fic $fic): void {
+    $this->fics[] = $fic;
   }
 
-  public static function createFic(int $id, string $name): Fic {
-    $fic = new Fic($id, $name);
-    $fic->sync();
-    return $fic;
+  public function jsonSerialize() {
+    return $this->fics;
   }
 
-  public static function getAllFics(): FicCollection {
-    $sql  = DatabaseFactory::get()->prepare("select * from armbreaker_fics");
-    $sql->execute();
-    $fics = new FicCollection();
-    foreach ($sql->fetchAll() as $fic) {
-      $fics->addFic(new Fic($fic['tid'], $fic['title']));
-    }
-    return $fics;
+  public function rewind() {
+    $this->position = 0;
+  }
+
+  public function current(): Fic {
+    return $this->fics[$this->position];
+  }
+
+  public function key(): int {
+    return $this->position;
+  }
+
+  public function next() {
+    ++$this->position;
+  }
+
+  public function valid(): bool {
+    return isset($this->fics[$this->position]);
+  }
+
+  public function count(): int {
+    return count($this->fics);
   }
 
 }

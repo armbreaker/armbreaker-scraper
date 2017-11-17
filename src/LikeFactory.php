@@ -40,7 +40,7 @@ class LikeFactory {
     $sql->execute();
     $like = $sql->fetchAll();
     if (count($like) == 1) {
-      return new Like($user, $post, $post->fic, new \Carbon\Carbon($user[0]['likeTime']));
+      return new Like($user, $post, new \Carbon\Carbon($user[0]['likeTime']));
     } elseif (count($like) == 0) {
       throw new \Exception("Like not found :(");
     } else {
@@ -52,6 +52,17 @@ class LikeFactory {
     $like = new Like($user, $post, $post->fic, $likeTime);
     $like->sync();
     return $like;
+  }
+
+  public static function getLikesInPost(Post $post): LikeCollection {
+    $sql   = DatabaseFactory::get()->prepare("select * from armbreaker_likes where pid=? order by likeTime asc");
+    $sql->bindValue(1, $post->id, 'integer');
+    $sql->execute();
+    $likes = new LikeCollection();
+    foreach ($sql->fetchAll() as $like) {
+      $likes->addLike(new Like(UserFactory::getUser($like['uid']), $post, new \Carbon\Carbon($like['likeTime'])));
+    }
+    return $likes;
   }
 
 }
