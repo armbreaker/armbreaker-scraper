@@ -4,7 +4,7 @@ body {
 	color: #444;
 }
 
-#perdayview .all .bars rect {
+#perdayview .all .bars {
 	stroke-width: 0;
 	fill: #ae161e;
 	shape-rendering: crispEdges;
@@ -16,6 +16,19 @@ body {
 
 #perdayview .all .axes .xaxis .tick text {
 	display: none;
+}
+
+#userview .all .axes .yaxis .tick text {
+	display: none;
+}
+
+.barsquare {
+	shape-rendering: crispEdges;
+}
+
+.clusterbox {
+	fill: none;
+	shape-rendering: crispEdges;
 }
 
 .dataline {

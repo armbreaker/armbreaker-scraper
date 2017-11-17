@@ -4,85 +4,6 @@ document.addEventListener("DOMContentLoaded", init);
 
 var dataset;
 
-// keyfunc is applied to each object before comparing.
-function arrmin(arr, keyfunc) {
-	if (keyfunc == undefined) {
-		keyfunc = d=>d;
-	}
-	return arr.reduce((a, b)=>{
-		// return the smaller object
-		return keyfunc(a) > keyfunc(b) ? b : a;
-	})
-}
-
-// keyfunc is applied to each object before comparing.
-function arrmax(arr, keyfunc) {
-	if (keyfunc == undefined) {
-		keyfunc = d=>d;
-	}
-	return arr.reduce((a, b)=>{
-		// return the larger object
-		return keyfunc(a) > keyfunc(b) ? a : b;
-	})
-}
-
-function arrsum(arr, keyfunc) {
-	if (keyfunc == undefined) {
-		keyfunc = d=>d;
-	}
-	return arr.reduce((accum, curr)=>{
-		// return the larger object
-		return accum + keyfunc(curr);
-	}, 0)
-}
-
-function getDate(timestr) {
-	return moment(timestr).hour(0).minute(0).second(0).millisecond(0);
-}
-
-// accept a Moment obj, return YYYY-MM-DD
-function getDateString(moment) {
-	return moment.format("YYYY-MM-DD");
-}
-
-// good ol' text width estimator. i seriously use this everywhere
-// Taken from https://github.com/Skyyrunner/JeevesCoursePlanner/blob/master/client/typescript/utility.ts
-/**
- * Uses canvas.measureText to compute and return the width of the given text of given font in pixels.
- *
- * @param text The text to be rendered.
- * @param font The css font descriptor that text is to be rendered with (e.g. "bold 14px verdana").
- * @returns The estimated width of the text in pixels.
- *
- * @see http://stackoverflow.com/questions/118241/calculate-text-width-with-javascript/21015393#21015393
- */
-function getTextWidth (text, font) {
-	// re-use canvas object for better performance
-	var canvas = getTextWidth.prototype.canvas || (getTextWidth.prototype.canvas = document.createElement("canvas"));
-	var context = canvas.getContext("2d");
-	context.font = font;
-	var metrics = context.measureText(text);
-	return metrics.width;
-};
-
-/**
- * Uses `getTextWidth()` and a trial-and-error approach to fitting a given
- * string into a given area.
- * @param text The text to be rendered.
- * @param font The name of the font-family to render in.
- * @param target The target width.
- * @returns The appropriate font size so that the text is at most `target` pixels wide.
- */
-function findTextWidth(text, font, target) {
-	var size = 16;
-	var textsize = target * 10;
-	while (textsize > target) {
-		size -= 1;
-		textsize = getTextWidth(text, size + "px " + font);
-	}
-	return size
-}
-
 // Grouped rendering functions into classes for convenience
 // the likes per day view
 class PerDayView {
@@ -298,18 +219,188 @@ class PerDayView {
 	}
 }
 
-// the likes per chapter per user view
+// the likes per chapter per user view, as well as chapter.
 class UserView {
 	constructor() {
-
+		this.margin_top = 50;
+		this.margin_bottom = 50;
+		this.margin_w = 25;
+		this.width  = 800 - this.margin_w * 2;
+		this.height = 530 - this.margin_top - this.margin_bottom;
+		this.tolerence = 0;
+		this.algoname = "damerau";
+		if (this.algoname == "damerau") {
+			this.algo = damerau;
+		} else {
+			this.algo = levenshtein;
+		}
 	}
 
 	setup() {
+		this.svg = d3.select("#userview");
+		this.userdata = {};
+		this.userids = [];
+		this.postids = [];
+		this.likesperchapter = [];
+		// put all users in userdata since need to cmp strings
+		for (let userid in dataset.usersReferenced) {
+			this.userids.push(userid);
+			this.userdata[userid] = "";
+		}
+		// Need to tally likes per user, as well as chapter like sums
+		for (let postid in dataset.posts) {
+			let post = dataset.posts[postid];
+			this.likesperchapter.push([postid, post.likes.length]);
+			this.postids.push(postid);
+			for (let userid of this.userids) {
+				if (userid in post.likes) {
+					this.userdata[userid] += "x";
+				} else {
+					this.userdata[userid] += " ";
+				}
+			}
+		}
 
+		// Set tolerence to 10% of chapters or 2, whichever is larger.
+		this.tolerence = Math.max(this.likesperchapter.length * 0.1, 5);
+
+		this.userdata_arr = []
+		for (let userid of this.userids) {
+			this.userdata_arr.push([userid, this.userdata[userid]]);
+		}
+
+		// cluster similar likes, starting from the max "x"s
+		this.clustered = [];
+		let workingarr = this.userdata_arr.slice(0);
+
+		let counter = this.userids.length - 1; // counter of users for arranging later.
+		while(workingarr.length > 0) {
+			// find a maximumally dense string.
+			let el = arrmax(workingarr, (k)=>{
+				return (k[1].match(/x/g) || []).length;
+			});
+			let i = workingarr.indexOf(el);
+			let cluster = [[...el, counter--]];
+			workingarr.splice(i, 1);
+			for (i = 0; i < workingarr.length; i++) {
+				let el2 = workingarr[i];
+				if (this.algo(el[1], el2[1]) <= this.tolerence) {
+					cluster.push([...el2, counter--]);
+					workingarr.splice(i, 1);
+					i--
+				}
+			}
+			// also sort each cluster
+			cluster.sort((a,b)=>{
+				a = a[1];
+				b = b[1];
+				if (a > b) return 1;
+				if (a < b) return -1;
+				return 0;
+			})
+			this.clustered.push(cluster);
+		}
+
+		// set scale
+		let domain = [];
+		for (let j = 0; j < this.postids.length; j++) {
+			domain.push(j);
+		}
+
+		this.xscale =
+			d3.scaleBand()
+			  .domain(domain)
+			  //.paddingOuter(10)
+			  .range([0, this.width]);
+	    this.yscale = 
+	    	d3.scaleLinear()
+	    	  .domain([0, this.userids.length])
+	    	  .range([0, this.height]);
+	    this.xaxis = 
+	    	d3.axisBottom(this.xscale);
+
+		this.svg
+			.select(".yaxis")
+			.call(this.xaxis)
+			.attr("transform", `translate(0, ${this.height})`);
+		this.svg.select(".all")
+			.attr("transform", `translate(${this.margin_w}, ${this.margin_top})`)
 	}
 
 	update() {
+		let clusters = this.svg
+			.select(".bars")
+			.selectAll(".cluster")
+			.data(this.clustered);
+		let clusterenter = clusters
+			.enter()
+			.append("g")
+			.classed("cluster", true);		
 
+		clusters = clusters.merge(clusterenter);
+
+		clusters
+			.attr("data-index", (d,i)=>i);
+
+		let bars = clusters
+			.style("fill", (d, i)=>{
+				if (i % 2 == 0) return "#4c568c"; // dark blue
+				return "#8cb9f2"; // light blue
+			})
+			.attr("data-backgroundcolor", (d, i)=>{
+				if (i % 2 == 0) return "#dff2fe";
+				return "#fcfefe";
+			})
+			.selectAll(".userbar")
+			.data(d=>d);
+
+		bars = bars.enter()
+			.append("g")
+			.classed("userbar", true)
+			.merge(bars);
+
+		bars.attr("transform", d=>`translate(0, ${this.yscale(d[2])})`);
+
+		let sqrs = bars
+			.selectAll(".barsquare", true)
+			.data(d=>d[1]);
+		sqrs = sqrs.enter()
+			.append("rect")
+			.classed("barsquare", true)
+			.attr("width", this.xscale.bandwidth())
+			.attr("height", this.yscale(1))
+			.merge(sqrs);
+		sqrs.attr("opacity", d=>d == "x" ? 1 : 0)
+			.attr("x", (d,i)=>this.xscale(i))
+
+		// add the rectangles
+		clusters
+			.append("rect")
+			.classed("clusterbox", true)
+			.attr("width", this.width)
+			.attr("y", d=>{
+				// y pos is equal to smallest y pos
+				let el = arrmin(d, d=>this.yscale(d[2]));
+				return this.yscale(el[2]);
+			})
+			.attr("height", d=>{
+				// height is equal to diff between 
+				// largest and smallest ypos
+				let M = arrmax(d, d=>this.yscale(d[2]));
+				let m = arrmin(d, d=>this.yscale(d[2]));
+				return this.yscale(M[2]) - this.yscale(m[2]) + this.yscale(1);
+			})
+			// .style("fill", (d,i)=>{
+			// 	if (i % 2 == 0) return "rgba(223, 242, 254, 0.3)" // #dff2fe, light blue
+			// 	return "rgba(252, 254, 254, 0.0)"; // #fcfefe, whitish blue
+			// })
+			.style("stroke", (d,i)=>{
+				if (i % 2 == 0) return "rgba(74, 65, 94, 1)";
+				return "rgba(0, 0, 0, 0)";
+			})
+			.style("stroke-width", (d,i)=>{
+				return "1px";
+			})
 	}
 }
 
@@ -328,26 +419,10 @@ class FirstImpressionsView {
 	}
 }
 
-// the likes per chapter view
-class ChapterLikesView {
-	constructor() {
-
-	}
-
-	setup() {
-
-	}
-
-	update() {
-
-	}
-}
-
 var views = [
 	new PerDayView(),
 	new UserView(),
-	new FirstImpressionsView(),
-	new ChapterLikesView()
+	new FirstImpressionsView()
 ];
 
 // Initialize everything.
