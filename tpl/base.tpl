@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{block name=title}Armbreaker{/block}</title>
+    <title>{% block title %}Armbreaker{% endblock %}</title>
   </head>
   <body>
-    <h1>Hi!</h1>
+    {% block content %}<p>Put content here :v</p>{% endblock %}
   </body>
 </html>

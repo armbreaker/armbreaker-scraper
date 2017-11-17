@@ -1,0 +1,8 @@
+{% extends "base.tpl" %}
+
+{% block title %}:v{% endblock %}
+
+{% block content %}
+<h1>This is a header block</h1>
+<p>hey this should be replaced with something not-trash.</p>
+{% endblock %}

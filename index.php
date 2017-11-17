@@ -26,8 +26,112 @@
 
 namespace Armbreaker;
 
+use Slim\Http\Request as Request;
+use Slim\Http\Response as Response;
+
 require_once "vendor/autoload.php";
+require_once 'config.php';
+ConfigFactory::make($config);
 
-$layout = new \Smarty();
+// init stuff
+new Log();
+DatabaseFactory::make();
 
-$layout->display("tpl/base.tpl");
+$app = new \Slim\App();
+
+// Get container
+$container = $app->getContainer();
+
+// Register component on container
+$container['view'] = function ($container) {
+  $view = new \Slim\Views\Twig('tpl', [
+      'cache' => 'templates_c'
+  ]);
+
+  // Instantiate and add Slim specific extension
+  $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
+  $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
+
+  return $view;
+};
+$container['notFoundHandler'] = function ($c) {
+  return function (Request $request, Response $response) use ($c) {
+    if (substr($request->getUri()->getPath(), 0, 5) == "/api/") {
+      $err = [
+          'error'         => true,
+          'error_message' => "Endpoint not found. GET /api for help.",
+      ];
+      return $c['response']->withJson($err, 404);
+    } else {
+      return $c['view']->render($response, '404.tpl', [
+                  'path' => $request->getUri()->getPath()
+      ]);
+    }
+  };
+};
+
+$app->get('/', function (Request $request, Response $response, $args) {
+  return $this->view->render($response, 'index.tpl', []);
+});
+
+$app->get('/api', function(Request $request, Response $response) {
+  $methods = [];
+
+  $methods['GET /api']           = [
+      'description' => 'Get help',
+      'args'        => null,
+  ];
+  $methods['GET /api/fics']      = [
+      'description' => 'Get a list of fics',
+      'args'        => null,
+  ];
+  $methods['GET /api/fics/{id}'] = [
+      'description' => 'Get a dump of a fic\'s info',
+      'args'        => [
+          'id' => [
+              'type'        => 'int',
+              'description' => 'Spacebattles topic ID.',
+          ],
+      ],
+  ];
+
+  return $response->withJson($methods);
+});
+
+$app->get('/api/fics', function(Request $request, Response $response) {
+  try {
+    $fics = FicFactory::getAllFics();
+    return $response->withJson($fics);
+  } catch (\Throwable $e) {
+    $err = [
+        'error'         => true,
+        'error_message' => $e->getMessage(),
+        'error_trace'   => $e->getTraceAsString(),
+    ];
+    return $response->withJson($err, 500);
+  }
+});
+
+
+$app->get('/api/fics/{id}', function(Request $request, Response $response) {
+  try {
+    $fic = FicFactory::getFic($request->getAttribute('id'));
+    $fic->loadPosts(true);
+    return $response->withJson($fic);
+  } catch (NotFoundError $e) {
+    $err = [
+        'error'         => true,
+        'error_message' => $e->getMessage(),
+    ];
+    return $response->withJson($err, 404);
+  } catch (\Throwable $e) {
+    $err = [
+        'error'         => true,
+        'error_message' => $e->getMessage(),
+        'error_trace'   => $e->getTraceAsString(),
+    ];
+    return $response->withJson($err, 500);
+  }
+});
+
+$app->run();
