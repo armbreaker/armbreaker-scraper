@@ -30,6 +30,12 @@ function arrsum(arr, keyfunc) {
 	}, 0)
 }
 
+// truncate so there are only n digits
+function n_digits(x, n) {
+	let e = Math.pow(10, n);
+	return Math.floor(e * x) / e;
+}
+
 function getDate(timestr) {
 	return moment(timestr).hour(0).minute(0).second(0).millisecond(0);
 }

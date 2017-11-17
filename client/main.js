@@ -75,7 +75,7 @@ class PerDayView {
 			// compare expected likes versus actual likes
 			// let diff = likes - slope; // likes vs average likes
 			sum += likes;
-			let diff = sum - (slope * (i+1))
+			let diff = sum - (slope * (i+1));
 			this.sparkdata.push([date, diff]);
 		}
 		this.sparkdataMagnitude = Math.abs(arrmax(this.sparkdata, d=>Math.abs(d[1]))[1]);
@@ -95,7 +95,7 @@ class PerDayView {
 	    this.yscale = 
 			d3.scaleLinear()
 			  .domain([0, Math.floor(this.maxlikes * 1.05)])
-			  .range([1, this.height]);
+			  .range([2, this.height]);
 	    // have to invert scale for y axis
 	    this.yscale_axis = this.yscale
 	    	.copy()
@@ -222,11 +222,11 @@ class PerDayView {
 // the likes per chapter per user view, as well as chapter.
 class UserView {
 	constructor() {
-		this.margin_top = 50;
-		this.margin_bottom = 50;
+		this.margin_top = 0;
+		this.margin_bottom = 100;
 		this.margin_w = 25;
-		this.width  = 800 - this.margin_w * 2;
-		this.height = 530 - this.margin_top - this.margin_bottom;
+		this.width  = 600 - this.margin_w * 2;
+		this.height = 600 - this.margin_top - this.margin_bottom;
 		this.tolerence = 0;
 		this.algoname = "damerau";
 		if (this.algoname == "damerau") {
@@ -234,6 +234,7 @@ class UserView {
 		} else {
 			this.algo = levenshtein;
 		}
+		this.innerpadding = 0; // distance between clusters
 	}
 
 	setup() {
@@ -322,12 +323,18 @@ class UserView {
 		this.svg
 			.select(".yaxis")
 			.call(this.xaxis)
-			.attr("transform", `translate(0, ${this.height})`);
+			.attr("transform", `translate(0, ${this.height + 2 + this.innerpadding * this.clustered.length})`)
+			.append("text")
+			.classed("axislabel", true)
+			.attr("x", this.width - this.margin_w)
+			.attr("y", 30)
+			.text("Chapters");
 		this.svg.select(".all")
 			.attr("transform", `translate(${this.margin_w}, ${this.margin_top})`)
 	}
 
 	update() {
+		let me = this;
 		let clusters = this.svg
 			.select(".bars")
 			.selectAll(".cluster")
@@ -340,17 +347,11 @@ class UserView {
 		clusters = clusters.merge(clusterenter);
 
 		clusters
-			.attr("data-index", (d,i)=>i);
+			.attr("data-index", (d,i)=>i)
+			.classed("odd", (d,i)=>i % 2 == 1)
+			.classed("even", (d,i)=>i % 2 == 0);
 
 		let bars = clusters
-			.style("fill", (d, i)=>{
-				if (i % 2 == 0) return "#4c568c"; // dark blue
-				return "#8cb9f2"; // light blue
-			})
-			.attr("data-backgroundcolor", (d, i)=>{
-				if (i % 2 == 0) return "#dff2fe";
-				return "#fcfefe";
-			})
 			.selectAll(".userbar")
 			.data(d=>d);
 
@@ -359,7 +360,10 @@ class UserView {
 			.classed("userbar", true)
 			.merge(bars);
 
-		bars.attr("transform", d=>`translate(0, ${this.yscale(d[2])})`);
+		bars.attr("transform", function(d){
+			let i = +this.parentNode.getAttribute("data-index");
+			return `translate(0, ${me.yscale(d[2]) + (me.clustered.length - i) * me.innerpadding})`
+		});
 
 		let sqrs = bars
 			.selectAll(".barsquare", true)
@@ -373,34 +377,66 @@ class UserView {
 		sqrs.attr("opacity", d=>d == "x" ? 1 : 0)
 			.attr("x", (d,i)=>this.xscale(i))
 
-		// add the rectangles
-		clusters
+		// add the rectangles to the rectangle div.
+		let clusterboxes = 
+			this.svg.select(".boxes")
+				.selectAll(".clusterbox")
+				.data(this.clustered);
+		clusterboxes
+			.enter()
 			.append("rect")
 			.classed("clusterbox", true)
+			.classed("odd", (d,i)=>i % 2 == 1)
+			.classed("even", (d,i)=>i % 2 == 0)
+			.attr("transform", (d,i)=>`translate(0, ${(this.clustered.length - i)  * me.innerpadding})`)
 			.attr("width", this.width)
-			.attr("y", d=>{
+			.attr("y", (d, i)=>{
 				// y pos is equal to smallest y pos
 				let el = arrmin(d, d=>this.yscale(d[2]));
 				return this.yscale(el[2]);
 			})
-			.attr("height", d=>{
+			.attr("height", (d,i)=>{
 				// height is equal to diff between 
 				// largest and smallest ypos
 				let M = arrmax(d, d=>this.yscale(d[2]));
 				let m = arrmin(d, d=>this.yscale(d[2]));
 				return this.yscale(M[2]) - this.yscale(m[2]) + this.yscale(1);
 			})
-			// .style("fill", (d,i)=>{
-			// 	if (i % 2 == 0) return "rgba(223, 242, 254, 0.3)" // #dff2fe, light blue
-			// 	return "rgba(252, 254, 254, 0.0)"; // #fcfefe, whitish blue
-			// })
-			.style("stroke", (d,i)=>{
-				if (i % 2 == 0) return "rgba(74, 65, 94, 1)";
-				return "rgba(0, 0, 0, 0)";
-			})
-			.style("stroke-width", (d,i)=>{
-				return "1px";
-			})
+			.on("mouseover", function(d){
+				d3.select("#userlistdiv").style("color", undefined);
+				// user count
+				d3.select("#numusers").text(d.length);
+				let p = d.length / parseFloat(me.userids.length) * 100;
+				p = n_digits(p, 1);
+				d3.select("#percentusers").text(p);
+				// like count
+				let arr = d.map(el=>{
+					return (el[1].match(/x/g) || []).length;
+				});
+				let average = arrsum(arr) / arr.length;
+				d3.select("#averagelikes").text(n_digits(average, 1));
+				p = average / me.likesperchapter.length * 100;
+				d3.select("#percentliked").text(n_digits(p, 1));
+				// append user list
+				let usernames = 
+					d.map(d=>dataset.usersReferenced[d[0]])
+					 .sort((a, b)=>{
+					 	a = a.toLowerCase();
+					 	b = b.toLowerCase();
+					 	if (a > b) return 1;
+					 	if (a < b) return -1;
+					 	return 0;
+					 });
+
+				d3.select("#userlist")
+				  .html("")
+				  .selectAll(".username")
+				  .data(usernames)
+				  .enter()
+				  .append("span")
+				  .classed("username", true)
+				  .text(d=>d);
+			});
 	}
 }
 

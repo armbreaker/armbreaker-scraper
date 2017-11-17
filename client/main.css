@@ -19,7 +19,11 @@ body {
 }
 
 #userview .all .axes .yaxis .tick text {
-	display: none;
+	display: inherit;
+}
+
+#userview .axislabel {
+	fill: #444;
 }
 
 .barsquare {
@@ -27,8 +31,34 @@ body {
 }
 
 .clusterbox {
-	fill: none;
+	fill: rgba(255, 255, 255, 0);
 	shape-rendering: crispEdges;
+	stroke-width: 1px;
+}
+
+.boxes>.even {
+	/*stroke: rgba(57, 65, 105, 0.5);*/
+	fill: #4c568c;
+	opacity: 0.2;
+}
+
+.boxes>.odd {
+	/*stroke: rgba(106, 141, 184, 0.5);*/
+	fill: #8cb9f2;
+	opacity: 0.2;
+}
+
+.clusterbox:hover {
+	fill: rgba(229, 244, 253, 0.3);
+	stroke: rgba(0, 0, 0, 1);
+}
+
+.odd .userbar .barsquare {
+	fill: #8cb9f2;
+}
+
+.even .userbar .barsquare {
+	fill: #4c568c;
 }
 
 .dataline {
@@ -67,4 +97,24 @@ body {
 
 text {
 	font-family: "Open Sans", sans-serif;
+}
+
+.userviewdivs {
+	float: left;
+	display:inline;
+}
+
+#perdayviewdiv {
+	margin-bottom: 20px;
+}
+
+#userlist {
+	height: 400px;
+	overflow-y: auto;
+	margin-left: 3px;
+	border-top: 1px solid black;
+}
+
+.username {
+	display: block;
 }
