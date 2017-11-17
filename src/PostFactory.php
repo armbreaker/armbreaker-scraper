@@ -49,7 +49,7 @@ class PostFactory {
     }
   }
 
-  public static function createPost(int $pid, Fic $fic, string $title, \Carbon\Carbon $postTime): Like {
+  public static function createPost(int $pid, Fic $fic, string $title, \Carbon\Carbon $postTime): Post {
     Log::l()->debug("Creating post $pid for {$fic->id} called $title.");
     $post = new Post($pid, $fic, $title, $postTime);
     $post->sync();

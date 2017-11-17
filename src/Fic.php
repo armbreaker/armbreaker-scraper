@@ -50,8 +50,9 @@ class Fic implements \JsonSerializable {
   public $posts;
 
   public function __construct(int $id, string $name) {
-    $this->id   = $id;
-    $this->name = $name;
+    $this->id    = $id;
+    $this->name  = $name;
+    $this->posts = new PostCollection();
   }
 
   public function loadPosts(bool $loadLikes = false) {

@@ -71,7 +71,7 @@ class Post implements \JsonSerializable {
 
   public function sync() {
     $sql = DatabaseFactory::get()->prepare('INSERT INTO armbreaker_posts (pid, tid, title, postTime, lastUpdated) VALUES(?, ?, ?, ?, ?)
-         ON DUPLICATE KEY UPDATE likeTime=VALUES(likeTime), lastUpdated=VALUES(lastUpdated);', ['integer', 'integer', 'string', 'datetime', 'datetime']);
+         ON DUPLICATE KEY UPDATE postTime=VALUES(postTime), title=VALUES(title), tid=VALUES(tid), lastUpdated=VALUES(lastUpdated);', ['integer', 'integer', 'string', 'datetime', 'datetime']);
     $sql->bindValue(1, $this->id);
     $sql->bindValue(2, $this->fic->id);
     $sql->bindValue(3, $this->title);
