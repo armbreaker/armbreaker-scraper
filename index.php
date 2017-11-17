@@ -44,7 +44,7 @@ $container = $app->getContainer();
 
 // Register component on container
 $container['view'] = function ($container) {
-  $view = new \Slim\Views\Twig('tpl', [
+  $view = new \Slim\Views\Twig('client', [
       'cache' => 'templates_c'
   ]);
 
