@@ -8,7 +8,7 @@ var dataset;
 // the likes per day view
 class PerDayView {
 	constructor() {
-		this.margin_top = 10;
+		this.margin_top = 60;
 		this.margin_bottom = 50;
 		this.margin_w = 25;
 		this.width  = 800 - this.margin_w * 2;
