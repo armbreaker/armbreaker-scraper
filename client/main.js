@@ -226,7 +226,7 @@ class UserView {
 		this.margin_bottom = 100;
 		this.margin_w = 25;
 		this.width  = 600 - this.margin_w * 2;
-		this.height = 600 - this.margin_top - this.margin_bottom;
+		this.height = 550 - this.margin_top - this.margin_bottom;
 		this.tolerence = 0;
 		this.algoname = "damerau";
 		if (this.algoname == "damerau") {
@@ -234,7 +234,10 @@ class UserView {
 		} else {
 			this.algo = levenshtein;
 		}
-		this.innerpadding = 0; // distance between clusters
+		this.innerpadding = 7; // distance between clusters
+
+		this.subgraph_height = 50;
+		this.subgraph_margintop = 40;
 	}
 
 	setup() {
@@ -251,7 +254,7 @@ class UserView {
 		// Need to tally likes per user, as well as chapter like sums
 		for (let postid in dataset.posts) {
 			let post = dataset.posts[postid];
-			this.likesperchapter.push([postid, post.likes.length]);
+			this.likesperchapter.push([postid, getKeys(post.likes).length]);
 			this.postids.push(postid);
 			for (let userid of this.userids) {
 				if (userid in post.likes) {
@@ -317,8 +320,19 @@ class UserView {
 	    	d3.scaleLinear()
 	    	  .domain([0, this.userids.length])
 	    	  .range([0, this.height]);
+	    // for subgraph
+	    this.likesmax = arrmax(this.likesperchapter, d=>d[1])[1];
+	    this.sub_yscale = 
+	    	d3.scaleLinear()
+	    	  .domain([0, this.likesmax])
+	    	  .range([this.subgraph_height, 0]);
+
 	    this.xaxis = 
 	    	d3.axisBottom(this.xscale);
+
+	    this.subyaxis =
+	    	d3.axisLeft(this.sub_yscale)
+	    	  .ticks(3);
 
 		this.svg
 			.select(".yaxis")
@@ -437,6 +451,39 @@ class UserView {
 				  .classed("username", true)
 				  .text(d=>d);
 			});
+
+		// populate like sub-graph 
+		let band = this.xscale.bandwidth();
+		let likeline = 
+			d3.line()
+			  .x((d,i)=>this.xscale(i) + band/2)
+			  .y(d=>this.sub_yscale(d[1]));
+
+		let likes = this.svg.select(".likegraph");
+		let ypos = this.height + this.innerpadding * this.clustered.length + this.subgraph_margintop;
+		likes.attr("transform", `translate(0, ${ypos})`)
+		likes.append("path")
+			.classed("likeline", true)
+			.datum(this.likesperchapter)
+			.attr("d", likeline);
+		likes.append("line")
+			.classed("bottomline", true)
+			.attr("x1", this.xscale(0) + band/2)
+			.attr("x2", this.xscale(this.likesperchapter.length - 1) + band/2)
+			.attr("y1", this.sub_yscale(0) + 1)
+			.attr("y2", this.sub_yscale(0) + 1);
+		let subxaxis = 
+			likes.append("g")
+				.classed("subxaxis", true)
+				.call(this.subyaxis)
+				.attr("transform", "translate(12, 0)");
+		subxaxis
+			.append("text")
+			.classed("label", true)
+			.attr("text-anchor", "middle")
+			.attr("x", this.width / 2 - 12)
+			.attr("y", this.subgraph_height + 13)
+			.text("Likes per chapter")
 	}
 }
 

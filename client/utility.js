@@ -106,3 +106,11 @@ function levdist(a, b) {
 	// shouldn't get here
 	throw("levdist somehow reached end of function.");
 }
+
+function getKeys(o) {
+	let out = [];
+	for (let key in o) {
+		out.push(key);
+	}
+	return out;
+}

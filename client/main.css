@@ -33,33 +33,58 @@ body {
 .clusterbox {
 	fill: rgba(255, 255, 255, 0);
 	shape-rendering: crispEdges;
-	stroke-width: 1px;
+	stroke-width: 2px;
+}
+
+.likeline {
+	stroke: #4c568c;
+	stroke-width: 1pt;
+	fill: none;
+}
+
+.bottomline {
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.subxaxis text {
+	fill: #000;
 }
 
 .boxes>.even {
-	/*stroke: rgba(57, 65, 105, 0.5);*/
-	fill: #4c568c;
-	opacity: 0.2;
+	stroke: rgba(57, 65, 105, 0.5);
+	fill: rgba(76, 86, 140, 0.2);
 }
 
 .boxes>.odd {
-	/*stroke: rgba(106, 141, 184, 0.5);*/
-	fill: #8cb9f2;
-	opacity: 0.2;
+	stroke: rgba(106, 141, 184, 0.5);
+	fill: rgba(140, 185, 242, 0.2);
 }
+
+/*.boxes {
+	stroke: rgba(106, 141, 184, 0.5);
+	fill: rgba(140, 185, 242, 0.2);
+}*/
 
 .clusterbox:hover {
 	fill: rgba(229, 244, 253, 0.3);
 	stroke: rgba(0, 0, 0, 1);
 }
 
-.odd .userbar .barsquare {
+/*.odd .userbar .barsquare {
 	fill: #8cb9f2;
 }
 
 .even .userbar .barsquare {
 	fill: #4c568c;
+}*/
+
+.userbar .barsquare {
+	fill: #4c568c;
 }
+
+
+
 
 .dataline {
 	fill: none;
@@ -102,6 +127,7 @@ text {
 .userviewdivs {
 	float: left;
 	display:inline;
+	margin-bottom: 10px;
 }
 
 #perdayviewdiv {
