@@ -6,7 +6,8 @@
     "querypath/querypath": "^3.0",
     "nesbot/carbon": "^1.22",
     "slim/slim": "^3.9",
-    "slim/twig-view": "^2.3"
+    "slim/twig-view": "^2.3",
+    "aws/aws-sdk-php": "^3.38"
   },
   "autoload": {
     "psr-4": {
