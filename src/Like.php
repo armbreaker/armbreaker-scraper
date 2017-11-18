@@ -65,11 +65,16 @@ class Like implements \JsonSerializable {
   }
 
   public function jsonSerialize() {
-    return [
+    $j = [
         'user' => $this->user,
         'post' => $this->post->id,
-        'time' => $this->time->toAtomString(),
     ];
+    if ($this->time instanceof \Carbon\Carbon) {
+      $j['time'] = $this->time->toAtomString();
+    } else {
+      $j['time'] = null;
+    }
+    return $j;
   }
 
 }

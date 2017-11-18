@@ -49,7 +49,7 @@ class LikeFactory {
   }
 
   public static function createLike(User $user, Post $post, \Carbon\Carbon $likeTime): Like {
-    $like = new Like($user, $post, $post->fic, $likeTime);
+    $like = new Like($user, $post, $likeTime);
     $like->sync();
     return $like;
   }
