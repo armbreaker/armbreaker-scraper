@@ -294,15 +294,27 @@ class UserView {
 					i--
 				}
 			}
-			// also sort each cluster
-			cluster.sort((a,b)=>{
+			this.clustered.push(cluster);
+		}
+
+		// sort each cluster. renumber.
+		counter = this.userids.length - 1;
+		for (let cluster of this.clustered) {
+			cluster.sort((a, b)=>{
+				// start from back
 				a = a[1];
 				b = b[1];
-				if (a > b) return 1;
-				if (a < b) return -1;
+				for(let i = a.length - 1; 0 <= i; i--) {
+					if (a[i] != b[i]) {
+						if (a[i] == "x") return -1;
+						return 1;
+					}
+				}
 				return 0;
-			})
-			this.clustered.push(cluster);
+			});
+			for (let element of cluster) {
+				element[2] = counter--;
+			}
 		}
 
 		// set scale
