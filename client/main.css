@@ -139,6 +139,15 @@ text {
 	overflow-y: auto;
 	margin-left: 3px;
 	border-top: 1px solid black;
+	width: 230px;
+}
+
+#userlistdiv td:nth-child(2) {
+	width: 3em;
+}
+
+#userlistdiv td:nth-child(3) {
+	width: 10em;
 }
 
 .username {
