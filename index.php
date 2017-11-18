@@ -101,6 +101,9 @@ $app->get('/api', function(Request $request, Response $response) {
 $app->get('/api/fics', function(Request $request, Response $response) {
   try {
     $fics = FicFactory::getAllFics();
+    foreach ($fics as $fic) {
+      $fic->loadPosts();
+    }
     return $response->withJson($fics);
   } catch (\Throwable $e) {
     $err = [
