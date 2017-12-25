@@ -163,14 +163,23 @@ class PerDayView {
 			.selectAll(".view1bars")
 			.data(this.data);
 		let myself = this;
-		sel.enter()
+		let enter = sel
+			.enter()
+	   		.append("g")
+	   		.classed("view1bargroup", true)
+	   		.attr("transform", d=>`translate(${this.xscale(d[0])}, 0)`);
+	   	enter
 		   .append("rect")
 		   .classed("view1bars", true)
 		   .attr("width", d=>this.xscale.bandwidth())
 		   .attr("height", d=>this.yscale(d[1]))
-		   .attr("x", d=>this.xscale(d[0]))
-		   .attr("y", d=>this.height - this.yscale(d[1]))
-		   .on("mouseover", function(d, i){
+		   .attr("y", d=>this.height-this.yscale(d[1]));
+	    enter
+	        .append("rect")
+	        .classed("transbars", true)
+	        .attr("width", d=>this.xscale.bandwidth())
+	        .attr("height", this.height + this.margin_bottom)
+		    .on("mouseover", function(d, i){
 		   		myself.svg.selectAll(".tooltip").style("display", "inherit");
 
 		   		let sparkline_y = myself.sparklinescale(myself.sparkdata[i][1]);

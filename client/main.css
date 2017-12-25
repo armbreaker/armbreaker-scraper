@@ -26,6 +26,11 @@ body {
 	fill: #444;
 }
 
+.transbars {
+	opacity: 0;
+	fill: #F0F;
+}
+
 .barsquare {
 	shape-rendering: crispEdges;
 }
