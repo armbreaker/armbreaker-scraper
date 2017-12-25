@@ -35,10 +35,13 @@ class PerDayView {
 					 	 string: getDateRangeString(dstart, dend)});
 			startdate.add(bindur);
 		}
-		data.push({start: startdate, 
-					 end: enddate,
-				 	 count: 0,
-				 	 string: getDateRangeString(startdate, enddate)});
+		// don't draw the last bin if it's not a full bin
+		if (this.binsize == 1) {
+			data.push({start: startdate, 
+						 end: enddate,
+					 	 count: 0,
+					 	 string: getDateRangeString(startdate, enddate)});
+		}
 		for (let time of this.alltimes) {
 			let day = getDate(time); // conversion puts dates into user timezone.
 			for(let bin of data) {
