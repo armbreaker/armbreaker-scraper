@@ -275,30 +275,11 @@ class UserView {
 
 		// cluster similar likes, starting from the max "x"s
 		this.clustered = [];
-		let workingarr = this.userdata_arr.slice(0);
 
-		let counter = this.userids.length - 1; // counter of users for arranging later.
-		while(workingarr.length > 0) {
-			// find a maximumally dense string.
-			let el = arrmax(workingarr, (k)=>{
-				return (k[1].match(/x/g) || []).length;
-			});
-			let i = workingarr.indexOf(el);
-			let cluster = [[...el, counter--]];
-			workingarr.splice(i, 1);
-			for (i = 0; i < workingarr.length; i++) {
-				let el2 = workingarr[i];
-				if (this.algo(el[1], el2[1]) <= this.tolerence) {
-					cluster.push([...el2, counter--]);
-					workingarr.splice(i, 1);
-					i--
-				}
-			}
-			this.clustered.push(cluster);
-		}
+		this.clustered = greedy_cluster(this.userdata_arr.slice(0), this.tolerence, this.algo);
 
 		// sort each cluster. renumber.
-		counter = this.userids.length - 1;
+		let counter = this.userids.length - 1;
 		for (let cluster of this.clustered) {
 			cluster.sort((a, b)=>{
 				// start from back
@@ -312,6 +293,7 @@ class UserView {
 				}
 				return 0;
 			});
+
 			for (let element of cluster) {
 				element[2] = counter--;
 			}

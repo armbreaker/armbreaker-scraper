@@ -30,6 +30,19 @@ function arrsum(arr, keyfunc) {
 	}, 0)
 }
 
+function arrsort(arr, reverse, keyfunc) {
+	if (keyfunc == undefined) {
+		keyfunc = d=>d;
+	}
+	return arr.sort((a, b)=>{
+		a = keyfunc(a);
+		b = keyfunc(b);
+		if (a > b) return 1;
+		if (a < b) return -1;
+		return 0;
+	});
+}
+
 // truncate so there are only n digits
 function n_digits(x, n) {
 	let e = Math.pow(10, n);
@@ -113,4 +126,31 @@ function getKeys(o) {
 		out.push(key);
 	}
 	return out;
+}
+
+function symbolcount(string, symbol) {
+	let re = new RegExp(symbol, "g");
+	return (string[1].match(re) || []).length;
+}
+
+// Put elements in first cluster that is under threshold
+function greedy_cluster(data, threshold, algo) {
+	arrsort(data, d=>symbolcount(d[1], "x"));
+	let clusters = [];
+	clusters.push([[...data[0], 0]]);
+	for(let el of data.slice(1)) {
+		let succeeded = false;
+		for (let cluster of clusters) {
+			if (algo(el[1], cluster[0][1]) <= threshold) {
+				cluster.push([...el, 0]);
+				succeeded = true;
+				break;
+			}
+		}
+		// new cluster
+		if (!succeeded) {			
+			clusters.push([[...el, 0]]);
+		}
+	}
+	return clusters;
 }
