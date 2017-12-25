@@ -204,7 +204,7 @@ class PerDayView {
 	   		.attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
 	   	enter
 	        .append("rect")
-	        .classed("view1bars", true);
+	        .classed("view1bar", true);
 	    enter
 	        .append("rect")
 	        .classed("transbars", true)
@@ -241,14 +241,14 @@ class PerDayView {
 
 	    sel.each(function(d){
 	   			d3.select(this)
-	   			  .select(".view1bars")
+	   			  .select(".view1bar")
 	   			  .datum(d);
 	   		})
 
 	    sel.transition()
 	   	   .attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
 
-	   	sel.selectAll(".view1bars")
+	   	sel.selectAll(".view1bar")
 	   	   .transition()
 		   .attr("width", d=>this.xscale.bandwidth())
 		   .attr("height", d=>this.yscale(d.count))
