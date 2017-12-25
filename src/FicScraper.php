@@ -33,12 +33,24 @@ namespace Armbreaker;
  */
 class FicScraper extends Fic {
 
-  const SB_URL = "https://forums.spacebattles.com/threads/%s/threadmarks.rss?category_id=1";
+  const SB_RSS   = "https://forums.spacebattles.com/threads/%s/threadmarks.rss?category_id=1";
+  const SB_LIKES = "https://forums.spacebattles.com/posts/%s/likes?page=%s";
 
+  /**
+   * Whether or not to introduce delays for reasons
+   * @var bool
+   */
+  public $sleppy = true;
+
+  /**
+   *
+   * @var string
+   */
   private $rss;
 
   public function __construct(int $id) {
-    $this->rss = file_get_contents(sprintf(self::SB_URL, $id));
+    ini_set('user_agent', "sylae/armbreaker (https://github.com/sylae/armbreaker");
+    $this->rss = $this->get(sprintf(self::SB_RSS, $id));
     parent::__construct($id, str_replace("Spacebattles Forums - ", "", \qp($this->rss, 'channel>title')->text()));
     $this->sync();
 
@@ -69,8 +81,67 @@ class FicScraper extends Fic {
     }
   }
 
-  private function updateChapter(Post $post) {
-    // TODO
+  public function updateChapter(Post $post) {
+    $likes      = [];
+    $page       = 1;
+    $checkAgain = true;
+    while ($checkAgain) {
+      $html = $this->get(sprintf(self::SB_LIKES, $post->id, $page));
+      $obj  = \html5qp($html, 'li.memberListItem');
+      $obj->each(function(int $index, \DOMElement $item) use (&$likes) {
+        $likes[] = [
+            'time' => $this->unfuckDates(\qp($item, '.DateTime')),
+            'user' => [
+                'name' => \qp($item, 'h3.username')->text(),
+                'id'   => \qp($item, 'a.username')->attr("href"),
+            ],
+        ];
+      });
+      if (count($obj) < 100) {
+        $checkAgain = false;
+      }
+      $page++;
+    }
+    foreach ($likes as $like) {
+      try {
+        $user = UserFactory::createUser($this->unfuckUserID($like['user']['id']), $like['user']['name']);
+        $post->likes->addLike(LikeFactory::createLike($user, $post, $like['time']));
+      } catch (\Throwable $e) {
+        var_dump($like);
+        echo $e->xdebug_message;
+        die();
+      }
+    }
+  }
+
+  private function get(string $url): string {
+    $this->slep();
+    return file_get_contents($url);
+  }
+
+  private function slep(): void {
+    if ($this->sleppy) {
+      usleep(random_int(1000, 2500) * 1000);
+    }
+  }
+
+  private function unfuckDates(\QueryPath\DOMQuery $qp): \Carbon\Carbon {
+    if ($qp->is("span")) {
+      $obj = new \Carbon\Carbon(str_replace(" at", "", $qp->attr("title")), "America/New_York");
+    } elseif ($qp->is("abbr")) {
+      $obj = new \Carbon\Carbon(date('c', $qp->attr("data-time")));
+    } else {
+      throw new \LogicException("what the fuck");
+    }
+    return $obj;
+  }
+
+  private function unfuckUserID(string $uid): int {
+    $matches = [];
+    preg_match("/\\.(\\d+)\\//i", $uid, $matches);
+    if (mb_strlen($matches[1]) > 0 && is_numeric($matches[1])) {
+      return (int) $matches[1];
+    }
   }
 
 }
