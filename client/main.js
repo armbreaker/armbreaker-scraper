@@ -276,7 +276,7 @@ class UserView {
 		// cluster similar likes, starting from the max "x"s
 		this.clustered = [];
 
-		this.clustered = greedy_cluster(this.userdata_arr.slice(0), this.tolerence, this.algo);
+		this.clustered = lufu_cluster(this.userdata_arr.slice(0), this.tolerence, this.algo);
 
 		// sort each cluster. renumber.
 		let counter = this.userids.length - 1;

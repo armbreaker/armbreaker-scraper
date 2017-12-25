@@ -34,6 +34,15 @@ function arrsort(arr, reverse, keyfunc) {
 	if (keyfunc == undefined) {
 		keyfunc = d=>d;
 	}
+	if (reverse) {
+		return arr.sort((a, b)=>{
+			a = keyfunc(a);
+			b = keyfunc(b);
+			if (a > b) return -1;
+			if (a < b) return 1;
+			return 0;
+		});
+	}
 	return arr.sort((a, b)=>{
 		a = keyfunc(a);
 		b = keyfunc(b);
@@ -151,6 +160,32 @@ function greedy_cluster(data, threshold, algo) {
 		if (!succeeded) {			
 			clusters.push([[...el, 0]]);
 		}
+	}
+	return clusters;
+}
+
+function lufu_cluster(data, threshold, algo) {
+	arrsort(data, d=>symbolcount(d[1], "x"));
+	let clusters = [];
+	clusters.push([[...data[0], 0]]);
+	for(let el of data.slice(1)) {
+		let temp = [];
+		for (let cluster of clusters) {
+			// find min score for this cluster
+			let min = Infinity;
+			for (let el2 of cluster) {
+				let score = algo(el[1], el2[1]);
+				if (score < min)
+					min = score;
+			}
+			temp.push([cluster, min]);
+		}
+		// find smallest
+		let min = arrmin(temp, d=>d[1]);
+		if (min[1] <= threshold)
+			min[0].push([...el, 0]);
+		else
+			clusters.push([[...el, 0]]);
 	}
 	return clusters;
 }
