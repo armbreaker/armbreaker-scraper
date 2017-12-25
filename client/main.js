@@ -169,11 +169,11 @@ class PerDayView {
 	   		.classed("view1bargroup", true)
 	   		.attr("transform", d=>`translate(${this.xscale(d[0])}, 0)`);
 	   	enter
-		   .append("rect")
-		   .classed("view1bars", true)
-		   .attr("width", d=>this.xscale.bandwidth())
-		   .attr("height", d=>this.yscale(d[1]))
-		   .attr("y", d=>this.height-this.yscale(d[1]));
+		    .append("rect")
+		    .classed("view1bars", true)
+		    .attr("width", d=>this.xscale.bandwidth())
+		    .attr("height", d=>this.yscale(d[1]))
+		    .attr("y", d=>this.height-this.yscale(d[1]));
 	    enter
 	        .append("rect")
 	        .classed("transbars", true)
