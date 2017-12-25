@@ -13,65 +13,52 @@ class PerDayView {
 		this.margin_w = 25;
 		this.width  = 800 - this.margin_w * 2;
 		this.height = 430 - this.margin_top - this.margin_bottom - 10;
+		this.binsize = 1;
 	}
 
-	setup() {
-		this.svg = d3.select("#perdayview");
-
-		let alltimes = [];
-		// find time ranges.
-		this.mintime = "9999-08-25T06:27:00+00:00";
-		this.maxtime = "0000-01-01T00:00:00+00:00";
-		for (let postid in dataset.posts) {
-			let post = dataset.posts[postid];
-			for (let key in post.likes) {
-				let time = post.likes[key];
-				if (this.mintime > time) {
-					this.mintime = time;
-				} else if (this.maxtime < time) {
-					this.maxtime = time;
-				}
-				alltimes.push(time);
-			}
-		}
-
+	bin(newbin) {
+		this.binsize = newbin;
 		// extract likes per day.
 		// first, initialize each day.
-		let data = {};
-		let oneday = moment.duration(1, "days");
+		let data = [];
+		let bindur = moment.duration(this.binsize, "days");
 		let startdate = getDate(this.mintime);
 		let enddate = getDate(this.maxtime);
-		while (startdate.clone().add(oneday) < enddate) {
-			data[getDateString(startdate)] = 0;
-			startdate.add(oneday);
+		while (startdate.clone().add(bindur) < enddate) {
+			let dstart = startdate.clone();
+			let dend   = startdate.clone().add(bindur);
+			let s1 = getDateString(dstart);
+			let s2 = getDateString(dend);
+			data.push({start: dstart, 
+						 end: dend,
+					 	 count: 0,
+					 	 string: getDateRangeString(dstart, dend)});
+			startdate.add(bindur);
 		}
-		data[getDateString(enddate)] = 0;
-
-		for (let time of alltimes) {
+		data.push({start: startdate, 
+					 end: enddate,
+				 	 count: 0,
+				 	 string: getDateRangeString(startdate, enddate)});
+		for (let time of this.alltimes) {
 			let day = getDate(time); // conversion puts dates into user timezone.
-			let datestring = getDateString(day);
-			data[datestring] += 1;
+			for(let bin of data) {
+				if (bin.start <= day && day <= bin.end) {
+					bin.count += 1;
+					break;
+				}
+			}
 		}
-		// flatten to ensure order.
-		this.data = [];
-		for (let date in data) {
-			this.data.push([date, data[date]]);
-		}
-		this.data = this.data.sort((a, b)=>{
-			if (a > b) return 1;
-			if (a < b) return -1;
-			return 0;
-		});
+		this.data = data;
 
 		// also create sparkline data.
-		this.totallikes = arrsum(this.data, d=>d[1]);
+		this.totallikes = arrsum(this.data, d=>d.count);
 		this.sparkdata = [];
 		let datanum = this.data.length;
 		let sum = 0;
 		let slope = this.totallikes / parseFloat(datanum);
 		for (let i = 0; i < this.data.length; i++) {
-			let date  = this.data[i][0];
-			let likes = this.data[i][1];
+			let date  = this.data[i].string;
+			let likes = this.data[i].count;
 			// compare expected likes versus actual likes
 			// let diff = likes - slope; // likes vs average likes
 			sum += likes;
@@ -80,16 +67,14 @@ class PerDayView {
 		}
 		this.sparkdataMagnitude = Math.abs(arrmax(this.sparkdata, d=>Math.abs(d[1]))[1]);
 
-		// find new min and max times.
-		this.mintime = this.data[0][0];
-		this.maxtime = this.data[this.data.length - 1][0];
+		// reset axes
 
 		// find max like magnitude, then create scales & axes
-		this.maxlikes = arrmax(this.data, d=>d[1])[1];
+		this.maxlikes = arrmax(this.data, d=>d.count).count;
 
 		this.xscale = 
 			d3.scaleBand()
-			  .domain(this.data.map(d=>d[0]))
+			  .domain(this.data.map(d=>d.string))
 			  .paddingOuter(10)
 			  .range([0, this.width]);
 	    this.yscale = 
@@ -116,15 +101,40 @@ class PerDayView {
 		    .attr("transform", `translate(${this.margin_w}, ${this.margin_top})`)
 		this.svg.select(".bars");
 		this.svg.select(".xaxis")
+			.transition()
 		    .call(this.xaxis)
 		    .attr("transform", `translate(0, ${this.height})`);
 		this.svg.select(".yaxis")
+			.transition()
 			.call(this.yaxis);
 
 		this.sparkline = 
 			d3.line()
 			  .x(d=>this.xscale(d[0])+ this.xscale.bandwidth() / 2)
 			  .y(d=>this.sparklinescale(d[1]));
+	}
+
+	setup() {
+		let myself = this;
+		this.svg = d3.select("#perdayview");
+
+		this.alltimes = [];
+		// find time ranges.
+		this.mintime = "9999-08-25T06:27:00+00:00";
+		this.maxtime = "0000-01-01T00:00:00+00:00";
+		for (let postid in dataset.posts) {
+			let post = dataset.posts[postid];
+			for (let key in post.likes) {
+				let time = post.likes[key];
+				if (this.mintime > time) {
+					this.mintime = time;
+				} else if (this.maxtime < time) {
+					this.maxtime = time;
+				}
+				this.alltimes.push(time);
+			}
+		}
+		this.bin(1);
 
 	    // Create tooltip.
 	    this.svg.select(".sparkline")
@@ -155,60 +165,16 @@ class PerDayView {
 	    	.append("path")
 	    	.classed("tooltipguide", true)
 	    	.classed("tooltip", true);
-	}
 
-	update() {
-		let sel = this.svg
-			.select(".bars")
-			.selectAll(".view1bars")
-			.data(this.data);
-		let myself = this;
-		let enter = sel
-			.enter()
-	   		.append("g")
-	   		.classed("view1bargroup", true)
-	   		.attr("transform", d=>`translate(${this.xscale(d[0])}, 0)`);
-	   	enter
-		    .append("rect")
-		    .classed("view1bars", true)
-		    .attr("width", d=>this.xscale.bandwidth())
-		    .attr("height", d=>this.yscale(d[1]))
-		    .attr("y", d=>this.height-this.yscale(d[1]));
-	    enter
-	        .append("rect")
-	        .classed("transbars", true)
-	        .attr("width", d=>this.xscale.bandwidth())
-	        .attr("height", this.height + this.margin_bottom)
-		    .on("mouseover", function(d, i){
-		   		myself.svg.selectAll(".tooltip").style("display", "inherit");
-
-		   		let sparkline_y = myself.sparklinescale(myself.sparkdata[i][1]);
-				myself.svg.select(".tooltipDot")
-					.attr("cx", myself.xscale(d[0]) + myself.xscale.bandwidth() / 2)
-					.attr("cy", sparkline_y)
-					.attr("r" , 3);
-				// distance from top of bar to sparkline.
-				let y = myself.height - myself.yscale(d[1]);
-				let x = myself.xscale(d[0]) + myself.xscale.bandwidth() / 2;
-				let len = myself.yscale(d[1]) + (sparkline_y - myself.margin_bottom / 2);
-				myself.svg.select(".tooltipguide")
-					.attr("d", `M${x},${y}L${x},${myself.height + myself.margin_bottom}`);
-
-				// need to find text width to center.
-				let line1_w = getTextWidth(d[0], '"Open Sans" 12pt');
-				let line2_w = getTextWidth(d[1] + " likes", '"Open Sans" 12pt');
-				let align_left = line1_w - line2_w;
-				myself.svg.select(".tooltipline1").text(d[0]);
-				myself.svg.select(".tooltipline2").text(d[1] + " likes");
-
-				// also move the entire tooltip
-				myself.svg.select(".tooltiptext")
-					.attr("transform", `translate(${x},${y - 30})`);
-		   });
-	    this.svg.select("rect")
-	        .on("click", function(){
-		   		myself.svg.selectAll(".tooltip").style("display", "none");
-	        })
+	    // Hook up buttons.
+	    d3.select("#setbinsize")
+	      .on("click", function(){
+	    		let val = +d3.select("#binsize")
+	    		             .property("value");
+                if (val == myself.binsize) return;
+	    		myself.bin(val);
+	    		myself.update();
+	    	})
 		// also add sparkline
 		let sparkline = this.svg.select(".sparkline")
 		    .attr("transform", `translate(0, ${this.height + this.margin_bottom / 2})`);
@@ -219,10 +185,84 @@ class PerDayView {
 		    .attr("x2", this.width)
 		    .attr("y1", 0)
 		    .attr("y2", 0);
-
 		sparkline
 			.append("path")
-			.classed("dataline", true)
+			.classed("dataline", true);
+	}
+
+	update() {
+		let sel = this.svg
+			.select(".bars")
+			.selectAll(".view1bargroup")
+			.data(this.data);
+		let myself = this;
+		sel.exit().remove();
+		let enter = sel
+			.enter()
+	   		.append("g")
+	   		.classed("view1bargroup", true)
+	   		.attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
+	   	enter
+	        .append("rect")
+	        .classed("view1bars", true);
+	    enter
+	        .append("rect")
+	        .classed("transbars", true)
+	        .attr("height", this.height + this.margin_bottom)
+		    .on("mouseover", function(d, i){
+		   		myself.svg.selectAll(".tooltip").style("display", "inherit");
+		   		d = myself.data[i];
+		   		let sparkline_y = myself.sparklinescale(myself.sparkdata[i][1]);
+				myself.svg.select(".tooltipDot")
+					.attr("cx", myself.xscale(d.string) + myself.xscale.bandwidth() / 2)
+					.attr("cy", sparkline_y)
+					.attr("r" , 3);
+				// distance from top of bar to sparkline.
+				let y = myself.height - myself.yscale(d.count);
+				let x = myself.xscale(d.string) + myself.xscale.bandwidth() / 2;
+				let len = myself.yscale(d.count) + (sparkline_y - myself.margin_bottom / 2);
+				myself.svg.select(".tooltipguide")
+					.attr("d", `M${x},${y}L${x},${myself.height + myself.margin_bottom}`);
+
+				// need to find text width to center.
+				let line1_w = getTextWidth(d.string, '"Open Sans" 12pt');
+				let line2_w = getTextWidth(d.count + " likes", '"Open Sans" 12pt');
+				let align_left = line1_w - line2_w;
+				myself.svg.select(".tooltipline1").text(d.string);
+				myself.svg.select(".tooltipline2").text(d.count + " likes");
+
+				// also move the entire tooltip
+				myself.svg.select(".tooltiptext")
+					.attr("transform", `translate(${x},${y - 30})`);
+		   });
+
+		// time for the update selection
+	    sel = sel.merge(enter);
+
+	    sel.each(function(d){
+	   			d3.select(this)
+	   			  .select(".view1bars")
+	   			  .datum(d);
+	   		})
+
+	    sel.transition()
+	   	   .attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
+
+	   	sel.selectAll(".view1bars")
+	   	   .transition()
+		   .attr("width", d=>this.xscale.bandwidth())
+		   .attr("height", d=>this.yscale(d.count))
+		   .attr("y", d=>this.height-this.yscale(d.count));
+
+	   	sel.selectAll(".transbars")
+	        .attr("width", d=>this.xscale.bandwidth());
+
+	    this.svg.select("rect")
+	        .on("click", function(){
+		   		myself.svg.selectAll(".tooltip").style("display", "none");
+	        })
+
+	    this.svg.select(".dataline")
 			.datum(this.sparkdata)
 			.attr("d", this.sparkline);
 	}

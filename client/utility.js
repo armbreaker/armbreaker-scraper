@@ -67,6 +67,10 @@ function getDateString(moment) {
 	return moment.format("YYYY-MM-DD");
 }
 
+function getDateRangeString(moment_start, moment_end) {
+	return `${moment_start.format("YYYY-MM-DD")}\n${moment_end.format("YYYY-MM-DD")}`;
+}
+
 // good ol' text width estimator. i seriously use this everywhere
 // Taken from https://github.com/Skyyrunner/JeevesCoursePlanner/blob/master/client/typescript/utility.ts
 /**

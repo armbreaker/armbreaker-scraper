@@ -26,6 +26,18 @@ body {
 	fill: #444;
 }
 
+#binsize {
+	width: 30px;
+	line-height: 1.5;
+}
+
+#bincontrols {
+}
+
+#setbinsize {
+	line-height: 1.5;
+}
+
 .transbars {
 	opacity: 0;
 	fill: #F0F;
