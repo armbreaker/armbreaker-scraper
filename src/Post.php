@@ -67,6 +67,7 @@ class Post implements \JsonSerializable {
     $this->fic   = $fic;
     $this->title = $title;
     $this->time  = $time;
+    $this->likes = new LikeCollection();
   }
 
   public function sync() {
@@ -86,13 +87,15 @@ class Post implements \JsonSerializable {
   }
 
   public function jsonSerialize() {
-    return [
-        'id'          => $this->id,
-        'fic'         => $this->fic->id,
-        'title'       => $this->title,
-        'lastUpdated' => $this->time->toAtomString(),
-        'likes'       => $this->likes,
+    $j = [
+        'id'    => $this->id,
+        'fic'   => $this->fic->id,
+        'title' => $this->title,
     ];
+    if (count($this->likes) > 0) {
+      $j['likes'] = $this->likes;
+    }
+    return $j;
   }
 
 }

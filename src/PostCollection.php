@@ -73,9 +73,16 @@ class PostCollection implements \Iterator, \Countable, \JsonSerializable {
   }
 
   public function jsonSerialize() {
+    $earliest = null;
+    $latest   = null;
+    if ($this->earliest instanceof \Carbon\Carbon && $this->latest instanceof \Carbon\Carbon) {
+      $earliest = $this->earliest->toAtomString();
+      $latest   = $this->latest->toAtomString();
+    }
+
     return [
-        'earliest' => $this->earliest->toAtomString(),
-        'latest'   => $this->latest->toAtomString(),
+        'earliest' => $earliest,
+        'latest'   => $latest,
         'posts'    => $this->posts,
     ];
   }
@@ -101,7 +108,7 @@ class PostCollection implements \Iterator, \Countable, \JsonSerializable {
   }
 
   public function count(): int {
-    return count($posts);
+    return count($this->posts);
   }
 
 }

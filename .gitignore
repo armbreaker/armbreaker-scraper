@@ -3,4 +3,4 @@ config.php
 log.txt
 /vendor/
 /nbproject/private/
-/templates_c/
+/cache/
