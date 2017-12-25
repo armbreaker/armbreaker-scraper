@@ -1,0 +1,155 @@
+body {
+	font-family: "Open Sans", sans-serif;
+	background-color: #eee;
+	color: #444;
+}
+
+#perdayview .all .bars {
+	stroke-width: 0;
+	fill: #ae161e;
+	shape-rendering: crispEdges;
+}
+
+#perdayview .all .bars rect:hover {
+	fill: #FF0000;
+}
+
+#perdayview .all .axes .xaxis .tick text {
+	display: none;
+}
+
+#userview .all .axes .yaxis .tick text {
+	display: inherit;
+}
+
+#userview .axislabel {
+	fill: #444;
+}
+
+.barsquare {
+	shape-rendering: crispEdges;
+}
+
+.clusterbox {
+	fill: rgba(255, 255, 255, 0);
+	shape-rendering: crispEdges;
+	stroke-width: 2px;
+}
+
+.likeline {
+	stroke: #4c568c;
+	stroke-width: 1pt;
+	fill: none;
+}
+
+.bottomline {
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.subxaxis text {
+	fill: #000;
+}
+
+.boxes>.even {
+	stroke: rgba(57, 65, 105, 0.5);
+	fill: rgba(76, 86, 140, 0.2);
+}
+
+.boxes>.odd {
+	stroke: rgba(106, 141, 184, 0.5);
+	fill: rgba(140, 185, 242, 0.2);
+}
+
+/*.boxes {
+	stroke: rgba(106, 141, 184, 0.5);
+	fill: rgba(140, 185, 242, 0.2);
+}*/
+
+.clusterbox:hover {
+	fill: rgba(229, 244, 253, 0.3);
+	stroke: rgba(0, 0, 0, 1);
+}
+
+/*.odd .userbar .barsquare {
+	fill: #8cb9f2;
+}
+
+.even .userbar .barsquare {
+	fill: #4c568c;
+}*/
+
+.userbar .barsquare {
+	fill: #4c568c;
+}
+
+
+
+
+.dataline {
+	fill: none;
+	stroke-width: 1pt;
+	stroke: #000;
+}
+
+.normalline {
+	fill: none;
+	stroke-width: 1pt;
+	stroke: #666666;
+}
+
+.tooltipDot {
+
+}
+
+.tooltipline1, .tooltipline2 {
+	font-size: 12pt;
+	fill: white;
+	text-anchor: middle;
+}
+
+.tooltipguide {
+	fill: none;
+	stroke-width: 1pt;
+	stroke: #000;
+}
+
+.tooltiptext rect {
+	fill: rgba(0, 0, 0, 0.8);
+	stroke-width: 1pt;
+	stroke: #000000;
+}
+
+text {
+	font-family: "Open Sans", sans-serif;
+}
+
+.userviewdivs {
+	float: left;
+	display:inline;
+	margin-bottom: 10px;
+}
+
+#perdayviewdiv {
+	margin-bottom: 20px;
+}
+
+#userlist {
+	height: 400px;
+	overflow-y: auto;
+	margin-left: 3px;
+	border-top: 1px solid black;
+	width: 230px;
+}
+
+#userlistdiv td:nth-child(2) {
+	width: 3em;
+}
+
+#userlistdiv td:nth-child(3) {
+	width: 10em;
+}
+
+.username {
+	display: block;
+}
