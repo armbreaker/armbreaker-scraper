@@ -115,11 +115,15 @@ body {
 	stroke: #666666;
 }
 
+.tooltip {
+	pointer-events: none;
+}
+
 .tooltipDot {
 
 }
 
-.tooltipline1, .tooltipline2 {
+.tooltiptext {
 	font-size: 12pt;
 	fill: white;
 	text-anchor: middle;

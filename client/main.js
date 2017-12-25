@@ -8,11 +8,11 @@ var dataset;
 // the likes per day view
 class PerDayView {
 	constructor() {
-		this.margin_top = 60;
+		this.margin_top = 80;
 		this.margin_bottom = 50;
 		this.margin_w = 25;
 		this.width  = 800 - this.margin_w * 2;
-		this.height = 430 - this.margin_top - this.margin_bottom - 10;
+		this.height = 460 - this.margin_top - this.margin_bottom - 10;
 		this.binsize = 1;
 	}
 
@@ -80,7 +80,7 @@ class PerDayView {
 	    this.yscale = 
 			d3.scaleLinear()
 			  .domain([0, Math.floor(this.maxlikes * 1.05)])
-			  .range([2, this.height]);
+			  .range([0, this.height]);
 	    // have to invert scale for y axis
 	    this.yscale_axis = this.yscale
 	    	.copy()
@@ -146,19 +146,26 @@ class PerDayView {
 	    tooltip
 	    	.append("rect")
 	    	.attr("width" , "100")
-	    	.attr("height", "49")
+	    	.attr("height", "70")
 	    	.attr("x", -50)
-	    	.attr("y", -25)
+	    	.attr("y", -45)
 	    	.attr("rx", 5)
 	    	.attr("ry", 5);
 
 		tooltip
 		    .append("text")
 	    	.classed("tooltipline1", true)
-	    	.attr("y", -5);
+	    	.classed("tooltiptext", true)
+	    	.attr("y", -25);
 	    tooltip
 	    	.append("text")
 	    	.classed("tooltipline2", true)
+	    	.classed("tooltiptext", true)
+	    	.attr("y", -5);
+	    tooltip
+	    	.append("text")
+	    	.classed("tooltipline3", true)
+	    	.classed("tooltiptext", true)
 	    	.attr("y", 15);
 
 	    this.svg.select(".all")
@@ -171,6 +178,8 @@ class PerDayView {
 	      .on("click", function(){
 	    		let val = +d3.select("#binsize")
 	    		             .property("value");
+	    		val = Math.floor(val);
+	            if (val < 1) return;
                 if (val == myself.binsize) return;
 	    		myself.bin(val);
 	    		myself.update();
@@ -228,8 +237,9 @@ class PerDayView {
 				let line1_w = getTextWidth(d.string, '"Open Sans" 12pt');
 				let line2_w = getTextWidth(d.count + " likes", '"Open Sans" 12pt');
 				let align_left = line1_w - line2_w;
-				myself.svg.select(".tooltipline1").text(d.string);
-				myself.svg.select(".tooltipline2").text(d.count + " likes");
+				myself.svg.select(".tooltipline1").text(getDateString(d.start));
+				myself.svg.select(".tooltipline2").text(getDateString(d.end));
+				myself.svg.select(".tooltipline3").text(d.count + " likes");
 
 				// also move the entire tooltip
 				myself.svg.select(".tooltiptext")
