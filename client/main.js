@@ -52,13 +52,28 @@ class PerDayView {
 		}
 		this.data = data;
 
+		// Also create adjusted amounts
+		for (let i = 0; i < this.data.length; i++) {
+			let d = this.data[i];
+			console.log(d);
+			if (i == this.data.length - 1) {
+	   			let days = d.end.diff(d.start, "days");
+	   			if (days != this.binsize){
+		   			d.adj = d.count / days * this.binsize;
+		   			d.adj = d.count + (d.adj - d.count) * .5 // discount estimate
+		   			continue;
+		   		}
+			}
+			d.adj = d.count;
+		}
+
 		// also create sparkline data.
 		this.totallikes = arrsum(this.data, d=>d.count);
 		this.sparkdata = [];
 		let datanum = this.data.length;
 		let sum = 0;
 		let slope = this.totallikes / parseFloat(datanum);
-		for (let i = 0; i < this.data.length; i++) {
+		for (let i = 0; i < datanum; i++) {
 			let date  = this.data[i].string;
 			let likes = this.data[i].count;
 			// compare expected likes versus actual likes
@@ -72,7 +87,7 @@ class PerDayView {
 		// reset axes
 
 		// find max like magnitude, then create scales & axes
-		this.maxlikes = arrmax(this.data, d=>d.count).count;
+		this.maxlikes = arrmax(this.data, d=>d.adj).adj; // adj, to account for estimate
 
 		this.xscale = 
 			d3.scaleBand()
@@ -123,18 +138,11 @@ class PerDayView {
 
 		this.alltimes = [];
 		// find time ranges.
-		this.mintime = "9999-08-25T06:27:00+00:00";
-		this.maxtime = "0000-01-01T00:00:00+00:00";
-		for (let postid in dataset.posts) {
-			let post = dataset.posts[postid];
-			for (let key in post.likes) {
-				let time = post.likes[key];
-				if (this.mintime > time) {
-					this.mintime = time;
-				} else if (this.maxtime < time) {
-					this.maxtime = time;
-				}
-				this.alltimes.push(time);
+		this.mintime = dataset.posts.earliest;
+		this.maxtime = dataset.posts.latest;
+		for (let post of dataset.posts.posts) {
+			for (let like of post.likes.likes) {
+				this.alltimes.push(like.time);
 			}
 		}
 
@@ -317,18 +325,7 @@ class PerDayView {
 		sel.selectAll(".view1barback")
    	       .transition()
    	       .attr("width", d=>this.xscale.bandwidth())
-		   .attr("height", d=>{
-		   		if (this.binsize != 1){
-		   			let days = d.end.diff(d.start, "days");
-		   			if (days != this.binsize){
-			   			d.adj = d.count / days * this.binsize;
-			   			d.adj = d.count + (d.adj - d.count) * .5 // discount estimate
-			   			return this.yscale(d.adj);
-			   		}
-		   		}
-		   		d.adj = d.count;
-		   		return this.yscale(d.count);
-		   })
+		   .attr("height", d=>this.yscale(d.adj))
 		   .attr("y", d=>this.height-this.yscale(d.adj));
 
 
@@ -637,7 +634,7 @@ var views = [
 
 // Initialize everything.
 function setup() {
-	d3.select("#title h1").text(dataset.info.title);
+	d3.select("#title h1").text(dataset.name);
 	for (let view of views) {
 		view.setup();
 		view.update();

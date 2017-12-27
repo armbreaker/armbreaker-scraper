@@ -59,7 +59,7 @@ function n_digits(x, n) {
 }
 
 function getDate(timestr) {
-	return moment(timestr).hour(0).minute(0).second(0).millisecond(0);
+	return moment(timestr).startOf("day");
 }
 
 // accept a Moment obj, return YYYY-MM-DD
