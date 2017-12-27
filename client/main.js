@@ -55,7 +55,6 @@ class PerDayView {
 		// Also create adjusted amounts
 		for (let i = 0; i < this.data.length; i++) {
 			let d = this.data[i];
-			console.log(d);
 			if (i == this.data.length - 1) {
 	   			let days = d.end.diff(d.start, "days");
 	   			if (days != this.binsize){
@@ -372,20 +371,27 @@ class UserView {
 
 	setup() {
 		this.svg = d3.select("#userview");
-		this.userdata = {};
-		this.userids = [];
-		this.postids = [];
-		this.likesperchapter = [];
+		this.userlikes = [];
+		this.usernames = {};
+		this.chapterinfo = [];
+
 		// put all users in userdata since need to cmp strings
-		for (let userid in dataset.usersReferenced) {
-			this.userids.push(userid);
-			this.userdata[userid] = "";
+		for (let post of dataset.posts.posts) {
+			let postobj = {};
+			postobj.id = post.id;
+			postobj.title = post.title;
+			postobj.likes = [];
+			for (let like of post.likes.likes) {
+				let userid = like.user.id;
+				this.postobj.likes.push(userid);
+				this.usernames[userid] = like.user.name;
+				this.userlikes[userid] = "";
+			}
+			chapterinfo.push(postobj);
 		}
+
 		// Need to tally likes per user, as well as chapter like sums
-		for (let postid in dataset.posts) {
-			let post = dataset.posts[postid];
-			this.likesperchapter.push([postid, getKeys(post.likes).length]);
-			this.postids.push(postid);
+		for (let post of this.chapterinfo) {
 			for (let userid of this.userids) {
 				if (userid in post.likes) {
 					this.userdata[userid] += "x";
