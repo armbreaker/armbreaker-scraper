@@ -78,6 +78,7 @@ class PerDayView {
 			d3.scaleBand()
 			  .domain(this.data.map(d=>d.string))
 			  .paddingOuter(10)
+			  .paddingInner(this.binsize == 1 ? 0 : 0.1)
 			  .range([0, this.width]);
 	    this.yscale = 
 			d3.scaleLinear()
@@ -221,7 +222,8 @@ class PerDayView {
     		.value(sliderFromBin(this.binsize))
     		.tickFormat(slidertickformat)
     		.callback(()=>{
-    			let val = this.sliderscale.inverse(this.slider.value());
+    			let val = this.slider.value();
+    			val = binFromSlider(val);
     			if (this.alltimes.length / val >= 1) {
 		    		this.bin(this.slider.value());
 		    		this.update();
@@ -278,9 +280,9 @@ class PerDayView {
 					.attr("cy", sparkline_y)
 					.attr("r" , 3);
 				// distance from top of bar to sparkline.
-				let y = myself.height - myself.yscale(d.count);
+				let y = myself.height - myself.yscale(d.adj);
 				let x = myself.xscale(d.string) + myself.xscale.bandwidth() / 2;
-				let len = myself.yscale(d.count) + (sparkline_y - myself.margin_bottom / 2);
+				let len = myself.yscale(d.adj) + (sparkline_y - myself.margin_bottom / 2);
 				myself.svg.select(".tooltipguide")
 					.attr("d", `M${x},${y}L${x},${myself.height + myself.margin_bottom}`);
 
@@ -312,24 +314,27 @@ class PerDayView {
 	    sel.transition()
 	   	   .attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
 
-   	    sel.selectAll(".view1barback")
+		sel.selectAll(".view1barback")
    	       .transition()
    	       .attr("width", d=>this.xscale.bandwidth())
-		   .attr("height", d=>this.yscale(d.count))
-		   .attr("y", d=>this.height-this.yscale(d.count));
+		   .attr("height", d=>{
+		   		if (this.binsize != 1){
+		   			let days = d.end.diff(d.start, "days");
+		   			if (days != this.binsize){
+			   			d.adj = d.count / days * this.binsize;
+			   			d.adj = d.count + (d.adj - d.count) * .5 // discount estimate
+			   			return this.yscale(d.adj);
+			   		}
+		   		}
+		   		d.adj = d.count;
+		   		return this.yscale(d.count);
+		   })
+		   .attr("y", d=>this.height-this.yscale(d.adj));
 
 
 	   	sel.selectAll(".view1bar")
 	   	   .transition()
-		   .attr("width", (d,i)=>{
-		   		let w = this.xscale.bandwidth();
-		   		if (this.binsize == 1)
-		   			return w;
-		   		let days = d.end.diff(d.start, "days");
-		   		if (days < this.binsize)
-	   				w *= d.end.diff(d.start, "days") / this.binsize;
-		   		return w;
-		   })
+		   .attr("width", d=>this.xscale.bandwidth())
 		   .attr("height", d=>this.yscale(d.count))
 		   .attr("y", d=>this.height-this.yscale(d.count));
 
