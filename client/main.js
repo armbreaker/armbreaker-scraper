@@ -35,13 +35,12 @@ class PerDayView {
 					 	 string: getDateRangeString(dstart, dend)});
 			startdate.add(bindur);
 		}
-		// don't draw the last bin if it's not a full bin
-		if (this.binsize == 1) {
-			data.push({start: startdate, 
-						 end: enddate,
-					 	 count: 0,
-					 	 string: getDateRangeString(startdate, enddate)});
-		}
+
+		data.push({start: startdate, 
+					 end: enddate,
+				 	 count: 0,
+				 	 string: getDateRangeString(startdate, enddate)});
+
 		for (let time of this.alltimes) {
 			let day = getDate(time); // conversion puts dates into user timezone.
 			for(let bin of data) {
@@ -137,7 +136,18 @@ class PerDayView {
 				this.alltimes.push(time);
 			}
 		}
-		this.bin(1);
+
+		let L = this.alltimes.length;
+		if (L < 120)
+			this.bin(1);
+		else if (L/7 < 120)
+			this.bin(7);
+		else if (L/14 < 120)
+			this.bin(14)
+		else if (L/30 < 120)
+			this.bin(30)
+		else
+			this.bin(120);
 
 	    // Create tooltip.
 	    this.svg.select(".sparkline")
@@ -176,17 +186,42 @@ class PerDayView {
 	    	.classed("tooltipguide", true)
 	    	.classed("tooltip", true);
 
-	    // Hook up buttons.
-	    d3.select("#setbinsize")
-	      .on("click", function(){
-	    		let val = +d3.select("#binsize")
-	    		             .property("value");
-	    		val = Math.floor(val);
-	            if (val < 1) return;
-                if (val == myself.binsize) return;
-	    		myself.bin(val);
-	    		myself.update();
-	    	})
+    	this.sliderscale = d3
+    		.scaleOrdinal()
+    		.domain([1, 2, 3, 4, 5, 6])
+    		.range([1, 7, 14, 30, 120, 365]);
+
+		let slidertickformat = (d)=>{
+			if (d < 30)
+				return d;
+			if (d == 30)
+				return "1 month";
+			if (d == 120)
+				return "4 months";
+			if (d == 365)
+				return "1 year";
+		}
+
+    	this.slider = d3
+    		.slider()
+    		.min(1)
+    		.max(365)
+    		.tickValues([1, 7, 14, 30, 120, 365])
+    		.stepValues([1, 7, 14, 30, 120, 365])
+    		.value(this.binsize)
+    		.tickFormat(slidertickformat)
+    		.callback(()=>{
+    			let val = this.slider.value();
+    			if (this.alltimes.length / val >= 1) {
+		    		this.bin(this.slider.value());
+		    		this.update();
+    			}
+	    	});
+
+	    // Hook up controls.
+	    d3.select("#binslider")
+    	  .call(this.slider);
+
 		// also add sparkline
 		let sparkline = this.svg.select(".sparkline")
 		    .attr("transform", `translate(0, ${this.height + this.margin_bottom / 2})`);
@@ -214,6 +249,9 @@ class PerDayView {
 	   		.append("g")
 	   		.classed("view1bargroup", true)
 	   		.attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
+	   	enter
+	   		.append("rect")
+	   		.classed("view1barback", true);
 	   	enter
 	        .append("rect")
 	        .classed("view1bar", true);
@@ -252,18 +290,36 @@ class PerDayView {
 		// time for the update selection
 	    sel = sel.merge(enter);
 
+	    // need to manually assign datums due to structure of program
 	    sel.each(function(d){
-	   			d3.select(this)
-	   			  .select(".view1bar")
-	   			  .datum(d);
+	   			let t = d3.select(this);
+	   			t.select(".view1bar")
+	   			 .datum(d);
+	   			t.select(".view1barback")
+	   			 .datum(d);;
 	   		})
 
 	    sel.transition()
 	   	   .attr("transform", d=>`translate(${this.xscale(d.string)}, 0)`);
 
+   	    sel.selectAll(".view1barback")
+   	       .transition()
+   	       .attr("width", d=>this.xscale.bandwidth())
+		   .attr("height", d=>this.yscale(d.count))
+		   .attr("y", d=>this.height-this.yscale(d.count));
+
+
 	   	sel.selectAll(".view1bar")
 	   	   .transition()
-		   .attr("width", d=>this.xscale.bandwidth())
+		   .attr("width", (d,i)=>{
+		   		let w = this.xscale.bandwidth();
+		   		if (this.binsize == 1)
+		   			return w;
+		   		let days = d.end.diff(d.start, "days");
+		   		if (days < this.binsize)
+	   				w *= d.end.diff(d.start, "days") / this.binsize;
+		   		return w;
+		   })
 		   .attr("height", d=>this.yscale(d.count))
 		   .attr("y", d=>this.height-this.yscale(d.count));
 

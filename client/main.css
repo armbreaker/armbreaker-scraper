@@ -10,8 +10,8 @@ body {
 	shape-rendering: crispEdges;
 }
 
-#perdayview .all .bars rect:hover {
-	fill: #FF0000;
+.view1barback {
+	opacity: 0.1;
 }
 
 #perdayview .all .axes .xaxis .tick text {
@@ -32,6 +32,10 @@ body {
 }
 
 #bincontrols {
+}
+
+#binslider .draggertext {
+	opacity: 0;
 }
 
 #setbinsize {

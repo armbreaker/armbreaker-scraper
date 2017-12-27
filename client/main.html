@@ -7,8 +7,10 @@
 	<script src="utility.js"></script>
 	<script src="js-levenshtein.js"></script>
 	<script src="damerau-levenshtein.js"></script>
+	<script src="d3.slider/d3.slider.js"></script>
 	<script src="main.js"></script>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="d3.slider/d3.slider.css" media="screen" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<meta charset="utf-8">
 </head>
@@ -29,7 +31,7 @@
 			</g>
 		</svg>
 		<div id="bincontrols">
-			<input type="text" id="binsize" value="1"> days <button id="setbinsize">Update</button>
+			<div id="binslider"></div>
 		</div>
 	</div>
 	<div>

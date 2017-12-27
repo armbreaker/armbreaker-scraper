@@ -1,0 +1,3 @@
+[submodule "client/d3.slider"]
+	path = client/d3.slider
+	url = https://github.com/barikan/d3.slider.git
