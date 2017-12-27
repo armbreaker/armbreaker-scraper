@@ -186,14 +186,24 @@ class PerDayView {
 	    	.classed("tooltipguide", true)
 	    	.classed("tooltip", true);
 
-    	this.sliderscale = d3
-    		.scaleOrdinal()
-    		.domain([1, 2, 3, 4, 5, 6])
-    		.range([1, 7, 14, 30, 120, 365]);
+		this.binsizes = [1, 7, 14, 30, 120, 365];
+		this.sliderticks = [1, 7, 14, 30, 60, 120];
+		var sliderFromBin = val=>{
+			let i = this.binsizes.indexOf(val);
+			return this.sliderticks[i];
+		}
+
+		var binFromSlider = val=>{
+			let i = this.sliderticks.indexOf(val);
+			return this.binsizes[i];
+		}
 
 		let slidertickformat = (d)=>{
+			d = binFromSlider(d);
+			if (d == 1)
+				return "1 day"
 			if (d < 30)
-				return d;
+				return d + " days";
 			if (d == 30)
 				return "1 month";
 			if (d == 120)
@@ -204,14 +214,14 @@ class PerDayView {
 
     	this.slider = d3
     		.slider()
-    		.min(1)
-    		.max(365)
-    		.tickValues([1, 7, 14, 30, 120, 365])
-    		.stepValues([1, 7, 14, 30, 120, 365])
-    		.value(this.binsize)
+    		.min(this.sliderticks[0])
+    		.max(this.sliderticks[this.sliderticks.length - 1])
+    		.tickValues(this.sliderticks)
+    		.stepValues(this.sliderticks)
+    		.value(sliderFromBin(this.binsize))
     		.tickFormat(slidertickformat)
     		.callback(()=>{
-    			let val = this.slider.value();
+    			let val = this.sliderscale.inverse(this.slider.value());
     			if (this.alltimes.length / val >= 1) {
 		    		this.bin(this.slider.value());
 		    		this.update();
