@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 sylae & skyyrunner
+ * Copyright 2017 sylae and skyyrunner.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,16 +26,11 @@
 
 namespace Armbreaker;
 
-require_once "vendor/autoload.php";
-require_once 'config.php';
-
-// initialization
-ConfigFactory::make($config);
-new Log();
-DatabaseFactory::make();
-
-try {
-  $ab = new ArmbreakerMaster();
-} catch (\Throwable $e) {
-  var_dump($e);
+/**
+ * Description of ArmbreakerScraper
+ *
+ * @author sylae and skyyrunner
+ */
+class ArmbreakerScraper extends ArmbreakerEntity {
+  //put your code here
 }
