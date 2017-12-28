@@ -371,7 +371,7 @@ class UserView {
 
 	setup() {
 		this.svg = d3.select("#userview");
-		this.userlikes = [];
+		this.userlikes = {};
 		this.usernames = {};
 		this.chapterinfo = [];
 
@@ -383,39 +383,42 @@ class UserView {
 			postobj.likes = [];
 			for (let like of post.likes.likes) {
 				let userid = like.user.id;
-				this.postobj.likes.push(userid);
+				postobj.likes.push(String(userid));
 				this.usernames[userid] = like.user.name;
 				this.userlikes[userid] = "";
 			}
-			chapterinfo.push(postobj);
+			this.chapterinfo.push(postobj);
 		}
 
 		// Need to tally likes per user, as well as chapter like sums
 		for (let post of this.chapterinfo) {
-			for (let userid of this.userids) {
-				if (userid in post.likes) {
-					this.userdata[userid] += "x";
-				} else {
-					this.userdata[userid] += " ";
-				}
+			for (let userid in this.usernames) {
+				if (post.likes.indexOf(userid) >= 0)
+					this.userlikes[userid] += "x";
+				else
+					this.userlikes[userid] += " ";
 			}
 		}
 
 		// Set tolerence to 10% of chapters or 2, whichever is larger.
-		this.tolerence = Math.max(this.likesperchapter.length * 0.1, 5);
+		this.tolerence = Math.max(this.chapterinfo.length * 0.1, 5);
 
-		this.userdata_arr = []
-		for (let userid of this.userids) {
-			this.userdata_arr.push([userid, this.userdata[userid]]);
+		this.usernames_arr = []
+		for (let userid in this.usernames) {
+			this.usernames_arr.push([userid, this.usernames[userid]]);
 		}
 
 		// cluster similar likes, starting from the max "x"s
 		this.clustered = [];
-
-		this.clustered = lufu_cluster(this.userdata_arr.slice(0), this.tolerence, this.algo);
+		// enumerate object for lufu
+		this.user_userlikes = [];
+		for (let userid in this.userlikes) {
+			this.user_userlikes.push([userid, this.userlikes[userid]]);
+		}
+		this.clustered = lufu_cluster(this.user_userlikes, this.tolerence, this.algo);
 
 		// sort each cluster. renumber.
-		let counter = this.userids.length - 1;
+		let counter = this.usernames_arr.length - 1;
 		for (let cluster of this.clustered) {
 			cluster.sort((a, b)=>{
 				// start from back
@@ -437,7 +440,7 @@ class UserView {
 
 		// set scale
 		let domain = [];
-		for (let j = 0; j < this.postids.length; j++) {
+		for (let j = 0; j < this.chapterinfo.length; j++) {
 			domain.push(j);
 		}
 
@@ -448,10 +451,10 @@ class UserView {
 			  .range([0, this.width]);
 	    this.yscale = 
 	    	d3.scaleLinear()
-	    	  .domain([0, this.userids.length])
+	    	  .domain([0, this.usernames_arr.length])
 	    	  .range([0, this.height]);
 	    // for subgraph
-	    this.likesmax = arrmax(this.likesperchapter, d=>d[1])[1];
+	    this.likesmax = arrmax(this.chapterinfo, d=>d.likes.length).likes.length;
 	    this.sub_yscale = 
 	    	d3.scaleLinear()
 	    	  .domain([0, this.likesmax])
@@ -519,7 +522,7 @@ class UserView {
 			.attr("height", this.yscale(1))
 			.merge(sqrs);
 		sqrs.attr("opacity", d=>d == "x" ? 1 : 0)
-			.attr("x", (d,i)=>this.xscale(i))
+			.attr("x", (d, i)=>this.xscale(i));
 
 		// add the rectangles to the rectangle div.
 		let clusterboxes = 
@@ -550,7 +553,7 @@ class UserView {
 				d3.select("#userlistdiv").style("color", undefined);
 				// user count
 				d3.select("#numusers").text(d.length);
-				let p = d.length / parseFloat(me.userids.length) * 100;
+				let p = d.length / parseFloat(me.usernames_arr.length) * 100;
 				p = n_digits(p, 1);
 				d3.select("#percentusers").text(p);
 				// like count
@@ -559,11 +562,11 @@ class UserView {
 				});
 				let average = arrsum(arr) / arr.length;
 				d3.select("#averagelikes").text(n_digits(average, 1));
-				p = average / me.likesperchapter.length * 100;
+				p = average / me.chapterinfo.length * 100;
 				d3.select("#percentliked").text(n_digits(p, 1));
 				// append user list
 				let usernames = 
-					d.map(d=>dataset.usersReferenced[d[0]])
+					d.map(d=>me.usernames[d[0]])
 					 .sort((a, b)=>{
 					 	a = a.toLowerCase();
 					 	b = b.toLowerCase();
@@ -587,19 +590,19 @@ class UserView {
 		let likeline = 
 			d3.line()
 			  .x((d,i)=>this.xscale(i) + band/2)
-			  .y(d=>this.sub_yscale(d[1]));
+			  .y(d=>this.sub_yscale(d.likes.length));
 
 		let likes = this.svg.select(".likegraph");
 		let ypos = this.height + this.innerpadding * this.clustered.length + this.subgraph_margintop;
 		likes.attr("transform", `translate(0, ${ypos})`)
 		likes.append("path")
 			.classed("likeline", true)
-			.datum(this.likesperchapter)
+			.datum(this.chapterinfo)
 			.attr("d", likeline);
 		likes.append("line")
 			.classed("bottomline", true)
 			.attr("x1", this.xscale(0) + band/2)
-			.attr("x2", this.xscale(this.likesperchapter.length - 1) + band/2)
+			.attr("x2", this.xscale(this.chapterinfo.length - 1) + band/2)
 			.attr("y1", this.sub_yscale(0) + 1)
 			.attr("y2", this.sub_yscale(0) + 1);
 		let subxaxis = 

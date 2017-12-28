@@ -52,6 +52,17 @@ function arrsort(arr, reverse, keyfunc) {
 	});
 }
 
+// As indexOf, but accepts an accessor function
+function indexOfKey(value, array, accessor) {
+	if (accessor == undefined)
+		accessor = x=>x;
+	for (let i = 0; i < array.length; i++) {
+		if (accessor(array[i]) == value)
+			return i;
+	}
+	return -1;
+}
+
 // truncate so there are only n digits
 function n_digits(x, n) {
 	let e = Math.pow(10, n);
