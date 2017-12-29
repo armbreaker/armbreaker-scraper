@@ -62,7 +62,7 @@ class ArmbreakerMaster extends ArmbreakerEntity {
           ];
           return $c['response']->withJson($err, 404);
         } else {
-          return $c['view']->render($response, '404.tpl', [
+          return $c['view']->render($response, '404.twig', [
                       'path' => $request->getUri()->getPath()
           ]);
         }
