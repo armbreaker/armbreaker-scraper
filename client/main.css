@@ -1,8 +1,17 @@
+/* general */
+
 body {
 	font-family: "Open Sans", sans-serif;
 	background-color: #eee;
 	color: #444;
 }
+
+#verticalflex {
+	display: flex;
+	flex-direction: column;
+}
+
+/* per day view */
 
 #perdayview .all .bars {
 	stroke-width: 0;
@@ -51,6 +60,8 @@ body {
 .barsquare {
 	shape-rendering: crispEdges;
 }
+
+/* user view */
 
 .clusterbox {
 	fill: rgba(255, 255, 255, 0);
@@ -105,9 +116,6 @@ body {
 	fill: #4c568c;
 }
 
-
-
-
 .dataline {
 	fill: none;
 	stroke-width: 1pt;
@@ -161,7 +169,7 @@ text {
 }
 
 #userlist {
-	height: 400px;
+	height: 450px;
 	overflow-y: auto;
 	margin-left: 3px;
 	border-top: 1px solid black;
@@ -178,4 +186,15 @@ text {
 
 .username {
 	display: block;
+	background-color: rgba(255, 0, 255, 0);
+}
+
+/* first impressions */
+
+.mark {
+	
+}
+
+.markcap {
+	fill: rgb(255, 0, 255);
 }

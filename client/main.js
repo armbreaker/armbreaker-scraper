@@ -623,15 +623,99 @@ class UserView {
 // the likes over time for the first 24h view
 class FirstImpressionsView {
 	constructor() {
-
+		this.margin_top = 30;
+		this.margin_bottom = 30;
+		this.margin_w = 25;
+		this.width  = 800 - this.margin_w;
+		this.height = 350 - this.margin_top - this.margin_bottom;
+		this.markwidth = 50;
+		this.markmargin = 0;
 	}
 
 	setup() {
+		this.svg = d3.select("#firstimpressionview");
 
+		// Create scales and axes
+		this.yscale = d3.scaleLinear()
+			.domain([0, moment.duration(2, "days").asMilliseconds()])
+			.range([0, this.height]);
+		this.yaxis = d3.axisLeft(this.yscale);
+		this.xscale = (i)=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
+
+		// Want to extract pertinent information
+		let posts = dataset.posts.posts;
+		let data = [];
+		for (let post of posts) {
+			let obj = {};
+			obj.time = moment(post.time);
+			obj.title = post.title;
+			let likes = [];
+			for (let like_src of post.likes.likes) {
+				let like_dst = {};
+				like_dst.userid = like_src.user.id;
+				like_dst.username = like_src.user.name;
+				like_dst.time = like_src.time;
+				likes.push(like_dst);
+			}
+			arrsort(likes, false, d=>d.time);
+			for (let like of likes)
+				like.time = moment(like.time);
+			obj.likes = likes;
+			// find only likes that are within 24h
+			for (let i = 0; i < obj.likes.length; i++) {
+				let like = obj.likes[i];
+				if (like.time.diff(obj.time) >= moment.duration(1, "day").asMilliseconds()) {
+					obj.cappedlikes = obj.likes.slice(0, i);
+					break;
+				}
+			}
+			// make area generator
+			obj.markscale = d3.scaleLinear()
+				.domain([0, obj.likes.length])
+				.range([0, this.markwidth]);
+
+			obj.areagen = d3.area()
+				.x0((d,i)=>-0.5 * obj.markscale(i))
+				.x1((d,i)=> 0.5 * obj.markscale(i))
+				.y0((d,i)=>this.yscale(d.time.clone().diff(obj.time)))
+				.y1((d,i)=>this.yscale(d.time.clone().diff(obj.time)));
+			data.push(obj);
+		}
+		this.data = data;
+
+		// Initialize
+		let svg = this.svg;
+		svg.select(".all")
+		   .attr("transform", `translate(${this.margin_w}, ${this.margin_top})`);
+		svg.select(".yaxis")
+		   .call(this.yaxis);
 	}
 
 	update() {
-
+		let me = this;
+		let sel = this.svg.select(".marks")
+			.selectAll(".mark")
+			.data(this.data);
+		sel.enter()
+		   .append("g")
+		   .classed("mark", true)
+		   .attr("transform", (d,i)=>{
+		   		let dur = makeTimeOnlyMoment(d.time).diff(moment("2015-01-15"));
+		   		return `translate(${this.xscale(i)},${this.yscale(dur)})`;
+			})
+		   .each(function(d) {
+		   		let sel = d3.select(this);
+		   		// append the main mark
+		   		sel.append("path")
+		   		   .classed("markpath", true)
+		   		   .attr("d", d.areagen(d.cappedlikes));
+	   		   // append the start time
+	   		    sel.append("circle")
+	   		       .classed("markcap", true)
+	   		       .attr("cx", 0)
+	   		       .attr("cy", 0)
+	   		       .attr("r", 5);
+		   });
 	}
 }
 

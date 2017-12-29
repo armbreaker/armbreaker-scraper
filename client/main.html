@@ -16,53 +16,67 @@
 </head>
 <body>
 	<div id="title"><h1></h2></div>
-	<div id="perdayviewdiv">
-		<h2>Likes per day</h2>
-		<svg id="perdayview" width="815" height="460">
-			<rect height="460" width="815" style="fill:rgba(255,255,255,0)"></rect>
-			<g class="all">
-				<g class="sparkline"></g>
-				<g class="axes">
-					<g class="xaxis"></g>
-					<g class="yaxis"></g>
-				</g>
-				<g class="bars"></g>
-				<g class="tooltip tooltiptext"></g>
-			</g>
-		</svg>
-		<div id="bincontrols">
-			<div id="binslider"></div>
-		</div>
-	</div>
-	<div>
-		<h2>User like patterns</h2>
-		<div id="userviewdiv" class="userviewdivs">
-			<svg id="userview" width="600" height="650">
+	<div id="verticalflex">
+		<div id="perdayviewdiv">
+			<h2>Likes per day</h2>
+			<svg id="perdayview" width="815" height="460">
+				<rect height="460" width="815" style="fill:rgba(255,255,255,0)"></rect>
 				<g class="all">
+					<g class="sparkline"></g>
 					<g class="axes">
+						<g class="xaxis"></g>
 						<g class="yaxis"></g>
 					</g>
 					<g class="bars"></g>
-					<g class="boxes"></g>
-					<g class="likegraph"></g>
+					<g class="tooltip tooltiptext"></g>
 				</g>
 			</svg>
+			<div id="bincontrols">
+				<div id="binslider"></div>
+			</div>
 		</div>
-		<div id="userlistdiv" class="userviewdivs" style="color: rgba(0,0,0,0)">
-			<h2>Details</h2>
-			<table>
-				<tr>
-					<td>Users:</td>
-					<td><span id="numusers"></span></td>
-					<td>(<span id="percentusers"></span>% total)</td>
-				</tr>
-				<tr>
-					<td>Av. likes:</td>
-					<td><span id="averagelikes"></span></td>
-					<td>(<span id="percentliked"></span>% chapters)</td>
-				</tr>
-			</table>
-			<div id="userlist"></div>
+		<div id="userviewcontainer">
+			<h2>User like patterns</h2>
+			<div id="userviewdiv" class="userviewdivs">
+				<svg id="userview" width="600" height="650">
+					<g class="all">
+						<g class="axes">
+							<g class="yaxis"></g>
+						</g>
+						<g class="bars"></g>
+						<g class="boxes"></g>
+						<g class="likegraph"></g>
+					</g>
+				</svg>
+			</div>
+			<div id="userlistdiv" class="userviewdivs" style="color: rgba(0,0,0,0)">
+				<h2>Details</h2>
+				<table>
+					<tr>
+						<td>Users:</td>
+						<td><span id="numusers"></span></td>
+						<td>(<span id="percentusers"></span>% total)</td>
+					</tr>
+					<tr>
+						<td>Av. likes:</td>
+						<td><span id="averagelikes"></span></td>
+						<td>(<span id="percentliked"></span>% chapters)</td>
+					</tr>
+				</table>
+				<div id="userlist"></div>
+			</div>
+		</div>
+		<div id="firstimpressionsdiv">
+			<h2>First Impressions</h2>
+			<svg id="firstimpressionview" width="800" height="650">
+				<g class="all">
+					<g class="marks"></g>
+					<g class="axes">
+						<g class="xaxis"></g>
+						<g class="yaxis"></g>
+					</g>
+				</g>
+			</svg>
 		</div>
 	</div>
 </body>

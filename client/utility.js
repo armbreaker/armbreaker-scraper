@@ -82,6 +82,13 @@ function getDateRangeString(moment_start, moment_end) {
 	return `${moment_start.format("YYYY-MM-DD")}\n${moment_end.format("YYYY-MM-DD")}`;
 }
 
+// set all times to same date
+function makeTimeOnlyMoment(timestr) {
+	let m = moment(timestr);
+	m.year(2015).month(0).date(15).day("Thursday");
+	return m;
+}
+
 // good ol' text width estimator. i seriously use this everywhere
 // Taken from https://github.com/Skyyrunner/JeevesCoursePlanner/blob/master/client/typescript/utility.ts
 /**
