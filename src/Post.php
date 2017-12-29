@@ -92,6 +92,11 @@ class Post implements \JsonSerializable {
         'fic'   => $this->fic->id,
         'title' => $this->title,
     ];
+    if ($this->time instanceof \Carbon\Carbon) {
+      $j['time'] = $this->time->toAtomString();
+    } else {
+      $j['time'] = null;
+    }
     if (count($this->likes) > 0) {
       $j['likes'] = $this->likes;
     }
