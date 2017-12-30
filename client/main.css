@@ -192,9 +192,15 @@ text {
 /* first impressions */
 
 .mark {
-	
+	stroke-width: 1px;
+	stroke: #000;
+	fill: rgba(0, 0, 0, 0.1);
 }
 
 .markcap {
 	fill: rgb(255, 0, 255);
+}
+
+.drag_hitbox {
+	opacity: 0;
 }

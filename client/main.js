@@ -630,6 +630,7 @@ class FirstImpressionsView {
 		this.height = 350 - this.margin_top - this.margin_bottom;
 		this.markwidth = 50;
 		this.markmargin = 0;
+		this.scroll = 0; // amount scrolls
 	}
 
 	setup() {
@@ -640,7 +641,7 @@ class FirstImpressionsView {
 			.domain([0, moment.duration(2, "days").asMilliseconds()])
 			.range([0, this.height]);
 		this.yaxis = d3.axisLeft(this.yscale);
-		this.xscale = (i)=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
+		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
 
 		// Want to extract pertinent information
 		let posts = dataset.posts.posts;
@@ -689,6 +690,17 @@ class FirstImpressionsView {
 		   .attr("transform", `translate(${this.margin_w}, ${this.margin_top})`);
 		svg.select(".yaxis")
 		   .call(this.yaxis);
+
+	    this.drag = d3.drag()
+	    	.on("drag", d=>{
+	    		this.scroll += d3.event.dx;
+	    		this.svg
+	    			.select(".marks_drag")
+	    			.attr("transform", `translate(${this.scroll}, 0)`);
+	    	})
+
+	    svg.select(".drag_hitbox")
+	       .call(this.drag);
 	}
 
 	update() {
@@ -703,7 +715,11 @@ class FirstImpressionsView {
 		   		let dur = makeTimeOnlyMoment(d.time).diff(moment("2015-01-15"));
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)})`;
 			})
-		   .each(function(d) {
+		   .each(function(d, i) {
+		   		if (i == 3) {
+		   			console.log(d);
+		   		}
+
 		   		let sel = d3.select(this);
 		   		// append the main mark
 		   		sel.append("path")
@@ -713,7 +729,7 @@ class FirstImpressionsView {
 	   		    sel.append("circle")
 	   		       .classed("markcap", true)
 	   		       .attr("cx", 0)
-	   		       .attr("cy", 0)
+	   		       .attr("cy", -5)
 	   		       .attr("r", 5);
 		   });
 	}
