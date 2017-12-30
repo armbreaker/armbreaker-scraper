@@ -191,10 +191,17 @@ text {
 
 /* first impressions */
 
-.mark {
+.markpath {
 	stroke-width: 1px;
 	stroke: #000;
 	fill: rgba(0, 0, 0, 0.1);
+}
+
+.longtail {
+	stroke-width: 1px;
+	stroke: rgba(0, 0, 0, 0.3);
+	stroke-dasharray: 5px;
+	fill: none;
 }
 
 .markcap {

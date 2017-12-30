@@ -629,8 +629,9 @@ class FirstImpressionsView {
 		this.width  = 800 - this.margin_w;
 		this.height = 350 - this.margin_top - this.margin_bottom;
 		this.markwidth = 50;
-		this.markmargin = 0;
+		this.markmargin = 5;
 		this.scroll = 0; // amount scrolls
+		this.terminalheight = 20; // how much below 48 hours to draw terminal width
 	}
 
 	setup() {
@@ -709,6 +710,29 @@ class FirstImpressionsView {
 	       .call(this.drag);
 	}
 
+	// take in chapter obj, return area path for longtail. 
+	drawLongtail(datum) {
+		// Areagen mirrors right side to left.
+		let a = d3.area()
+			.x0(d=>-d[0])
+			.x1(d=>d[0])
+			.y0(d=>d[1])
+			.y1(d=>d[1]);
+		let numlikes = datum.cappedlikes.length;
+		let lastlike = datum.cappedlikes[numlikes - 1];
+		let tail_start = this.yscale(lastlike.time.clone().diff(datum.time));
+		let time_above_cap = makeTimeOnlyMoment(datum.time).diff(moment("2015-01-15"));
+		let tail_end = this.yscale(moment.duration(2, "day").asMilliseconds() - time_above_cap);
+		let half_width = datum.markscale(numlikes) * 0.5;
+		let half_final = 0.5 * this.markwidth;
+
+		return a([
+			[half_width, tail_start],
+			[half_final, tail_end],
+			[half_final, tail_end + this.terminalheight]
+		]);
+	}
+
 	update() {
 		let me = this;
 		let sel = this.svg.select(".marks")
@@ -722,16 +746,22 @@ class FirstImpressionsView {
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
 		   .each(function(d, i) {
-		   		if (i == 3) {
+		   		if (i == 0) {
 		   			console.log(d);
 		   		}
 
 		   		let sel = d3.select(this);
+		   		// Draw the long tail
+		   		sel.append("path")
+		   		   .classed("longtail", true)
+		   		   // four corners, starting top-left
+		   		   .attr("d", me.drawLongtail(d));
+
 		   		// append the main mark
 		   		sel.append("path")
 		   		   .classed("markpath", true)
 		   		   .attr("d", d.areagen(d.cappedlikes));
-	   		   // append the start time
+	   		    // append the start time
 	   		    sel.append("circle")
 	   		       .classed("markcap", true)
 	   		       .attr("cx", 0)
