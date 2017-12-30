@@ -640,7 +640,13 @@ class FirstImpressionsView {
 		this.yscale = d3.scaleLinear()
 			.domain([0, moment.duration(2, "days").asMilliseconds()])
 			.range([0, this.height]);
-		this.yaxis = d3.axisLeft(this.yscale);
+		let ticks = [];
+		for (let i = 0; i < 24; i++) {
+			ticks.push(i * moment.duration(2, "hours").asMilliseconds());
+		}
+		this.yaxis = d3.axisLeft(this.yscale)
+			.tickValues(ticks)
+			.tickFormat(d=>moment({y:2015, M:1, d:15}).add(d, "ms").format("HH"));
 		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
 
 		// Want to extract pertinent information
@@ -713,7 +719,7 @@ class FirstImpressionsView {
 		   .classed("mark", true)
 		   .attr("transform", (d,i)=>{
 		   		let dur = makeTimeOnlyMoment(d.time).diff(moment("2015-01-15"));
-		   		return `translate(${this.xscale(i)},${this.yscale(dur)})`;
+		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
 		   .each(function(d, i) {
 		   		if (i == 3) {
@@ -729,8 +735,8 @@ class FirstImpressionsView {
 	   		    sel.append("circle")
 	   		       .classed("markcap", true)
 	   		       .attr("cx", 0)
-	   		       .attr("cy", -5)
-	   		       .attr("r", 5);
+	   		       .attr("cy", 0)
+	   		       .attr("r", 2.5);
 		   });
 	}
 }

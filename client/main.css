@@ -199,6 +199,7 @@ text {
 
 .markcap {
 	fill: rgb(255, 0, 255);
+	stroke: none;
 }
 
 .drag_hitbox {
