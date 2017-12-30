@@ -634,8 +634,15 @@ class FirstImpressionsView {
 		this.terminalheight = 20; // how much below 48 hours to draw terminal width
 	}
 
+	resize() {
+		d3.select("#firstimpressionview").attr("width", window.innerWidth * .9);
+	}
+
 	setup() {
 		this.svg = d3.select("#firstimpressionview");
+		d3.select(window)
+		  .on("resize.fiv", this.resize);
+		this.resize();
 
 		// Create scales and axes
 		this.yscale = d3.scaleLinear()
