@@ -2,7 +2,7 @@
  * Calculates the Damerau-Levenshtein distance between two strings.
  * Source: https://gist.github.com/IceCreamYou/8396172
  */
-function damerau(a, b) {
+export default function damerau(a, b) {
     let source = a;
     let target = b;
     if (!source) return target ? target.length : 0;

@@ -1,5 +1,7 @@
+"use strict";
+
 // keyfunc is applied to each object before comparing.
-function arrmin(arr, keyfunc) {
+export function arrmin(arr, keyfunc) {
 	if (keyfunc == undefined) {
 		keyfunc = d=>d;
 	}
@@ -10,7 +12,7 @@ function arrmin(arr, keyfunc) {
 }
 
 // keyfunc is applied to each object before comparing.
-function arrmax(arr, keyfunc) {
+export function arrmax(arr, keyfunc) {
 	if (keyfunc == undefined) {
 		keyfunc = d=>d;
 	}
@@ -20,7 +22,7 @@ function arrmax(arr, keyfunc) {
 	})
 }
 
-function arrsum(arr, keyfunc) {
+export function arrsum(arr, keyfunc) {
 	if (keyfunc == undefined) {
 		keyfunc = d=>d;
 	}
@@ -30,7 +32,7 @@ function arrsum(arr, keyfunc) {
 	}, 0)
 }
 
-function arrsort(arr, reverse, keyfunc) {
+export function arrsort(arr, reverse, keyfunc) {
 	if (keyfunc == undefined) {
 		keyfunc = d=>d;
 	}
@@ -53,7 +55,7 @@ function arrsort(arr, reverse, keyfunc) {
 }
 
 // As indexOf, but accepts an accessor function
-function indexOfKey(value, array, accessor) {
+export function indexOfKey(value, array, accessor) {
 	if (accessor == undefined)
 		accessor = x=>x;
 	for (let i = 0; i < array.length; i++) {
@@ -64,26 +66,26 @@ function indexOfKey(value, array, accessor) {
 }
 
 // truncate so there are only n digits
-function n_digits(x, n) {
+export function n_digits(x, n) {
 	let e = Math.pow(10, n);
 	return Math.floor(e * x) / e;
 }
 
-function getDate(timestr) {
+export function getDate(timestr) {
 	return moment(timestr).startOf("day");
 }
 
 // accept a Moment obj, return YYYY-MM-DD
-function getDateString(moment) {
+export function getDateString(moment) {
 	return moment.format("YYYY-MM-DD");
 }
 
-function getDateRangeString(moment_start, moment_end) {
+export function getDateRangeString(moment_start, moment_end) {
 	return `${moment_start.format("YYYY-MM-DD")}\n${moment_end.format("YYYY-MM-DD")}`;
 }
 
 // set all times to same date
-function makeTimeOnlyMoment(timestr) {
+export function makeTimeOnlyMoment(timestr) {
 	let m = moment(timestr);
 	m.year(2015).month(0).date(15).day("Thursday");
 	return m;
@@ -100,7 +102,7 @@ function makeTimeOnlyMoment(timestr) {
  *
  * @see http://stackoverflow.com/questions/118241/calculate-text-width-with-javascript/21015393#21015393
  */
-function getTextWidth (text, font) {
+export function getTextWidth (text, font) {
 	// re-use canvas object for better performance
 	var canvas = getTextWidth.prototype.canvas || (getTextWidth.prototype.canvas = document.createElement("canvas"));
 	var context = canvas.getContext("2d");
@@ -117,7 +119,7 @@ function getTextWidth (text, font) {
  * @param target The target width.
  * @returns The appropriate font size so that the text is at most `target` pixels wide.
  */
-function findTextWidth(text, font, target) {
+export function findTextWidth(text, font, target) {
 	var size = 16;
 	var textsize = target * 10;
 	while (textsize > target) {
@@ -128,7 +130,7 @@ function findTextWidth(text, font, target) {
 }
 
 var TOLERENCE = 1;
-function levdist(a, b) {
+export function levdist(a, b) {
 	if (a == b) return 0;
 	let dist = levenshtein(a, b);
 	if (dist == 0) return 0;
@@ -151,7 +153,7 @@ function levdist(a, b) {
 	throw("levdist somehow reached end of function.");
 }
 
-function getKeys(o) {
+export function getKeys(o) {
 	let out = [];
 	for (let key in o) {
 		out.push(key);
@@ -159,13 +161,13 @@ function getKeys(o) {
 	return out;
 }
 
-function symbolcount(string, symbol) {
+export function symbolcount(string, symbol) {
 	let re = new RegExp(symbol, "g");
 	return (string[1].match(re) || []).length;
 }
 
 // Put elements in first cluster that is under threshold
-function greedy_cluster(data, threshold, algo) {
+export function greedy_cluster(data, threshold, algo) {
 	arrsort(data, d=>symbolcount(d[1], "x"));
 	let clusters = [];
 	clusters.push([[...data[0], 0]]);
@@ -186,7 +188,7 @@ function greedy_cluster(data, threshold, algo) {
 	return clusters;
 }
 
-function lufu_cluster(data, threshold, algo) {
+export function lufu_cluster(data, threshold, algo) {
 	arrsort(data, d=>symbolcount(d[1], "x"));
 	let clusters = [];
 	clusters.push([[...data[0], 0]]);

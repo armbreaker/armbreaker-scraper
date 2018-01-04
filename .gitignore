@@ -1,6 +1,11 @@
 composer.phar
 config.php
+/nbproject/private/
+
+# generated files
 log.txt
 /vendor/
-/nbproject/private/
 /cache/
+node_modules/
+bundle.js
+__pycache__/
