@@ -715,6 +715,47 @@ class FirstImpressionsView {
 
 	    svg.select(".drag_hitbox")
 	       .call(this.drag);
+
+        // adding slider...
+		this.binsizes = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
+		this.sliderticks = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
+		var sliderFromBin = val=>{
+			let i = this.binsizes.indexOf(val);
+			return this.sliderticks[i];
+		}
+
+		var binFromSlider = val=>{
+			let i = this.sliderticks.indexOf(val);
+			return this.binsizes[i];
+		}
+
+		let slidertickformat = (d)=>{
+			d = binFromSlider(d);
+			if (d <= 48)
+				return d + " hours";
+			return d/24 + " days";
+		}
+
+    	this.slider = d3
+    		.slider()
+    		.min(this.sliderticks[0])
+    		.max(this.sliderticks[this.sliderticks.length - 1])
+    		.tickValues(this.sliderticks)
+    		.stepValues(this.sliderticks)
+    		.value(sliderFromBin(this.binsize))
+    		.tickFormat(slidertickformat)
+    		.callback(()=>{
+    			let val = this.slider.value();
+    			val = binFromSlider(val);
+    			if (this.alltimes.length / val >= 1) {
+		    		// this.bin(this.slider.value());
+		    		// this.update();
+    			}
+	    	});
+
+	    // Hook up controls.
+	    d3.select("#firstimpressions_binslider")
+    	  .call(this.slider);
 	}
 
 	// take in chapter obj, return area path for longtail. 

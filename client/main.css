@@ -13,6 +13,12 @@ body {
 
 /* per day view */
 
+#perdayviewdiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center
+}
+
 #perdayview .all .bars {
 	stroke-width: 0;
 	fill: #ae161e;
@@ -63,6 +69,18 @@ body {
 
 /* user view */
 
+#userviewcontainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#userview_centercontainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 .clusterbox {
 	fill: rgba(255, 255, 255, 0);
 	shape-rendering: crispEdges;
@@ -94,23 +112,10 @@ body {
 	fill: rgba(140, 185, 242, 0.2);
 }
 
-/*.boxes {
-	stroke: rgba(106, 141, 184, 0.5);
-	fill: rgba(140, 185, 242, 0.2);
-}*/
-
 .clusterbox:hover {
 	fill: rgba(229, 244, 253, 0.3);
 	stroke: rgba(0, 0, 0, 1);
 }
-
-/*.odd .userbar .barsquare {
-	fill: #8cb9f2;
-}
-
-.even .userbar .barsquare {
-	fill: #4c568c;
-}*/
 
 .userbar .barsquare {
 	fill: #4c568c;
@@ -191,6 +196,12 @@ text {
 
 /* first impressions */
 
+#firstimpressionsdiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center
+}
+
 .markpath {
 	stroke-width: 1px;
 	stroke: #000;
@@ -210,5 +221,13 @@ text {
 }
 
 .drag_hitbox {
+	opacity: 0;
+}
+
+#firstimpressions_binslider {
+	width: 800px;
+}
+
+#firstimpressions_binslider .draggertext {
 	opacity: 0;
 }
