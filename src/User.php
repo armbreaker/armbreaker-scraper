@@ -39,6 +39,12 @@ class User implements \JsonSerializable {
   public $id;
 
   /**
+   *
+   * @var bool
+   */
+  public $printMode = false;
+
+  /**
    * @var string
    */
   public $name;
@@ -58,10 +64,18 @@ class User implements \JsonSerializable {
   }
 
   public function jsonSerialize() {
-    return [
-        'id'   => $this->id,
-        'name' => $this->name,
-    ];
+    if ($this->printMode) {
+      return $this->id;
+    } else {
+      return [
+          'id'   => $this->id,
+          'name' => $this->name,
+      ];
+    }
+  }
+
+  public function setPrintMode(bool $set) {
+    $this->printMode = $set;
   }
 
 }

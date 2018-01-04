@@ -49,6 +49,7 @@ class FicScraper extends Fic {
   private $rss;
 
   public function __construct(int $id) {
+    Log::l()->info("Scraping ficID $id");
     ini_set('user_agent', "sylae/armbreaker (https://github.com/sylae/armbreaker");
     $this->rss = $this->get(sprintf(self::SB_RSS, $id));
     parent::__construct($id, str_replace("Spacebattles Forums - ", "", \qp($this->rss, 'channel>title')->text()));
@@ -71,6 +72,7 @@ class FicScraper extends Fic {
       }
     });
     foreach ($posts as $post) {
+      Log::l()->info("Scraping post {$post[0]} - {$post[1]}");
       $this->posts->addPost(PostFactory::createPost($post[0], $this, $post[1], $post[2]));
     }
   }
@@ -86,6 +88,7 @@ class FicScraper extends Fic {
     $page       = 1;
     $checkAgain = true;
     while ($checkAgain) {
+      Log::l()->info("Scraping likes for post {$post->id} // Page $page");
       $html = $this->get(sprintf(self::SB_LIKES, $post->id, $page));
       $obj  = \html5qp($html, 'li.memberListItem');
       $obj->each(function(int $index, \DOMElement $item) use (&$likes) {
@@ -106,6 +109,7 @@ class FicScraper extends Fic {
       try {
         $user = UserFactory::createUser($this->unfuckUserID($like['user']['id']), $like['user']['name']);
         $post->likes->addLike(LikeFactory::createLike($user, $post, $like['time']));
+        Log::l()->info("Adding like for {$post->id} - {$user->name}");
       } catch (\Throwable $e) {
         var_dump($like);
         echo $e->xdebug_message;

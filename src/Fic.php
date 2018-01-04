@@ -49,6 +49,12 @@ class Fic implements \JsonSerializable {
    */
   public $posts;
 
+  /**
+   *
+   * @var bool
+   */
+  public $printMode = false;
+
   public function __construct(int $id, string $name) {
     $this->id    = $id;
     $this->name  = $name;
@@ -73,10 +79,27 @@ class Fic implements \JsonSerializable {
         'id'   => $this->id,
         'name' => $this->name,
     ];
+    if ($this->printMode) {
+      $r['users'] = [];
+    }
     if ($this->posts instanceof PostCollection) {
       $r['posts'] = $this->posts;
+      if ($this->printMode) {
+        foreach ($this->posts as $post) {
+          foreach ($post->likes as $like) {
+            $r['users'][$like->user->id] = $like->user->name;
+          }
+        }
+      }
     }
     return $r;
+  }
+
+  public function setPrintMode(bool $set) {
+    $this->printMode = $set;
+    foreach ($this->posts as $post) {
+      $post->setPrintMode($set);
+    }
   }
 
 }
