@@ -58,6 +58,12 @@ class Post implements \JsonSerializable {
   public $likes;
 
   /**
+   *
+   * @var bool
+   */
+  public $printMode = false;
+
+  /**
    * @var \Carbon\Carbon
    */
   public $time;
@@ -89,7 +95,6 @@ class Post implements \JsonSerializable {
   public function jsonSerialize() {
     $j = [
         'id'    => $this->id,
-        'fic'   => $this->fic->id,
         'title' => $this->title,
     ];
     if ($this->time instanceof \Carbon\Carbon) {
@@ -100,7 +105,17 @@ class Post implements \JsonSerializable {
     if (count($this->likes) > 0) {
       $j['likes'] = $this->likes;
     }
+    if (!$this->printMode) {
+      $j['fic'] = $this->fic->id;
+    }
     return $j;
+  }
+
+  public function setPrintMode(bool $set) {
+    $this->printMode = $set;
+    foreach ($this->likes as $like) {
+      $like->setPrintMode($set);
+    }
   }
 
 }

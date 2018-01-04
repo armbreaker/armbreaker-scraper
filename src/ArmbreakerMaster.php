@@ -122,6 +122,7 @@ class ArmbreakerMaster extends ArmbreakerEntity {
       try {
         $fic = FicFactory::getFic($request->getAttribute('id'));
         $fic->loadPosts(true);
+        $fic->setPrintMode(true);
         return $response->withJson($fic);
       } catch (NotFoundError $e) {
         $err = [

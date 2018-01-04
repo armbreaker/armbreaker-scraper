@@ -1,13 +1,106 @@
 {
   "id": 549176,
   "name": "Fault [Worm Side-Story]",
+  "users": {
+    "32799": "chinger",
+    "33338": "Night_stalker",
+    "72421": "SolipsistSerpen",
+    "93801": "Timothy",
+    "103530": "Mook91",
+    "104075": "Undead-Spaceman",
+    "105855": "WorldOfHurt",
+    "110090": "Tamahori",
+    "115396": "k2grey",
+    "285443": "Olive",
+    "285820": "DaLintyGuy",
+    "285821": "FelSpite",
+    "289664": "Noliar",
+    "290804": "cl20",
+    "293744": "GiantTurtleNomad",
+    "295356": "BeaconHill",
+    "296593": "jobastion",
+    "300452": "WanderingEye",
+    "307139": "Olive Birdy",
+    "309400": "devas",
+    "309638": "Chulup",
+    "309952": "Pita",
+    "310110": "Wombattler",
+    "310126": "Swimmingly",
+    "310339": "Dusha",
+    "310573": "Purrs",
+    "311049": "9-tsiak",
+    "311626": "Madsamurai",
+    "312587": "X0ll0X",
+    "313052": "A-Random-Guy",
+    "313388": "Quantum tesseract",
+    "313898": "errantllama",
+    "314693": "Amacita",
+    "315197": "Doomreaver",
+    "315311": "themanwhowas",
+    "315587": "DigDoom",
+    "315704": "Ayrsayle",
+    "316105": "Eric d'Orléans",
+    "316151": "rysworld",
+    "317510": "slicedtoad",
+    "317614": "Siriothrax",
+    "318214": "Maping",
+    "318855": "Rhydeble",
+    "319052": "MaddestBob",
+    "319818": "Markala",
+    "319847": "Solacen",
+    "320198": "Tempist",
+    "320937": "blue_daisy",
+    "321725": "GGreader",
+    "321738": "TheRedSir",
+    "322721": "Preventer Squall",
+    "322905": "AquaHawk0085",
+    "323127": "Straw_Man",
+    "325429": "Blue is the Sea",
+    "325820": "Assembler",
+    "326255": "Otterberries",
+    "326504": "Not_A_Criminal",
+    "326654": "CurseOfImmortality",
+    "326774": "pumpkin_tlof19",
+    "329147": "Curved_Sw0rd",
+    "329648": "Pangolin",
+    "330316": "HomeTurf",
+    "331049": "frenaversary94",
+    "331562": "Honorbound",
+    "332315": "LacePrisonQueen",
+    "334375": "BurningSaiyan",
+    "334465": "Turbobanana",
+    "339845": "Caspian Sea Monster",
+    "341092": "maroon_sweater",
+    "342847": "Sam Guivenne",
+    "345406": "RyubosJ",
+    "346048": "NihilisticJanitor",
+    "346207": "Alex_Andr_2017",
+    "346346": "Cloud",
+    "348475": "NaGeL",
+    "349360": "frustratedFreeboota",
+    "349702": "Lemma",
+    "352546": "Chickengun99",
+    "354739": "tearlessNevermore",
+    "355954": "profHoyden",
+    "356128": "Nilaos",
+    "359515": "SuperBearNut",
+    "360175": "skyrunner",
+    "361260": "metaridley",
+    "361515": "Jedijinnora",
+    "361731": "Ersatz Arthropoda",
+    "361830": "Luma",
+    "362157": "Chartsorcerer",
+    "362497": "StSunshine",
+    "364909": "Tempeljaeger",
+    "365659": "AnotherSetOfEyes",
+    "367268": "Alato"
+  },
   "posts": {
     "earliest": "2017-07-23T22:23:52+00:00",
     "latest": "2017-11-12T20:37:01+00:00",
     "posts": [
       {
         "id": 37430900,
-        "fic": 549176,
         "title": "Awakening 1.1",
         "time": "2017-07-23T22:23:52+00:00",
         "likes": {
@@ -15,443 +108,223 @@
           "latest": "2017-11-17T16:41:07+00:00",
           "likes": [
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 37430900,
+              "user": 316105,
               "time": "2017-07-24T13:46:00+00:00"
             },
             {
-              "user": {
-                "id": 300452,
-                "name": "WanderingEye"
-              },
-              "post": 37430900,
+              "user": 300452,
               "time": "2017-07-27T14:46:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 37430900,
+              "user": 310339,
               "time": "2017-07-31T03:29:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 37430900,
+              "user": 309952,
               "time": "2017-07-31T05:23:00+00:00"
             },
             {
-              "user": {
-                "id": 346346,
-                "name": "Cloud"
-              },
-              "post": 37430900,
+              "user": 346346,
               "time": "2017-07-31T05:59:00+00:00"
             },
             {
-              "user": {
-                "id": 318855,
-                "name": "Rhydeble"
-              },
-              "post": 37430900,
+              "user": 318855,
               "time": "2017-07-31T07:09:00+00:00"
             },
             {
-              "user": {
-                "id": 312587,
-                "name": "X0ll0X"
-              },
-              "post": 37430900,
+              "user": 312587,
               "time": "2017-07-31T09:34:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 37430900,
+              "user": 322721,
               "time": "2017-07-31T17:15:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 37430900,
+              "user": 315197,
               "time": "2017-07-31T17:37:00+00:00"
             },
             {
-              "user": {
-                "id": 346048,
-                "name": "NihilisticJanitor"
-              },
-              "post": 37430900,
+              "user": 346048,
               "time": "2017-07-31T18:25:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 37430900,
+              "user": 310110,
               "time": "2017-08-01T01:09:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 37430900,
+              "user": 315587,
               "time": "2017-08-01T03:10:00+00:00"
             },
             {
-              "user": {
-                "id": 285443,
-                "name": "Olive"
-              },
-              "post": 37430900,
+              "user": 285443,
               "time": "2017-08-01T06:20:00+00:00"
             },
             {
-              "user": {
-                "id": 321725,
-                "name": "GGreader"
-              },
-              "post": 37430900,
+              "user": 321725,
               "time": "2017-08-01T11:40:00+00:00"
             },
             {
-              "user": {
-                "id": 317510,
-                "name": "slicedtoad"
-              },
-              "post": 37430900,
+              "user": 317510,
               "time": "2017-08-01T13:10:00+00:00"
             },
             {
-              "user": {
-                "id": 361260,
-                "name": "metaridley"
-              },
-              "post": 37430900,
+              "user": 361260,
               "time": "2017-08-01T13:58:00+00:00"
             },
             {
-              "user": {
-                "id": 311049,
-                "name": "9-tsiak"
-              },
-              "post": 37430900,
+              "user": 311049,
               "time": "2017-08-01T14:55:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 37430900,
+              "user": 355954,
               "time": "2017-08-01T20:43:00+00:00"
             },
             {
-              "user": {
-                "id": 311626,
-                "name": "Madsamurai"
-              },
-              "post": 37430900,
+              "user": 311626,
               "time": "2017-08-02T12:13:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 37430900,
+              "user": 325820,
               "time": "2017-08-02T16:15:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 37430900,
+              "user": 349360,
               "time": "2017-08-02T16:23:00+00:00"
             },
             {
-              "user": {
-                "id": 317614,
-                "name": "Siriothrax"
-              },
-              "post": 37430900,
+              "user": 317614,
               "time": "2017-08-02T17:34:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 37430900,
+              "user": 309400,
               "time": "2017-08-03T14:42:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 37430900,
+              "user": 326255,
               "time": "2017-08-03T21:55:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 37430900,
+              "user": 321738,
               "time": "2017-08-08T18:52:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 37430900,
+              "user": 293744,
               "time": "2017-08-10T20:11:00+00:00"
             },
             {
-              "user": {
-                "id": 329648,
-                "name": "Pangolin"
-              },
-              "post": 37430900,
+              "user": 329648,
               "time": "2017-08-13T19:50:00+00:00"
             },
             {
-              "user": {
-                "id": 313898,
-                "name": "errantllama"
-              },
-              "post": 37430900,
+              "user": 313898,
               "time": "2017-08-13T21:44:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 37430900,
+              "user": 361731,
               "time": "2017-08-14T16:30:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 37430900,
+              "user": 320937,
               "time": "2017-08-14T18:30:00+00:00"
             },
             {
-              "user": {
-                "id": 329147,
-                "name": "Curved_Sw0rd"
-              },
-              "post": 37430900,
+              "user": 329147,
               "time": "2017-08-17T00:19:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 37430900,
+              "user": 362497,
               "time": "2017-08-17T12:45:00+00:00"
             },
             {
-              "user": {
-                "id": 331562,
-                "name": "Honorbound"
-              },
-              "post": 37430900,
+              "user": 331562,
               "time": "2017-08-18T07:01:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 37430900,
+              "user": 356128,
               "time": "2017-08-19T07:24:00+00:00"
             },
             {
-              "user": {
-                "id": 93801,
-                "name": "Timothy"
-              },
-              "post": 37430900,
+              "user": 93801,
               "time": "2017-08-25T06:27:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 37430900,
+              "user": 307139,
               "time": "2017-08-25T11:40:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 37430900,
+              "user": 315704,
               "time": "2017-08-30T13:11:00+00:00"
             },
             {
-              "user": {
-                "id": 105855,
-                "name": "WorldOfHurt"
-              },
-              "post": 37430900,
+              "user": 105855,
               "time": "2017-09-11T16:38:00+00:00"
             },
             {
-              "user": {
-                "id": 341092,
-                "name": "maroon_sweater"
-              },
-              "post": 37430900,
+              "user": 341092,
               "time": "2017-09-23T22:28:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 37430900,
+              "user": 295356,
               "time": "2017-09-30T22:50:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 37430900,
+              "user": 314693,
               "time": "2017-10-01T10:54:00+00:00"
             },
             {
-              "user": {
-                "id": 334465,
-                "name": "Turbobanana"
-              },
-              "post": 37430900,
+              "user": 334465,
               "time": "2017-10-03T20:33:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 37430900,
+              "user": 360175,
               "time": "2017-10-06T02:09:00+00:00"
             },
             {
-              "user": {
-                "id": 285820,
-                "name": "DaLintyGuy"
-              },
-              "post": 37430900,
+              "user": 285820,
               "time": "2017-10-10T00:36:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 37430900,
+              "user": 104075,
               "time": "2017-10-10T13:45:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 37430900,
+              "user": 110090,
               "time": "2017-10-15T06:14:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 37430900,
+              "user": 365659,
               "time": "2017-10-17T13:30:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 37430900,
+              "user": 296593,
               "time": "2017-10-25T18:01:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 37430900,
+              "user": 334375,
               "time": "2017-10-29T13:41:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 37430900,
+              "user": 315311,
               "time": "2017-11-03T01:34:00+00:00"
             },
             {
-              "user": {
-                "id": 354739,
-                "name": "tearlessNevermore"
-              },
-              "post": 37430900,
+              "user": 354739,
               "time": "2017-11-05T17:47:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 37430900,
+              "user": 103530,
               "time": "2017-11-06T08:15:00+00:00"
             },
             {
-              "user": {
-                "id": 331049,
-                "name": "frenaversary94"
-              },
-              "post": 37430900,
+              "user": 331049,
               "time": "2017-11-10T22:08:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 37430900,
+              "user": 72421,
               "time": "2017-11-13T10:35:17+00:00"
             },
             {
-              "user": {
-                "id": 285821,
-                "name": "FelSpite"
-              },
-              "post": 37430900,
+              "user": 285821,
               "time": "2017-11-17T16:41:07+00:00"
             }
           ]
@@ -459,7 +332,6 @@
       },
       {
         "id": 37697870,
-        "fic": 549176,
         "title": "Awakening 1.2",
         "time": "2017-07-31T03:16:42+00:00",
         "likes": {
@@ -467,371 +339,187 @@
           "latest": "2017-11-14T19:16:22+00:00",
           "likes": [
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 37697870,
+              "user": 316105,
               "time": "2017-07-31T02:42:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 37697870,
+              "user": 310339,
               "time": "2017-07-31T03:57:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 37697870,
+              "user": 309952,
               "time": "2017-07-31T05:31:00+00:00"
             },
             {
-              "user": {
-                "id": 346346,
-                "name": "Cloud"
-              },
-              "post": 37697870,
+              "user": 346346,
               "time": "2017-07-31T05:59:00+00:00"
             },
             {
-              "user": {
-                "id": 312587,
-                "name": "X0ll0X"
-              },
-              "post": 37697870,
+              "user": 312587,
               "time": "2017-07-31T09:34:00+00:00"
             },
             {
-              "user": {
-                "id": 318855,
-                "name": "Rhydeble"
-              },
-              "post": 37697870,
+              "user": 318855,
               "time": "2017-07-31T14:00:00+00:00"
             },
             {
-              "user": {
-                "id": 346207,
-                "name": "Alex_Andr_2017"
-              },
-              "post": 37697870,
+              "user": 346207,
               "time": "2017-07-31T18:20:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 37697870,
+              "user": 315197,
               "time": "2017-07-31T18:36:00+00:00"
             },
             {
-              "user": {
-                "id": 325429,
-                "name": "Blue is the Sea"
-              },
-              "post": 37697870,
+              "user": 325429,
               "time": "2017-07-31T19:22:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 37697870,
+              "user": 322721,
               "time": "2017-07-31T21:28:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 37697870,
+              "user": 310110,
               "time": "2017-08-01T04:13:00+00:00"
             },
             {
-              "user": {
-                "id": 361260,
-                "name": "metaridley"
-              },
-              "post": 37697870,
+              "user": 361260,
               "time": "2017-08-01T13:58:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 37697870,
+              "user": 355954,
               "time": "2017-08-01T20:43:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 37697870,
+              "user": 315587,
               "time": "2017-08-01T23:35:00+00:00"
             },
             {
-              "user": {
-                "id": 311049,
-                "name": "9-tsiak"
-              },
-              "post": 37697870,
+              "user": 311049,
               "time": "2017-08-02T08:27:00+00:00"
             },
             {
-              "user": {
-                "id": 311626,
-                "name": "Madsamurai"
-              },
-              "post": 37697870,
+              "user": 311626,
               "time": "2017-08-02T12:45:00+00:00"
             },
             {
-              "user": {
-                "id": 317614,
-                "name": "Siriothrax"
-              },
-              "post": 37697870,
+              "user": 317614,
               "time": "2017-08-02T17:34:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 37697870,
+              "user": 349360,
               "time": "2017-08-03T13:46:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 37697870,
+              "user": 325820,
               "time": "2017-08-04T12:04:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 37697870,
+              "user": 309400,
               "time": "2017-08-05T14:16:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 37697870,
+              "user": 326255,
               "time": "2017-08-07T11:13:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 37697870,
+              "user": 321738,
               "time": "2017-08-08T18:53:00+00:00"
             },
             {
-              "user": {
-                "id": 329648,
-                "name": "Pangolin"
-              },
-              "post": 37697870,
+              "user": 329648,
               "time": "2017-08-13T19:50:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 37697870,
+              "user": 361731,
               "time": "2017-08-14T16:30:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 37697870,
+              "user": 320937,
               "time": "2017-08-14T19:30:00+00:00"
             },
             {
-              "user": {
-                "id": 326774,
-                "name": "pumpkin_tlof19"
-              },
-              "post": 37697870,
+              "user": 326774,
               "time": "2017-08-15T10:43:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 37697870,
+              "user": 362497,
               "time": "2017-08-17T12:46:00+00:00"
             },
             {
-              "user": {
-                "id": 313898,
-                "name": "errantllama"
-              },
-              "post": 37697870,
+              "user": 313898,
               "time": "2017-08-17T23:59:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 37697870,
+              "user": 356128,
               "time": "2017-08-19T07:23:00+00:00"
             },
             {
-              "user": {
-                "id": 93801,
-                "name": "Timothy"
-              },
-              "post": 37697870,
+              "user": 93801,
               "time": "2017-08-25T06:50:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 37697870,
+              "user": 315704,
               "time": "2017-08-31T15:59:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 37697870,
+              "user": 295356,
               "time": "2017-09-30T23:11:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 37697870,
+              "user": 314693,
               "time": "2017-10-01T13:00:00+00:00"
             },
             {
-              "user": {
-                "id": 334465,
-                "name": "Turbobanana"
-              },
-              "post": 37697870,
+              "user": 334465,
               "time": "2017-10-04T13:39:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 37697870,
+              "user": 360175,
               "time": "2017-10-07T01:57:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 37697870,
+              "user": 310126,
               "time": "2017-10-09T22:48:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 37697870,
+              "user": 104075,
               "time": "2017-10-10T20:43:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 37697870,
+              "user": 110090,
               "time": "2017-10-15T06:31:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 37697870,
+              "user": 365659,
               "time": "2017-10-17T13:31:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 37697870,
+              "user": 296593,
               "time": "2017-10-26T11:32:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 37697870,
+              "user": 334375,
               "time": "2017-10-29T14:36:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 37697870,
+              "user": 315311,
               "time": "2017-11-03T21:32:00+00:00"
             },
             {
-              "user": {
-                "id": 354739,
-                "name": "tearlessNevermore"
-              },
-              "post": 37697870,
+              "user": 354739,
               "time": "2017-11-05T17:48:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 37697870,
+              "user": 103530,
               "time": "2017-11-06T08:54:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 37697870,
+              "user": 72421,
               "time": "2017-11-13T10:50:52+00:00"
             },
             {
-              "user": {
-                "id": 316151,
-                "name": "rysworld"
-              },
-              "post": 37697870,
+              "user": 316151,
               "time": "2017-11-14T19:16:22+00:00"
             }
           ]
@@ -839,7 +527,6 @@
       },
       {
         "id": 37771587,
-        "fic": 549176,
         "title": "Awakening 1.A Interlude",
         "time": "2017-08-02T03:23:13+00:00",
         "likes": {
@@ -847,259 +534,131 @@
           "latest": "2017-11-14T19:22:32+00:00",
           "likes": [
             {
-              "user": {
-                "id": 311049,
-                "name": "9-tsiak"
-              },
-              "post": 37771587,
+              "user": 311049,
               "time": "2017-08-02T08:32:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 37771587,
+              "user": 355954,
               "time": "2017-08-02T13:31:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 37771587,
+              "user": 309638,
               "time": "2017-08-02T15:37:00+00:00"
             },
             {
-              "user": {
-                "id": 317614,
-                "name": "Siriothrax"
-              },
-              "post": 37771587,
+              "user": 317614,
               "time": "2017-08-02T17:37:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 37771587,
+              "user": 315197,
               "time": "2017-08-02T21:37:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 37771587,
+              "user": 349360,
               "time": "2017-08-03T13:53:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 37771587,
+              "user": 325820,
               "time": "2017-08-04T12:10:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 37771587,
+              "user": 309400,
               "time": "2017-08-05T14:38:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 37771587,
+              "user": 326255,
               "time": "2017-08-07T12:53:00+00:00"
             },
             {
-              "user": {
-                "id": 318855,
-                "name": "Rhydeble"
-              },
-              "post": 37771587,
+              "user": 318855,
               "time": "2017-08-08T15:31:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 37771587,
+              "user": 293744,
               "time": "2017-08-13T18:08:00+00:00"
             },
             {
-              "user": {
-                "id": 329648,
-                "name": "Pangolin"
-              },
-              "post": 37771587,
+              "user": 329648,
               "time": "2017-08-13T19:50:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 37771587,
+              "user": 361731,
               "time": "2017-08-14T16:30:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 37771587,
+              "user": 320937,
               "time": "2017-08-14T19:56:00+00:00"
             },
             {
-              "user": {
-                "id": 310573,
-                "name": "Purrs"
-              },
-              "post": 37771587,
+              "user": 310573,
               "time": "2017-08-15T17:40:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 37771587,
+              "user": 362497,
               "time": "2017-08-17T12:47:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 37771587,
+              "user": 321738,
               "time": "2017-08-18T18:55:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 37771587,
+              "user": 315704,
               "time": "2017-08-31T15:56:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 37771587,
+              "user": 295356,
               "time": "2017-09-30T23:25:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 37771587,
+              "user": 314693,
               "time": "2017-10-01T22:09:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 37771587,
+              "user": 360175,
               "time": "2017-10-07T09:36:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 37771587,
+              "user": 310126,
               "time": "2017-10-09T22:52:00+00:00"
             },
             {
-              "user": {
-                "id": 334465,
-                "name": "Turbobanana"
-              },
-              "post": 37771587,
+              "user": 334465,
               "time": "2017-10-10T05:08:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 37771587,
+              "user": 104075,
               "time": "2017-10-10T21:37:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 37771587,
+              "user": 110090,
               "time": "2017-10-15T19:33:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 37771587,
+              "user": 296593,
               "time": "2017-10-26T11:35:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 37771587,
+              "user": 334375,
               "time": "2017-10-29T15:48:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 37771587,
+              "user": 315311,
               "time": "2017-11-03T21:52:00+00:00"
             },
             {
-              "user": {
-                "id": 354739,
-                "name": "tearlessNevermore"
-              },
-              "post": 37771587,
+              "user": 354739,
               "time": "2017-11-05T17:49:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 37771587,
+              "user": 103530,
               "time": "2017-11-06T08:59:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 37771587,
+              "user": 72421,
               "time": "2017-11-13T11:01:32+00:00"
             },
             {
-              "user": {
-                "id": 316151,
-                "name": "rysworld"
-              },
-              "post": 37771587,
+              "user": 316151,
               "time": "2017-11-14T19:22:32+00:00"
             }
           ]
@@ -1107,7 +666,6 @@
       },
       {
         "id": 37930983,
-        "fic": 549176,
         "title": "Awakening 1.3",
         "time": "2017-08-06T18:07:06+00:00",
         "likes": {
@@ -1115,347 +673,175 @@
           "latest": "2017-11-14T19:40:01+00:00",
           "likes": [
             {
-              "user": {
-                "id": 290804,
-                "name": "cl20"
-              },
-              "post": 37930983,
+              "user": 290804,
               "time": "2017-08-06T14:18:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 37930983,
+              "user": 355954,
               "time": "2017-08-06T14:20:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 37930983,
+              "user": 315587,
               "time": "2017-08-06T14:48:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 37930983,
+              "user": 322721,
               "time": "2017-08-06T15:26:00+00:00"
             },
             {
-              "user": {
-                "id": 317614,
-                "name": "Siriothrax"
-              },
-              "post": 37930983,
+              "user": 317614,
               "time": "2017-08-06T17:40:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 37930983,
+              "user": 310110,
               "time": "2017-08-06T21:05:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 37930983,
+              "user": 309638,
               "time": "2017-08-06T22:25:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 37930983,
+              "user": 315197,
               "time": "2017-08-07T00:01:00+00:00"
             },
             {
-              "user": {
-                "id": 361260,
-                "name": "metaridley"
-              },
-              "post": 37930983,
+              "user": 361260,
               "time": "2017-08-07T00:11:00+00:00"
             },
             {
-              "user": {
-                "id": 345406,
-                "name": "RyubosJ"
-              },
-              "post": 37930983,
+              "user": 345406,
               "time": "2017-08-07T00:29:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 37930983,
+              "user": 309952,
               "time": "2017-08-07T01:17:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 37930983,
+              "user": 326255,
               "time": "2017-08-07T14:30:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 37930983,
+              "user": 320198,
               "time": "2017-08-07T16:19:00+00:00"
             },
             {
-              "user": {
-                "id": 313388,
-                "name": "Quantum tesseract"
-              },
-              "post": 37930983,
+              "user": 313388,
               "time": "2017-08-07T16:36:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 37930983,
+              "user": 325820,
               "time": "2017-08-08T00:53:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 37930983,
+              "user": 322905,
               "time": "2017-08-08T18:07:00+00:00"
             },
             {
-              "user": {
-                "id": 329648,
-                "name": "Pangolin"
-              },
-              "post": 37930983,
+              "user": 329648,
               "time": "2017-08-13T19:51:00+00:00"
             },
             {
-              "user": {
-                "id": 330316,
-                "name": "HomeTurf"
-              },
-              "post": 37930983,
+              "user": 330316,
               "time": "2017-08-13T23:50:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 37930983,
+              "user": 310339,
               "time": "2017-08-14T00:04:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 37930983,
+              "user": 293744,
               "time": "2017-08-14T11:00:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 37930983,
+              "user": 361731,
               "time": "2017-08-14T16:31:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 37930983,
+              "user": 320937,
               "time": "2017-08-14T20:18:00+00:00"
             },
             {
-              "user": {
-                "id": 310573,
-                "name": "Purrs"
-              },
-              "post": 37930983,
+              "user": 310573,
               "time": "2017-08-15T21:59:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 37930983,
+              "user": 362497,
               "time": "2017-08-17T12:47:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 37930983,
+              "user": 356128,
               "time": "2017-08-19T20:07:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 37930983,
+              "user": 321738,
               "time": "2017-08-22T01:27:00+00:00"
             },
             {
-              "user": {
-                "id": 93801,
-                "name": "Timothy"
-              },
-              "post": 37930983,
+              "user": 93801,
               "time": "2017-08-25T07:09:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 37930983,
+              "user": 315704,
               "time": "2017-08-31T17:48:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 37930983,
+              "user": 295356,
               "time": "2017-09-30T23:41:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 37930983,
+              "user": 314693,
               "time": "2017-10-02T00:06:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 37930983,
+              "user": 360175,
               "time": "2017-10-07T12:24:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 37930983,
+              "user": 310126,
               "time": "2017-10-09T23:04:00+00:00"
             },
             {
-              "user": {
-                "id": 334465,
-                "name": "Turbobanana"
-              },
-              "post": 37930983,
+              "user": 334465,
               "time": "2017-10-10T05:31:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 37930983,
+              "user": 104075,
               "time": "2017-10-11T08:49:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 37930983,
+              "user": 365659,
               "time": "2017-10-17T13:31:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 37930983,
+              "user": 110090,
               "time": "2017-10-19T00:01:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 37930983,
+              "user": 296593,
               "time": "2017-10-26T13:25:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 37930983,
+              "user": 334375,
               "time": "2017-10-29T23:23:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 37930983,
+              "user": 315311,
               "time": "2017-11-03T22:29:00+00:00"
             },
             {
-              "user": {
-                "id": 354739,
-                "name": "tearlessNevermore"
-              },
-              "post": 37930983,
+              "user": 354739,
               "time": "2017-11-05T17:50:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 37930983,
+              "user": 103530,
               "time": "2017-11-06T09:37:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 37930983,
+              "user": 72421,
               "time": "2017-11-13T11:15:27+00:00"
             },
             {
-              "user": {
-                "id": 316151,
-                "name": "rysworld"
-              },
-              "post": 37930983,
+              "user": 316151,
               "time": "2017-11-14T19:40:01+00:00"
             }
           ]
@@ -1463,7 +849,6 @@
       },
       {
         "id": 38183823,
-        "fic": 549176,
         "title": "Awakening 1.4",
         "time": "2017-08-13T21:04:06+00:00",
         "likes": {
@@ -1471,315 +856,159 @@
           "latest": "2017-11-14T21:21:33+00:00",
           "likes": [
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 38183823,
+              "user": 349360,
               "time": "2017-08-13T17:07:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 38183823,
+              "user": 322721,
               "time": "2017-08-13T17:46:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 38183823,
+              "user": 355954,
               "time": "2017-08-13T18:11:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 38183823,
+              "user": 322905,
               "time": "2017-08-13T18:36:00+00:00"
             },
             {
-              "user": {
-                "id": 329648,
-                "name": "Pangolin"
-              },
-              "post": 38183823,
+              "user": 329648,
               "time": "2017-08-13T19:51:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 38183823,
+              "user": 326255,
               "time": "2017-08-13T20:37:00+00:00"
             },
             {
-              "user": {
-                "id": 330316,
-                "name": "HomeTurf"
-              },
-              "post": 38183823,
+              "user": 330316,
               "time": "2017-08-13T23:58:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 38183823,
+              "user": 310110,
               "time": "2017-08-14T00:05:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 38183823,
+              "user": 310339,
               "time": "2017-08-14T00:40:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 38183823,
+              "user": 315197,
               "time": "2017-08-14T00:43:00+00:00"
             },
             {
-              "user": {
-                "id": 345406,
-                "name": "RyubosJ"
-              },
-              "post": 38183823,
+              "user": 345406,
               "time": "2017-08-14T02:39:00+00:00"
             },
             {
-              "user": {
-                "id": 323127,
-                "name": "Straw_Man"
-              },
-              "post": 38183823,
+              "user": 323127,
               "time": "2017-08-14T03:38:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 38183823,
+              "user": 309952,
               "time": "2017-08-14T04:07:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 38183823,
+              "user": 309638,
               "time": "2017-08-14T04:57:00+00:00"
             },
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 38183823,
+              "user": 316105,
               "time": "2017-08-14T15:33:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 38183823,
+              "user": 361731,
               "time": "2017-08-14T16:31:00+00:00"
             },
             {
-              "user": {
-                "id": 318855,
-                "name": "Rhydeble"
-              },
-              "post": 38183823,
+              "user": 318855,
               "time": "2017-08-14T17:51:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 38183823,
+              "user": 315587,
               "time": "2017-08-14T17:58:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 38183823,
+              "user": 320937,
               "time": "2017-08-14T20:58:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 38183823,
+              "user": 309400,
               "time": "2017-08-15T04:16:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 38183823,
+              "user": 325820,
               "time": "2017-08-15T19:38:00+00:00"
             },
             {
-              "user": {
-                "id": 310573,
-                "name": "Purrs"
-              },
-              "post": 38183823,
+              "user": 310573,
               "time": "2017-08-15T22:11:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 38183823,
+              "user": 362497,
               "time": "2017-08-17T12:47:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 38183823,
+              "user": 321738,
               "time": "2017-08-22T01:45:00+00:00"
             },
             {
-              "user": {
-                "id": 93801,
-                "name": "Timothy"
-              },
-              "post": 38183823,
+              "user": 93801,
               "time": "2017-08-25T14:11:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 38183823,
+              "user": 315704,
               "time": "2017-08-31T18:36:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 38183823,
+              "user": 295356,
               "time": "2017-10-01T00:02:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 38183823,
+              "user": 314693,
               "time": "2017-10-02T21:05:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 38183823,
+              "user": 104075,
               "time": "2017-10-11T12:08:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 38183823,
+              "user": 332315,
               "time": "2017-10-13T17:00:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 38183823,
+              "user": 365659,
               "time": "2017-10-17T13:31:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 38183823,
+              "user": 110090,
               "time": "2017-10-19T00:20:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 38183823,
+              "user": 296593,
               "time": "2017-10-26T16:03:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 38183823,
+              "user": 334375,
               "time": "2017-10-29T23:31:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 38183823,
+              "user": 315311,
               "time": "2017-11-03T23:51:00+00:00"
             },
             {
-              "user": {
-                "id": 354739,
-                "name": "tearlessNevermore"
-              },
-              "post": 38183823,
+              "user": 354739,
               "time": "2017-11-05T17:54:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 38183823,
+              "user": 103530,
               "time": "2017-11-06T13:25:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 38183823,
+              "user": 72421,
               "time": "2017-11-13T11:31:34+00:00"
             },
             {
-              "user": {
-                "id": 316151,
-                "name": "rysworld"
-              },
-              "post": 38183823,
+              "user": 316151,
               "time": "2017-11-14T21:21:33+00:00"
             }
           ]
@@ -1787,7 +1016,6 @@
       },
       {
         "id": 38323459,
-        "fic": 549176,
         "title": "Awakening 1.B Interlude",
         "time": "2017-08-17T21:31:26+00:00",
         "likes": {
@@ -1795,267 +1023,135 @@
           "latest": "2017-11-14T21:24:56+00:00",
           "likes": [
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 38323459,
+              "user": 349360,
               "time": "2017-08-17T17:40:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 38323459,
+              "user": 362497,
               "time": "2017-08-17T17:43:00+00:00"
             },
             {
-              "user": {
-                "id": 313052,
-                "name": "A-Random-Guy"
-              },
-              "post": 38323459,
+              "user": 313052,
               "time": "2017-08-17T17:57:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 38323459,
+              "user": 315197,
               "time": "2017-08-17T18:10:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 38323459,
+              "user": 315587,
               "time": "2017-08-17T18:10:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 38323459,
+              "user": 322905,
               "time": "2017-08-17T18:36:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 38323459,
+              "user": 322721,
               "time": "2017-08-17T20:25:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 38323459,
+              "user": 293744,
               "time": "2017-08-17T21:08:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 38323459,
+              "user": 310110,
               "time": "2017-08-17T21:26:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 38323459,
+              "user": 310339,
               "time": "2017-08-17T22:13:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 38323459,
+              "user": 309400,
               "time": "2017-08-17T22:27:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 38323459,
+              "user": 309952,
               "time": "2017-08-18T00:29:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 38323459,
+              "user": 325820,
               "time": "2017-08-18T00:34:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 38323459,
+              "user": 355954,
               "time": "2017-08-18T05:09:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 38323459,
+              "user": 361731,
               "time": "2017-08-18T15:09:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 38323459,
+              "user": 320937,
               "time": "2017-08-19T04:34:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 38323459,
+              "user": 326255,
               "time": "2017-08-19T15:43:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 38323459,
+              "user": 321738,
               "time": "2017-08-23T21:20:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 38323459,
+              "user": 307139,
               "time": "2017-08-26T06:37:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 38323459,
+              "user": 315704,
               "time": "2017-08-31T18:46:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 38323459,
+              "user": 295356,
               "time": "2017-10-01T00:06:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 38323459,
+              "user": 310126,
               "time": "2017-10-09T23:16:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 38323459,
+              "user": 360175,
               "time": "2017-10-10T04:43:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 38323459,
+              "user": 104075,
               "time": "2017-10-11T12:13:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 38323459,
+              "user": 332315,
               "time": "2017-10-13T17:03:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 38323459,
+              "user": 110090,
               "time": "2017-10-19T00:41:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 38323459,
+              "user": 296593,
               "time": "2017-10-26T16:14:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 38323459,
+              "user": 334375,
               "time": "2017-10-30T00:15:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 38323459,
+              "user": 315311,
               "time": "2017-11-03T23:55:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 38323459,
+              "user": 103530,
               "time": "2017-11-06T13:37:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 38323459,
+              "user": 72421,
               "time": "2017-11-13T11:34:26+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 38323459,
+              "user": 314693,
               "time": "2017-11-13T18:06:37+00:00"
             },
             {
-              "user": {
-                "id": 316151,
-                "name": "rysworld"
-              },
-              "post": 38323459,
+              "user": 316151,
               "time": "2017-11-14T21:24:56+00:00"
             }
           ]
@@ -2063,7 +1159,6 @@
       },
       {
         "id": 38433223,
-        "fic": 549176,
         "title": "Awakening 1.5",
         "time": "2017-08-21T01:55:08+00:00",
         "likes": {
@@ -2071,307 +1166,155 @@
           "latest": "2017-11-13T23:27:08+00:00",
           "likes": [
             {
-              "user": {
-                "id": 33338,
-                "name": "Night_stalker"
-              },
-              "post": 38433223,
+              "user": 33338,
               "time": "2017-08-20T22:06:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 38433223,
+              "user": 322721,
               "time": "2017-08-20T22:08:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 38433223,
+              "user": 310110,
               "time": "2017-08-20T22:16:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 38433223,
+              "user": 315197,
               "time": "2017-08-20T22:48:00+00:00"
             },
             {
-              "user": {
-                "id": 345406,
-                "name": "RyubosJ"
-              },
-              "post": 38433223,
+              "user": 345406,
               "time": "2017-08-20T23:34:00+00:00"
             },
             {
-              "user": {
-                "id": 313388,
-                "name": "Quantum tesseract"
-              },
-              "post": 38433223,
+              "user": 313388,
               "time": "2017-08-21T00:10:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 38433223,
+              "user": 310339,
               "time": "2017-08-21T00:20:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 38433223,
+              "user": 309638,
               "time": "2017-08-21T01:11:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 38433223,
+              "user": 356128,
               "time": "2017-08-21T01:41:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 38433223,
+              "user": 355954,
               "time": "2017-08-21T04:07:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 38433223,
+              "user": 320937,
               "time": "2017-08-21T05:12:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 38433223,
+              "user": 293744,
               "time": "2017-08-21T06:33:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 38433223,
+              "user": 289664,
               "time": "2017-08-21T07:16:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 38433223,
+              "user": 322905,
               "time": "2017-08-21T08:03:00+00:00"
             },
             {
-              "user": {
-                "id": 326255,
-                "name": "Otterberries"
-              },
-              "post": 38433223,
+              "user": 326255,
               "time": "2017-08-21T11:57:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 38433223,
+              "user": 309952,
               "time": "2017-08-21T12:50:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 38433223,
+              "user": 361731,
               "time": "2017-08-21T15:28:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 38433223,
+              "user": 309400,
               "time": "2017-08-22T01:06:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 38433223,
+              "user": 362497,
               "time": "2017-08-22T12:27:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 38433223,
+              "user": 349360,
               "time": "2017-08-22T18:48:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 38433223,
+              "user": 321738,
               "time": "2017-08-23T22:34:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 38433223,
+              "user": 307139,
               "time": "2017-08-26T06:51:00+00:00"
             },
             {
-              "user": {
-                "id": 318855,
-                "name": "Rhydeble"
-              },
-              "post": 38433223,
+              "user": 318855,
               "time": "2017-08-27T15:01:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 38433223,
+              "user": 315704,
               "time": "2017-08-31T19:07:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 38433223,
+              "user": 295356,
               "time": "2017-10-01T00:11:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 38433223,
+              "user": 310126,
               "time": "2017-10-09T23:23:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 38433223,
+              "user": 360175,
               "time": "2017-10-11T03:12:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 38433223,
+              "user": 104075,
               "time": "2017-10-11T12:21:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 38433223,
+              "user": 332315,
               "time": "2017-10-13T17:11:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 38433223,
+              "user": 365659,
               "time": "2017-10-17T13:31:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 38433223,
+              "user": 110090,
               "time": "2017-10-19T00:49:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 38433223,
+              "user": 296593,
               "time": "2017-10-26T16:42:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 38433223,
+              "user": 334375,
               "time": "2017-10-30T00:44:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 38433223,
+              "user": 315311,
               "time": "2017-11-04T00:14:00+00:00"
             },
             {
-              "user": {
-                "id": 354739,
-                "name": "tearlessNevermore"
-              },
-              "post": 38433223,
+              "user": 354739,
               "time": "2017-11-05T17:55:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 38433223,
+              "user": 103530,
               "time": "2017-11-06T14:46:00+00:00"
             },
             {
-              "user": {
-                "id": 72421,
-                "name": "SolipsistSerpen"
-              },
-              "post": 38433223,
+              "user": 72421,
               "time": "2017-11-13T11:37:01+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 38433223,
+              "user": 314693,
               "time": "2017-11-13T23:27:08+00:00"
             }
           ]
@@ -2379,7 +1322,6 @@
       },
       {
         "id": 38647852,
-        "fic": 549176,
         "title": "Awakening 1.6",
         "time": "2017-08-27T16:39:03+00:00",
         "likes": {
@@ -2387,283 +1329,143 @@
           "latest": "2017-11-14T00:45:38+00:00",
           "likes": [
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 38647852,
+              "user": 349360,
               "time": "2017-08-27T12:42:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 38647852,
+              "user": 355954,
               "time": "2017-08-27T12:47:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 38647852,
+              "user": 315197,
               "time": "2017-08-27T12:59:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 38647852,
+              "user": 320937,
               "time": "2017-08-27T13:07:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 38647852,
+              "user": 309400,
               "time": "2017-08-27T13:14:00+00:00"
             },
             {
-              "user": {
-                "id": 345406,
-                "name": "RyubosJ"
-              },
-              "post": 38647852,
+              "user": 345406,
               "time": "2017-08-27T13:23:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 38647852,
+              "user": 315587,
               "time": "2017-08-27T13:24:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 38647852,
+              "user": 361731,
               "time": "2017-08-27T13:33:00+00:00"
             },
             {
-              "user": {
-                "id": 33338,
-                "name": "Night_stalker"
-              },
-              "post": 38647852,
+              "user": 33338,
               "time": "2017-08-27T13:39:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 38647852,
+              "user": 322721,
               "time": "2017-08-27T14:08:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 38647852,
+              "user": 289664,
               "time": "2017-08-27T14:15:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 38647852,
+              "user": 309952,
               "time": "2017-08-27T14:30:00+00:00"
             },
             {
-              "user": {
-                "id": 318855,
-                "name": "Rhydeble"
-              },
-              "post": 38647852,
+              "user": 318855,
               "time": "2017-08-27T16:09:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 38647852,
+              "user": 320198,
               "time": "2017-08-27T16:56:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 38647852,
+              "user": 310339,
               "time": "2017-08-28T00:37:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 38647852,
+              "user": 307139,
               "time": "2017-08-28T04:32:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 38647852,
+              "user": 322905,
               "time": "2017-08-28T06:35:00+00:00"
             },
             {
-              "user": {
-                "id": 93801,
-                "name": "Timothy"
-              },
-              "post": 38647852,
+              "user": 93801,
               "time": "2017-08-28T08:25:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 38647852,
+              "user": 325820,
               "time": "2017-08-28T13:56:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 38647852,
+              "user": 310110,
               "time": "2017-08-28T17:43:00+00:00"
             },
             {
-              "user": {
-                "id": 318214,
-                "name": "Maping"
-              },
-              "post": 38647852,
+              "user": 318214,
               "time": "2017-08-30T06:52:00+00:00"
             },
             {
-              "user": {
-                "id": 339845,
-                "name": "Caspian Sea Monster"
-              },
-              "post": 38647852,
+              "user": 339845,
               "time": "2017-08-30T11:10:00+00:00"
             },
             {
-              "user": {
-                "id": 362157,
-                "name": "Chartsorcerer"
-              },
-              "post": 38647852,
+              "user": 362157,
               "time": "2017-08-31T03:58:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 38647852,
+              "user": 315704,
               "time": "2017-08-31T19:56:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 38647852,
+              "user": 309638,
               "time": "2017-09-05T09:56:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 38647852,
+              "user": 295356,
               "time": "2017-10-01T00:21:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 38647852,
+              "user": 104075,
               "time": "2017-10-11T12:44:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 38647852,
+              "user": 365659,
               "time": "2017-10-17T13:31:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 38647852,
+              "user": 110090,
               "time": "2017-10-19T02:20:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 38647852,
+              "user": 296593,
               "time": "2017-10-26T17:39:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 38647852,
+              "user": 334375,
               "time": "2017-10-30T02:09:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 38647852,
+              "user": 315311,
               "time": "2017-11-04T00:28:00+00:00"
             },
             {
-              "user": {
-                "id": 361515,
-                "name": "Jedijinnora"
-              },
-              "post": 38647852,
+              "user": 361515,
               "time": "2017-11-05T16:08:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 38647852,
+              "user": 103530,
               "time": "2017-11-06T15:05:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 38647852,
+              "user": 314693,
               "time": "2017-11-14T00:45:38+00:00"
             }
           ]
@@ -2671,7 +1473,6 @@
       },
       {
         "id": 38933116,
-        "fic": 549176,
         "title": "Awakening 1.7",
         "time": "2017-09-05T02:09:00+00:00",
         "likes": {
@@ -2679,259 +1480,131 @@
           "latest": "2017-11-14T23:30:32+00:00",
           "likes": [
             {
-              "user": {
-                "id": 33338,
-                "name": "Night_stalker"
-              },
-              "post": 38933116,
+              "user": 33338,
               "time": "2017-09-04T22:17:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 38933116,
+              "user": 310110,
               "time": "2017-09-04T22:40:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 38933116,
+              "user": 320198,
               "time": "2017-09-04T22:46:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 38933116,
+              "user": 310339,
               "time": "2017-09-04T22:59:00+00:00"
             },
             {
-              "user": {
-                "id": 326504,
-                "name": "Not_A_Criminal"
-              },
-              "post": 38933116,
+              "user": 326504,
               "time": "2017-09-04T23:07:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 38933116,
+              "user": 307139,
               "time": "2017-09-04T23:43:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 38933116,
+              "user": 315587,
               "time": "2017-09-04T23:46:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 38933116,
+              "user": 322721,
               "time": "2017-09-05T00:05:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 38933116,
+              "user": 349360,
               "time": "2017-09-05T00:37:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 38933116,
+              "user": 315197,
               "time": "2017-09-05T00:51:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 38933116,
+              "user": 355954,
               "time": "2017-09-05T01:47:00+00:00"
             },
             {
-              "user": {
-                "id": 319847,
-                "name": "Solacen"
-              },
-              "post": 38933116,
+              "user": 319847,
               "time": "2017-09-05T02:20:00+00:00"
             },
             {
-              "user": {
-                "id": 318214,
-                "name": "Maping"
-              },
-              "post": 38933116,
+              "user": 318214,
               "time": "2017-09-05T05:00:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 38933116,
+              "user": 320937,
               "time": "2017-09-05T05:11:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 38933116,
+              "user": 309638,
               "time": "2017-09-05T10:26:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 38933116,
+              "user": 309400,
               "time": "2017-09-05T15:58:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 38933116,
+              "user": 289664,
               "time": "2017-09-05T18:22:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 38933116,
+              "user": 315704,
               "time": "2017-09-07T15:28:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 38933116,
+              "user": 361731,
               "time": "2017-09-09T14:00:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 38933116,
+              "user": 322905,
               "time": "2017-09-11T08:16:00+00:00"
             },
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 38933116,
+              "user": 316105,
               "time": "2017-09-17T15:34:00+00:00"
             },
             {
-              "user": {
-                "id": 339845,
-                "name": "Caspian Sea Monster"
-              },
-              "post": 38933116,
+              "user": 339845,
               "time": "2017-09-19T10:08:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 38933116,
+              "user": 360175,
               "time": "2017-10-11T05:52:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 38933116,
+              "user": 104075,
               "time": "2017-10-11T13:02:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 38933116,
+              "user": 295356,
               "time": "2017-10-14T23:55:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 38933116,
+              "user": 365659,
               "time": "2017-10-17T13:59:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 38933116,
+              "user": 110090,
               "time": "2017-10-19T02:55:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 38933116,
+              "user": 296593,
               "time": "2017-10-26T18:11:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 38933116,
+              "user": 334375,
               "time": "2017-10-30T02:19:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 38933116,
+              "user": 315311,
               "time": "2017-11-04T00:41:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 38933116,
+              "user": 103530,
               "time": "2017-11-06T17:06:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 38933116,
+              "user": 314693,
               "time": "2017-11-14T23:30:32+00:00"
             }
           ]
@@ -2939,7 +1612,6 @@
       },
       {
         "id": 39153313,
-        "fic": 549176,
         "title": "Awakening 1.8",
         "time": "2017-09-11T10:50:23+00:00",
         "likes": {
@@ -2947,227 +1619,115 @@
           "latest": "2017-11-15T00:58:30+00:00",
           "likes": [
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 39153313,
+              "user": 322721,
               "time": "2017-09-11T07:12:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 39153313,
+              "user": 320198,
               "time": "2017-09-11T07:23:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 39153313,
+              "user": 349360,
               "time": "2017-09-11T07:44:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 39153313,
+              "user": 315197,
               "time": "2017-09-11T07:53:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 39153313,
+              "user": 355954,
               "time": "2017-09-11T08:26:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 39153313,
+              "user": 361731,
               "time": "2017-09-11T09:27:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 39153313,
+              "user": 309952,
               "time": "2017-09-11T09:30:00+00:00"
             },
             {
-              "user": {
-                "id": 345406,
-                "name": "RyubosJ"
-              },
-              "post": 39153313,
+              "user": 345406,
               "time": "2017-09-11T11:10:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 39153313,
+              "user": 309638,
               "time": "2017-09-11T11:32:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 39153313,
+              "user": 315704,
               "time": "2017-09-11T11:54:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 39153313,
+              "user": 289664,
               "time": "2017-09-11T14:22:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 39153313,
+              "user": 322905,
               "time": "2017-09-11T19:31:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 39153313,
+              "user": 310110,
               "time": "2017-09-11T20:48:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 39153313,
+              "user": 310339,
               "time": "2017-09-11T22:36:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 39153313,
+              "user": 307139,
               "time": "2017-09-12T03:06:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 39153313,
+              "user": 309400,
               "time": "2017-09-12T11:17:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 39153313,
+              "user": 320937,
               "time": "2017-09-13T21:24:00+00:00"
             },
             {
-              "user": {
-                "id": 348475,
-                "name": "NaGeL"
-              },
-              "post": 39153313,
+              "user": 348475,
               "time": "2017-09-14T12:40:00+00:00"
             },
             {
-              "user": {
-                "id": 339845,
-                "name": "Caspian Sea Monster"
-              },
-              "post": 39153313,
+              "user": 339845,
               "time": "2017-09-19T10:08:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 39153313,
+              "user": 104075,
               "time": "2017-10-11T13:17:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 39153313,
+              "user": 295356,
               "time": "2017-10-15T00:00:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 39153313,
+              "user": 365659,
               "time": "2017-10-17T14:18:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 39153313,
+              "user": 110090,
               "time": "2017-10-19T03:05:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 39153313,
+              "user": 296593,
               "time": "2017-10-26T18:19:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 39153313,
+              "user": 334375,
               "time": "2017-10-30T02:38:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 39153313,
+              "user": 315311,
               "time": "2017-11-04T00:50:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 39153313,
+              "user": 103530,
               "time": "2017-11-06T18:13:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 39153313,
+              "user": 314693,
               "time": "2017-11-15T00:58:30+00:00"
             }
           ]
@@ -3175,7 +1735,6 @@
       },
       {
         "id": 39381874,
-        "fic": 549176,
         "title": "Awakening 1.9",
         "time": "2017-09-17T21:12:36+00:00",
         "likes": {
@@ -3183,283 +1742,143 @@
           "latest": "2017-11-15T01:19:33+00:00",
           "likes": [
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 39381874,
+              "user": 309952,
               "time": "2017-09-17T17:14:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 39381874,
+              "user": 355954,
               "time": "2017-09-17T17:25:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 39381874,
+              "user": 315197,
               "time": "2017-09-17T17:42:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 39381874,
+              "user": 322721,
               "time": "2017-09-17T17:58:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 39381874,
+              "user": 362497,
               "time": "2017-09-17T17:59:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 39381874,
+              "user": 315587,
               "time": "2017-09-17T18:10:00+00:00"
             },
             {
-              "user": {
-                "id": 348475,
-                "name": "NaGeL"
-              },
-              "post": 39381874,
+              "user": 348475,
               "time": "2017-09-17T18:14:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 39381874,
+              "user": 309400,
               "time": "2017-09-17T23:20:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 39381874,
+              "user": 320937,
               "time": "2017-09-18T00:04:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 39381874,
+              "user": 293744,
               "time": "2017-09-18T03:14:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 39381874,
+              "user": 307139,
               "time": "2017-09-18T04:08:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 39381874,
+              "user": 325820,
               "time": "2017-09-18T06:56:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 39381874,
+              "user": 309638,
               "time": "2017-09-18T07:04:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 39381874,
+              "user": 356128,
               "time": "2017-09-18T09:06:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 39381874,
+              "user": 361731,
               "time": "2017-09-18T09:19:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 39381874,
+              "user": 310339,
               "time": "2017-09-18T14:33:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 39381874,
+              "user": 320198,
               "time": "2017-09-19T03:10:00+00:00"
             },
             {
-              "user": {
-                "id": 339845,
-                "name": "Caspian Sea Monster"
-              },
-              "post": 39381874,
+              "user": 339845,
               "time": "2017-09-19T10:08:00+00:00"
             },
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 39381874,
+              "user": 316105,
               "time": "2017-09-23T11:29:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 39381874,
+              "user": 310110,
               "time": "2017-09-23T19:25:00+00:00"
             },
             {
-              "user": {
-                "id": 342847,
-                "name": "Sam Guivenne"
-              },
-              "post": 39381874,
+              "user": 342847,
               "time": "2017-09-27T01:06:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 39381874,
+              "user": 315704,
               "time": "2017-10-06T13:23:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 39381874,
+              "user": 310126,
               "time": "2017-10-10T00:01:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 39381874,
+              "user": 360175,
               "time": "2017-10-11T09:27:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 39381874,
+              "user": 104075,
               "time": "2017-10-11T14:02:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 39381874,
+              "user": 332315,
               "time": "2017-10-13T18:53:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 39381874,
+              "user": 295356,
               "time": "2017-10-15T00:07:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 39381874,
+              "user": 365659,
               "time": "2017-10-17T14:31:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 39381874,
+              "user": 110090,
               "time": "2017-10-19T03:12:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 39381874,
+              "user": 296593,
               "time": "2017-10-26T18:29:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 39381874,
+              "user": 334375,
               "time": "2017-10-30T02:41:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 39381874,
+              "user": 315311,
               "time": "2017-11-04T01:01:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 39381874,
+              "user": 103530,
               "time": "2017-11-06T18:22:00+00:00"
             },
             {
-              "user": {
-                "id": 319052,
-                "name": "MaddestBob"
-              },
-              "post": 39381874,
+              "user": 319052,
               "time": "2017-11-07T04:17:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 39381874,
+              "user": 314693,
               "time": "2017-11-15T01:19:33+00:00"
             }
           ]
@@ -3467,7 +1886,6 @@
       },
       {
         "id": 39627775,
-        "fic": 549176,
         "title": "Arc 2 Art - Starving Artist",
         "time": "2017-09-25T02:33:55+00:00",
         "likes": {
@@ -3475,163 +1893,83 @@
           "latest": "2017-11-15T01:33:11+00:00",
           "likes": [
             {
-              "user": {
-                "id": 33338,
-                "name": "Night_stalker"
-              },
-              "post": 39627775,
+              "user": 33338,
               "time": "2017-09-24T22:46:00+00:00"
             },
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 39627775,
+              "user": 316105,
               "time": "2017-09-24T23:02:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 39627775,
+              "user": 309952,
               "time": "2017-09-24T23:42:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 39627775,
+              "user": 315197,
               "time": "2017-09-24T23:52:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 39627775,
+              "user": 349360,
               "time": "2017-09-25T00:40:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 39627775,
+              "user": 309400,
               "time": "2017-09-25T01:24:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 39627775,
+              "user": 320937,
               "time": "2017-09-25T03:32:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 39627775,
+              "user": 309638,
               "time": "2017-09-25T04:29:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 39627775,
+              "user": 293744,
               "time": "2017-09-25T15:43:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 39627775,
+              "user": 310110,
               "time": "2017-09-25T19:05:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 39627775,
+              "user": 321738,
               "time": "2017-10-09T21:12:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 39627775,
+              "user": 104075,
               "time": "2017-10-11T14:02:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 39627775,
+              "user": 295356,
               "time": "2017-10-15T00:08:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 39627775,
+              "user": 365659,
               "time": "2017-10-17T14:36:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 39627775,
+              "user": 110090,
               "time": "2017-10-19T03:19:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 39627775,
+              "user": 296593,
               "time": "2017-10-26T18:29:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 39627775,
+              "user": 334375,
               "time": "2017-10-30T02:42:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 39627775,
+              "user": 315311,
               "time": "2017-11-04T01:01:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 39627775,
+              "user": 103530,
               "time": "2017-11-06T18:24:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 39627775,
+              "user": 314693,
               "time": "2017-11-15T01:33:11+00:00"
             }
           ]
@@ -3639,7 +1977,6 @@
       },
       {
         "id": 39824587,
-        "fic": 549176,
         "title": "Retribution 2.1",
         "time": "2017-09-30T20:52:54+00:00",
         "likes": {
@@ -3647,275 +1984,139 @@
           "latest": "2017-11-15T04:50:54+00:00",
           "likes": [
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 39824587,
+              "user": 349360,
               "time": "2017-09-30T17:34:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 39824587,
+              "user": 322721,
               "time": "2017-09-30T18:10:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 39824587,
+              "user": 320198,
               "time": "2017-09-30T19:11:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 39824587,
+              "user": 361731,
               "time": "2017-09-30T19:27:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 39824587,
+              "user": 289664,
               "time": "2017-09-30T19:30:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 39824587,
+              "user": 355954,
               "time": "2017-09-30T19:53:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 39824587,
+              "user": 362497,
               "time": "2017-09-30T20:21:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 39824587,
+              "user": 315197,
               "time": "2017-09-30T20:26:00+00:00"
             },
             {
-              "user": {
-                "id": 342847,
-                "name": "Sam Guivenne"
-              },
-              "post": 39824587,
+              "user": 342847,
               "time": "2017-09-30T22:07:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 39824587,
+              "user": 310110,
               "time": "2017-09-30T22:19:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 39824587,
+              "user": 309952,
               "time": "2017-10-01T03:55:00+00:00"
             },
             {
-              "user": {
-                "id": 345406,
-                "name": "RyubosJ"
-              },
-              "post": 39824587,
+              "user": 345406,
               "time": "2017-10-01T05:57:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 39824587,
+              "user": 320937,
               "time": "2017-10-01T06:54:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 39824587,
+              "user": 307139,
               "time": "2017-10-01T07:51:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 39824587,
+              "user": 322905,
               "time": "2017-10-01T08:07:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 39824587,
+              "user": 309638,
               "time": "2017-10-01T09:59:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 39824587,
+              "user": 310339,
               "time": "2017-10-02T02:58:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 39824587,
+              "user": 293744,
               "time": "2017-10-02T05:04:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 39824587,
+              "user": 356128,
               "time": "2017-10-03T01:08:00+00:00"
             },
             {
-              "user": {
-                "id": 339845,
-                "name": "Caspian Sea Monster"
-              },
-              "post": 39824587,
+              "user": 339845,
               "time": "2017-10-03T17:41:00+00:00"
             },
             {
-              "user": {
-                "id": 316105,
-                "name": "Eric d'Orléans"
-              },
-              "post": 39824587,
+              "user": 316105,
               "time": "2017-10-05T21:37:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 39824587,
+              "user": 315704,
               "time": "2017-10-06T18:12:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 39824587,
+              "user": 360175,
               "time": "2017-10-11T12:07:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 39824587,
+              "user": 104075,
               "time": "2017-10-11T14:21:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 39824587,
+              "user": 325820,
               "time": "2017-10-12T14:58:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 39824587,
+              "user": 295356,
               "time": "2017-10-15T00:17:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 39824587,
+              "user": 365659,
               "time": "2017-10-17T15:06:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 39824587,
+              "user": 110090,
               "time": "2017-10-19T03:32:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 39824587,
+              "user": 296593,
               "time": "2017-10-26T18:42:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 39824587,
+              "user": 334375,
               "time": "2017-10-30T13:41:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 39824587,
+              "user": 315311,
               "time": "2017-11-04T01:17:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 39824587,
+              "user": 103530,
               "time": "2017-11-06T18:45:00+00:00"
             },
             {
-              "user": {
-                "id": 367268,
-                "name": "Alato"
-              },
-              "post": 39824587,
+              "user": 367268,
               "time": "2017-11-10T16:08:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 39824587,
+              "user": 314693,
               "time": "2017-11-15T04:50:54+00:00"
             }
           ]
@@ -3923,7 +2124,6 @@
       },
       {
         "id": 40123094,
-        "fic": 549176,
         "title": "Retribution 2.A Interlude",
         "time": "2017-10-10T00:55:31+00:00",
         "likes": {
@@ -3931,291 +2131,147 @@
           "latest": "2017-11-15T05:24:42+00:00",
           "likes": [
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 40123094,
+              "user": 355954,
               "time": "2017-10-09T21:05:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 40123094,
+              "user": 315197,
               "time": "2017-10-09T21:09:00+00:00"
             },
             {
-              "user": {
-                "id": 326504,
-                "name": "Not_A_Criminal"
-              },
-              "post": 40123094,
+              "user": 326504,
               "time": "2017-10-09T21:12:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 40123094,
+              "user": 322721,
               "time": "2017-10-09T21:13:00+00:00"
             },
             {
-              "user": {
-                "id": 321738,
-                "name": "TheRedSir"
-              },
-              "post": 40123094,
+              "user": 321738,
               "time": "2017-10-09T21:19:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 40123094,
+              "user": 309400,
               "time": "2017-10-09T21:38:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 40123094,
+              "user": 320937,
               "time": "2017-10-09T21:49:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 40123094,
+              "user": 310110,
               "time": "2017-10-09T22:25:00+00:00"
             },
             {
-              "user": {
-                "id": 319818,
-                "name": "Markala"
-              },
-              "post": 40123094,
+              "user": 319818,
               "time": "2017-10-09T22:34:00+00:00"
             },
             {
-              "user": {
-                "id": 310126,
-                "name": "Swimmingly"
-              },
-              "post": 40123094,
+              "user": 310126,
               "time": "2017-10-10T00:18:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 40123094,
+              "user": 361731,
               "time": "2017-10-10T00:28:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 40123094,
+              "user": 349360,
               "time": "2017-10-10T00:37:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 40123094,
+              "user": 309952,
               "time": "2017-10-10T01:10:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 40123094,
+              "user": 356128,
               "time": "2017-10-10T02:56:00+00:00"
             },
             {
-              "user": {
-                "id": 362157,
-                "name": "Chartsorcerer"
-              },
-              "post": 40123094,
+              "user": 362157,
               "time": "2017-10-10T03:28:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 40123094,
+              "user": 322905,
               "time": "2017-10-10T06:37:00+00:00"
             },
             {
-              "user": {
-                "id": 361830,
-                "name": "Luma"
-              },
-              "post": 40123094,
+              "user": 361830,
               "time": "2017-10-10T08:50:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 40123094,
+              "user": 307139,
               "time": "2017-10-10T09:50:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 40123094,
+              "user": 362497,
               "time": "2017-10-10T11:27:00+00:00"
             },
             {
-              "user": {
-                "id": 318214,
-                "name": "Maping"
-              },
-              "post": 40123094,
+              "user": 318214,
               "time": "2017-10-11T00:18:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 40123094,
+              "user": 104075,
               "time": "2017-10-11T14:30:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 40123094,
+              "user": 360175,
               "time": "2017-10-12T00:12:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 40123094,
+              "user": 325820,
               "time": "2017-10-12T15:02:00+00:00"
             },
             {
-              "user": {
-                "id": 285820,
-                "name": "DaLintyGuy"
-              },
-              "post": 40123094,
+              "user": 285820,
               "time": "2017-10-13T08:55:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 40123094,
+              "user": 332315,
               "time": "2017-10-14T14:40:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 40123094,
+              "user": 295356,
               "time": "2017-10-15T00:18:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 40123094,
+              "user": 309638,
               "time": "2017-10-17T03:57:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 40123094,
+              "user": 365659,
               "time": "2017-10-17T15:18:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 40123094,
+              "user": 110090,
               "time": "2017-10-19T03:48:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 40123094,
+              "user": 315704,
               "time": "2017-10-24T17:33:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 40123094,
+              "user": 296593,
               "time": "2017-10-27T15:42:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 40123094,
+              "user": 334375,
               "time": "2017-10-30T13:50:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 40123094,
+              "user": 315311,
               "time": "2017-11-04T11:44:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 40123094,
+              "user": 103530,
               "time": "2017-11-06T19:03:00+00:00"
             },
             {
-              "user": {
-                "id": 367268,
-                "name": "Alato"
-              },
-              "post": 40123094,
+              "user": 367268,
               "time": "2017-11-10T16:18:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 40123094,
+              "user": 314693,
               "time": "2017-11-15T05:24:42+00:00"
             }
           ]
@@ -4223,7 +2279,6 @@
       },
       {
         "id": 40341265,
-        "fic": 549176,
         "title": "Retribution 2.2",
         "time": "2017-10-16T23:57:20+00:00",
         "likes": {
@@ -4231,275 +2286,139 @@
           "latest": "2017-11-16T02:30:30+00:00",
           "likes": [
             {
-              "user": {
-                "id": 33338,
-                "name": "Night_stalker"
-              },
-              "post": 40341265,
+              "user": 33338,
               "time": "2017-10-16T20:03:00+00:00"
             },
             {
-              "user": {
-                "id": 319818,
-                "name": "Markala"
-              },
-              "post": 40341265,
+              "user": 319818,
               "time": "2017-10-16T20:11:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 40341265,
+              "user": 322721,
               "time": "2017-10-16T20:23:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 40341265,
+              "user": 104075,
               "time": "2017-10-16T20:31:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 40341265,
+              "user": 315587,
               "time": "2017-10-16T20:33:00+00:00"
             },
             {
-              "user": {
-                "id": 361830,
-                "name": "Luma"
-              },
-              "post": 40341265,
+              "user": 361830,
               "time": "2017-10-16T20:35:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 40341265,
+              "user": 360175,
               "time": "2017-10-16T20:41:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 40341265,
+              "user": 325820,
               "time": "2017-10-16T21:14:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 40341265,
+              "user": 355954,
               "time": "2017-10-16T21:36:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 40341265,
+              "user": 356128,
               "time": "2017-10-16T22:06:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 40341265,
+              "user": 310339,
               "time": "2017-10-16T22:40:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 40341265,
+              "user": 310110,
               "time": "2017-10-16T23:14:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 40341265,
+              "user": 361731,
               "time": "2017-10-16T23:20:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 40341265,
+              "user": 320937,
               "time": "2017-10-16T23:21:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 40341265,
+              "user": 295356,
               "time": "2017-10-16T23:59:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 40341265,
+              "user": 315197,
               "time": "2017-10-17T00:08:00+00:00"
             },
             {
-              "user": {
-                "id": 318214,
-                "name": "Maping"
-              },
-              "post": 40341265,
+              "user": 318214,
               "time": "2017-10-17T01:22:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 40341265,
+              "user": 309952,
               "time": "2017-10-17T01:23:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 40341265,
+              "user": 349360,
               "time": "2017-10-17T01:36:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 40341265,
+              "user": 320198,
               "time": "2017-10-17T02:57:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 40341265,
+              "user": 309638,
               "time": "2017-10-17T04:28:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 40341265,
+              "user": 322905,
               "time": "2017-10-17T06:43:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 40341265,
+              "user": 293744,
               "time": "2017-10-17T07:35:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 40341265,
+              "user": 289664,
               "time": "2017-10-17T07:57:00+00:00"
             },
             {
-              "user": {
-                "id": 349702,
-                "name": "Lemma"
-              },
-              "post": 40341265,
+              "user": 349702,
               "time": "2017-10-17T10:39:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 40341265,
+              "user": 362497,
               "time": "2017-10-17T13:47:00+00:00"
             },
             {
-              "user": {
-                "id": 285820,
-                "name": "DaLintyGuy"
-              },
-              "post": 40341265,
+              "user": 285820,
               "time": "2017-10-17T15:30:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 40341265,
+              "user": 365659,
               "time": "2017-10-17T15:40:00+00:00"
             },
             {
-              "user": {
-                "id": 110090,
-                "name": "Tamahori"
-              },
-              "post": 40341265,
+              "user": 110090,
               "time": "2017-10-19T04:00:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 40341265,
+              "user": 315704,
               "time": "2017-10-24T17:46:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 40341265,
+              "user": 296593,
               "time": "2017-10-27T15:51:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 40341265,
+              "user": 334375,
               "time": "2017-10-30T14:26:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 40341265,
+              "user": 315311,
               "time": "2017-11-04T12:01:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 40341265,
+              "user": 314693,
               "time": "2017-11-16T02:30:30+00:00"
             }
           ]
@@ -4507,7 +2426,6 @@
       },
       {
         "id": 40520909,
-        "fic": 549176,
         "title": "Retribution 2.3",
         "time": "2017-10-22T18:31:20+00:00",
         "likes": {
@@ -4515,299 +2433,151 @@
           "latest": "2017-11-16T02:55:09+00:00",
           "likes": [
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 40520909,
+              "user": 295356,
               "time": "2017-10-22T14:41:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 40520909,
+              "user": 322721,
               "time": "2017-10-22T14:42:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 40520909,
+              "user": 361731,
               "time": "2017-10-22T14:43:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 40520909,
+              "user": 309400,
               "time": "2017-10-22T14:46:00+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 40520909,
+              "user": 320198,
               "time": "2017-10-22T14:49:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 40520909,
+              "user": 349360,
               "time": "2017-10-22T14:58:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 40520909,
+              "user": 332315,
               "time": "2017-10-22T15:24:00+00:00"
             },
             {
-              "user": {
-                "id": 32799,
-                "name": "chinger"
-              },
-              "post": 40520909,
+              "user": 32799,
               "time": "2017-10-22T15:26:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 40520909,
+              "user": 322905,
               "time": "2017-10-22T15:51:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 40520909,
+              "user": 365659,
               "time": "2017-10-22T15:57:00+00:00"
             },
             {
-              "user": {
-                "id": 361830,
-                "name": "Luma"
-              },
-              "post": 40520909,
+              "user": 361830,
               "time": "2017-10-22T16:18:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 40520909,
+              "user": 289664,
               "time": "2017-10-22T16:53:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 40520909,
+              "user": 293744,
               "time": "2017-10-22T17:38:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 40520909,
+              "user": 309952,
               "time": "2017-10-22T17:45:00+00:00"
             },
             {
-              "user": {
-                "id": 319818,
-                "name": "Markala"
-              },
-              "post": 40520909,
+              "user": 319818,
               "time": "2017-10-22T19:20:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 40520909,
+              "user": 104075,
               "time": "2017-10-22T19:53:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 40520909,
+              "user": 320937,
               "time": "2017-10-22T20:30:00+00:00"
             },
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 40520909,
+              "user": 355954,
               "time": "2017-10-22T20:39:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 40520909,
+              "user": 360175,
               "time": "2017-10-22T20:49:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 40520909,
+              "user": 315197,
               "time": "2017-10-22T22:08:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 40520909,
+              "user": 310110,
               "time": "2017-10-23T00:04:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 40520909,
+              "user": 310339,
               "time": "2017-10-23T01:30:00+00:00"
             },
             {
-              "user": {
-                "id": 318214,
-                "name": "Maping"
-              },
-              "post": 40520909,
+              "user": 318214,
               "time": "2017-10-23T04:58:00+00:00"
             },
             {
-              "user": {
-                "id": 348475,
-                "name": "NaGeL"
-              },
-              "post": 40520909,
+              "user": 348475,
               "time": "2017-10-23T07:12:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 40520909,
+              "user": 356128,
               "time": "2017-10-23T08:30:00+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 40520909,
+              "user": 362497,
               "time": "2017-10-23T09:00:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 40520909,
+              "user": 309638,
               "time": "2017-10-23T10:41:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 40520909,
+              "user": 307139,
               "time": "2017-10-23T11:23:00+00:00"
             },
             {
-              "user": {
-                "id": 285820,
-                "name": "DaLintyGuy"
-              },
-              "post": 40520909,
+              "user": 285820,
               "time": "2017-10-23T12:08:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 40520909,
+              "user": 325820,
               "time": "2017-10-23T14:16:00+00:00"
             },
             {
-              "user": {
-                "id": 326654,
-                "name": "CurseOfImmortality"
-              },
-              "post": 40520909,
+              "user": 326654,
               "time": "2017-10-23T17:59:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 40520909,
+              "user": 315704,
               "time": "2017-10-24T18:24:00+00:00"
             },
             {
-              "user": {
-                "id": 296593,
-                "name": "jobastion"
-              },
-              "post": 40520909,
+              "user": 296593,
               "time": "2017-10-27T16:01:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 40520909,
+              "user": 334375,
               "time": "2017-10-30T15:08:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 40520909,
+              "user": 315311,
               "time": "2017-11-05T00:43:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 40520909,
+              "user": 103530,
               "time": "2017-11-07T09:39:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 40520909,
+              "user": 314693,
               "time": "2017-11-16T02:55:09+00:00"
             }
           ]
@@ -4815,7 +2585,6 @@
       },
       {
         "id": 40746139,
-        "fic": 549176,
         "title": "Retribution 2.4",
         "time": "2017-10-29T20:13:59+00:00",
         "likes": {
@@ -4823,259 +2592,131 @@
           "latest": "2017-11-16T04:54:58+00:00",
           "likes": [
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 40746139,
+              "user": 355954,
               "time": "2017-10-29T16:15:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 40746139,
+              "user": 349360,
               "time": "2017-10-29T16:17:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 40746139,
+              "user": 295356,
               "time": "2017-10-29T16:19:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 40746139,
+              "user": 361731,
               "time": "2017-10-29T17:02:00+00:00"
             },
             {
-              "user": {
-                "id": 361830,
-                "name": "Luma"
-              },
-              "post": 40746139,
+              "user": 361830,
               "time": "2017-10-29T17:24:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 40746139,
+              "user": 322905,
               "time": "2017-10-29T17:31:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 40746139,
+              "user": 365659,
               "time": "2017-10-29T17:50:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 40746139,
+              "user": 322721,
               "time": "2017-10-29T17:56:00+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 40746139,
+              "user": 320937,
               "time": "2017-10-29T18:10:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 40746139,
+              "user": 104075,
               "time": "2017-10-29T18:28:00+00:00"
             },
             {
-              "user": {
-                "id": 319818,
-                "name": "Markala"
-              },
-              "post": 40746139,
+              "user": 319818,
               "time": "2017-10-29T18:36:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 40746139,
+              "user": 309638,
               "time": "2017-10-29T18:50:00+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 40746139,
+              "user": 309952,
               "time": "2017-10-29T18:53:00+00:00"
             },
             {
-              "user": {
-                "id": 315587,
-                "name": "DigDoom"
-              },
-              "post": 40746139,
+              "user": 315587,
               "time": "2017-10-29T19:03:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 40746139,
+              "user": 360175,
               "time": "2017-10-29T19:15:00+00:00"
             },
             {
-              "user": {
-                "id": 32799,
-                "name": "chinger"
-              },
-              "post": 40746139,
+              "user": 32799,
               "time": "2017-10-29T21:19:00+00:00"
             },
             {
-              "user": {
-                "id": 310110,
-                "name": "Wombattler"
-              },
-              "post": 40746139,
+              "user": 310110,
               "time": "2017-10-30T00:02:00+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 40746139,
+              "user": 310339,
               "time": "2017-10-30T00:26:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 40746139,
+              "user": 356128,
               "time": "2017-10-30T02:12:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 40746139,
+              "user": 315197,
               "time": "2017-10-30T02:13:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 40746139,
+              "user": 293744,
               "time": "2017-10-30T05:36:00+00:00"
             },
             {
-              "user": {
-                "id": 367268,
-                "name": "Alato"
-              },
-              "post": 40746139,
+              "user": 367268,
               "time": "2017-10-30T08:33:00+00:00"
             },
             {
-              "user": {
-                "id": 348475,
-                "name": "NaGeL"
-              },
-              "post": 40746139,
+              "user": 348475,
               "time": "2017-10-30T09:24:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 40746139,
+              "user": 334375,
               "time": "2017-10-30T15:19:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 40746139,
+              "user": 307139,
               "time": "2017-10-31T13:38:00+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 40746139,
+              "user": 309400,
               "time": "2017-10-31T15:28:00+00:00"
             },
             {
-              "user": {
-                "id": 352546,
-                "name": "Chickengun99"
-              },
-              "post": 40746139,
+              "user": 352546,
               "time": "2017-10-31T15:37:00+00:00"
             },
             {
-              "user": {
-                "id": 115396,
-                "name": "k2grey"
-              },
-              "post": 40746139,
+              "user": 115396,
               "time": "2017-11-01T02:41:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 40746139,
+              "user": 315311,
               "time": "2017-11-05T00:52:00+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 40746139,
+              "user": 315704,
               "time": "2017-11-06T22:50:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 40746139,
+              "user": 103530,
               "time": "2017-11-07T09:52:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 40746139,
+              "user": 314693,
               "time": "2017-11-16T04:54:58+00:00"
             }
           ]
@@ -5083,7 +2724,6 @@
       },
       {
         "id": 40974253,
-        "fic": 549176,
         "title": "Retribution 2.5",
         "time": "2017-11-05T19:30:54+00:00",
         "likes": {
@@ -5091,211 +2731,107 @@
           "latest": "2017-11-16T05:39:36+00:00",
           "likes": [
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 40974253,
+              "user": 355954,
               "time": "2017-11-05T14:32:00+00:00"
             },
             {
-              "user": {
-                "id": 319818,
-                "name": "Markala"
-              },
-              "post": 40974253,
+              "user": 319818,
               "time": "2017-11-05T14:35:00+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 40974253,
+              "user": 295356,
               "time": "2017-11-05T14:42:00+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 40974253,
+              "user": 361731,
               "time": "2017-11-05T14:45:00+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 40974253,
+              "user": 315311,
               "time": "2017-11-05T14:49:00+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 40974253,
+              "user": 322721,
               "time": "2017-11-05T14:56:00+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 40974253,
+              "user": 104075,
               "time": "2017-11-05T15:20:00+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 40974253,
+              "user": 332315,
               "time": "2017-11-05T15:31:00+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 40974253,
+              "user": 334375,
               "time": "2017-11-05T15:44:00+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 40974253,
+              "user": 315197,
               "time": "2017-11-05T15:48:00+00:00"
             },
             {
-              "user": {
-                "id": 322905,
-                "name": "AquaHawk0085"
-              },
-              "post": 40974253,
+              "user": 322905,
               "time": "2017-11-05T16:07:00+00:00"
             },
             {
-              "user": {
-                "id": 364909,
-                "name": "Tempeljaeger"
-              },
-              "post": 40974253,
+              "user": 364909,
               "time": "2017-11-05T16:49:00+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 40974253,
+              "user": 365659,
               "time": "2017-11-05T17:33:00+00:00"
             },
             {
-              "user": {
-                "id": 361830,
-                "name": "Luma"
-              },
-              "post": 40974253,
+              "user": 361830,
               "time": "2017-11-05T17:55:00+00:00"
             },
             {
-              "user": {
-                "id": 115396,
-                "name": "k2grey"
-              },
-              "post": 40974253,
+              "user": 115396,
               "time": "2017-11-05T17:58:00+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 40974253,
+              "user": 360175,
               "time": "2017-11-05T19:03:00+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 40974253,
+              "user": 289664,
               "time": "2017-11-05T19:22:00+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 40974253,
+              "user": 325820,
               "time": "2017-11-05T19:43:00+00:00"
             },
             {
-              "user": {
-                "id": 32799,
-                "name": "chinger"
-              },
-              "post": 40974253,
+              "user": 32799,
               "time": "2017-11-05T19:53:00+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 40974253,
+              "user": 309638,
               "time": "2017-11-05T22:32:00+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 40974253,
+              "user": 356128,
               "time": "2017-11-06T00:53:00+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 40974253,
+              "user": 293744,
               "time": "2017-11-06T06:50:00+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 40974253,
+              "user": 307139,
               "time": "2017-11-07T09:59:00+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 40974253,
+              "user": 103530,
               "time": "2017-11-07T10:06:00+00:00"
             },
             {
-              "user": {
-                "id": 367268,
-                "name": "Alato"
-              },
-              "post": 40974253,
+              "user": 367268,
               "time": "2017-11-10T17:47:00+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 40974253,
+              "user": 314693,
               "time": "2017-11-16T05:39:36+00:00"
             }
           ]
@@ -5303,7 +2839,6 @@
       },
       {
         "id": 41214520,
-        "fic": 549176,
         "title": "Retribution 2.B Interlude",
         "time": "2017-11-12T20:37:01+00:00",
         "likes": {
@@ -5311,275 +2846,139 @@
           "latest": "2017-11-16T07:38:07+00:00",
           "likes": [
             {
-              "user": {
-                "id": 355954,
-                "name": "profHoyden"
-              },
-              "post": 41214520,
+              "user": 355954,
               "time": "2017-11-12T20:38:29+00:00"
             },
             {
-              "user": {
-                "id": 33338,
-                "name": "Night_stalker"
-              },
-              "post": 41214520,
+              "user": 33338,
               "time": "2017-11-12T20:41:13+00:00"
             },
             {
-              "user": {
-                "id": 322721,
-                "name": "Preventer Squall"
-              },
-              "post": 41214520,
+              "user": 322721,
               "time": "2017-11-12T20:45:52+00:00"
             },
             {
-              "user": {
-                "id": 320198,
-                "name": "Tempist"
-              },
-              "post": 41214520,
+              "user": 320198,
               "time": "2017-11-12T20:49:01+00:00"
             },
             {
-              "user": {
-                "id": 361731,
-                "name": "Ersatz Arthropoda"
-              },
-              "post": 41214520,
+              "user": 361731,
               "time": "2017-11-12T20:52:42+00:00"
             },
             {
-              "user": {
-                "id": 295356,
-                "name": "BeaconHill"
-              },
-              "post": 41214520,
+              "user": 295356,
               "time": "2017-11-12T20:53:26+00:00"
             },
             {
-              "user": {
-                "id": 359515,
-                "name": "SuperBearNut"
-              },
-              "post": 41214520,
+              "user": 359515,
               "time": "2017-11-12T20:54:52+00:00"
             },
             {
-              "user": {
-                "id": 365659,
-                "name": "AnotherSetOfEyes"
-              },
-              "post": 41214520,
+              "user": 365659,
               "time": "2017-11-12T20:55:54+00:00"
             },
             {
-              "user": {
-                "id": 104075,
-                "name": "Undead-Spaceman"
-              },
-              "post": 41214520,
+              "user": 104075,
               "time": "2017-11-12T21:05:07+00:00"
             },
             {
-              "user": {
-                "id": 362497,
-                "name": "StSunshine"
-              },
-              "post": 41214520,
+              "user": 362497,
               "time": "2017-11-12T21:25:00+00:00"
             },
             {
-              "user": {
-                "id": 349360,
-                "name": "frustratedFreeboota"
-              },
-              "post": 41214520,
+              "user": 349360,
               "time": "2017-11-12T21:45:31+00:00"
             },
             {
-              "user": {
-                "id": 315197,
-                "name": "Doomreaver"
-              },
-              "post": 41214520,
+              "user": 315197,
               "time": "2017-11-12T21:55:25+00:00"
             },
             {
-              "user": {
-                "id": 103530,
-                "name": "Mook91"
-              },
-              "post": 41214520,
+              "user": 103530,
               "time": "2017-11-12T21:59:03+00:00"
             },
             {
-              "user": {
-                "id": 360175,
-                "name": "skyrunner"
-              },
-              "post": 41214520,
+              "user": 360175,
               "time": "2017-11-12T23:38:08+00:00"
             },
             {
-              "user": {
-                "id": 320937,
-                "name": "blue_daisy"
-              },
-              "post": 41214520,
+              "user": 320937,
               "time": "2017-11-13T01:00:23+00:00"
             },
             {
-              "user": {
-                "id": 289664,
-                "name": "Noliar"
-              },
-              "post": 41214520,
+              "user": 289664,
               "time": "2017-11-13T01:01:06+00:00"
             },
             {
-              "user": {
-                "id": 367268,
-                "name": "Alato"
-              },
-              "post": 41214520,
+              "user": 367268,
               "time": "2017-11-13T02:55:26+00:00"
             },
             {
-              "user": {
-                "id": 334375,
-                "name": "BurningSaiyan"
-              },
-              "post": 41214520,
+              "user": 334375,
               "time": "2017-11-13T03:43:42+00:00"
             },
             {
-              "user": {
-                "id": 325820,
-                "name": "Assembler"
-              },
-              "post": 41214520,
+              "user": 325820,
               "time": "2017-11-13T03:52:46+00:00"
             },
             {
-              "user": {
-                "id": 307139,
-                "name": "Olive Birdy"
-              },
-              "post": 41214520,
+              "user": 307139,
               "time": "2017-11-13T05:04:08+00:00"
             },
             {
-              "user": {
-                "id": 315311,
-                "name": "themanwhowas"
-              },
-              "post": 41214520,
+              "user": 315311,
               "time": "2017-11-13T05:07:37+00:00"
             },
             {
-              "user": {
-                "id": 332315,
-                "name": "LacePrisonQueen"
-              },
-              "post": 41214520,
+              "user": 332315,
               "time": "2017-11-13T06:02:50+00:00"
             },
             {
-              "user": {
-                "id": 310339,
-                "name": "Dusha"
-              },
-              "post": 41214520,
+              "user": 310339,
               "time": "2017-11-13T06:22:18+00:00"
             },
             {
-              "user": {
-                "id": 356128,
-                "name": "Nilaos"
-              },
-              "post": 41214520,
+              "user": 356128,
               "time": "2017-11-13T09:24:03+00:00"
             },
             {
-              "user": {
-                "id": 293744,
-                "name": "GiantTurtleNomad"
-              },
-              "post": 41214520,
+              "user": 293744,
               "time": "2017-11-13T12:29:46+00:00"
             },
             {
-              "user": {
-                "id": 348475,
-                "name": "NaGeL"
-              },
-              "post": 41214520,
+              "user": 348475,
               "time": "2017-11-13T13:14:36+00:00"
             },
             {
-              "user": {
-                "id": 309952,
-                "name": "Pita"
-              },
-              "post": 41214520,
+              "user": 309952,
               "time": "2017-11-13T15:49:52+00:00"
             },
             {
-              "user": {
-                "id": 309638,
-                "name": "Chulup"
-              },
-              "post": 41214520,
+              "user": 309638,
               "time": "2017-11-13T16:28:53+00:00"
             },
             {
-              "user": {
-                "id": 309400,
-                "name": "devas"
-              },
-              "post": 41214520,
+              "user": 309400,
               "time": "2017-11-13T19:15:25+00:00"
             },
             {
-              "user": {
-                "id": 361830,
-                "name": "Luma"
-              },
-              "post": 41214520,
+              "user": 361830,
               "time": "2017-11-13T22:17:22+00:00"
             },
             {
-              "user": {
-                "id": 315704,
-                "name": "Ayrsayle"
-              },
-              "post": 41214520,
+              "user": 315704,
               "time": "2017-11-13T23:10:28+00:00"
             },
             {
-              "user": {
-                "id": 32799,
-                "name": "chinger"
-              },
-              "post": 41214520,
+              "user": 32799,
               "time": "2017-11-14T19:26:04+00:00"
             },
             {
-              "user": {
-                "id": 364909,
-                "name": "Tempeljaeger"
-              },
-              "post": 41214520,
+              "user": 364909,
               "time": "2017-11-14T20:17:44+00:00"
             },
             {
-              "user": {
-                "id": 314693,
-                "name": "Amacita"
-              },
-              "post": 41214520,
+              "user": 314693,
               "time": "2017-11-16T07:38:07+00:00"
             }
           ]

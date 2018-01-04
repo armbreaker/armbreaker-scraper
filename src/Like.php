@@ -44,6 +44,12 @@ class Like implements \JsonSerializable {
   public $post;
 
   /**
+   *
+   * @var bool
+   */
+  public $printMode = false;
+
+  /**
    * @var \Carbon\Carbon
    */
   public $time;
@@ -67,14 +73,21 @@ class Like implements \JsonSerializable {
   public function jsonSerialize() {
     $j = [
         'user' => $this->user,
-        'post' => $this->post->id,
     ];
     if ($this->time instanceof \Carbon\Carbon) {
       $j['time'] = $this->time->toAtomString();
     } else {
       $j['time'] = null;
     }
+    if (!$this->printMode) {
+      $j['post'] = $this->post->id;
+    }
     return $j;
+  }
+
+  public function setPrintMode(bool $set) {
+    $this->printMode = $set;
+    $this->user->setPrintMode($set);
   }
 
 }
