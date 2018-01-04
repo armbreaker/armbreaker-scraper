@@ -16,6 +16,11 @@ def viewer(ficid=None):
     return send_from_directory("dist", "main.html")
 
 # redirects to the testing site for convenience
-@app.route("/")
+@app.route("/fault")
 def reroute():
 	return redirect("/viewer/549176", code=302)
+
+# redirects to the testing site for convenience
+@app.route("/ringmaker")
+def reroute():
+	return redirect("/viewer/517894", code=302)
