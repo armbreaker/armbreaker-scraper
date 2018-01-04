@@ -1,6 +1,5 @@
 "use strict";
 
-import * as moment from "moment";
 import * as d3 from "d3";
 import "../d3.slider/d3.slider.js";
 import PerDayView from "View-PerDay";

@@ -2,7 +2,9 @@
 
 import * as d3 from "d3";
 import moment from "moment";
+import "moment-timezone";
 import * as util from "utility";
+import timezones from "timezone-array";
 
 // the likes over time for the first 24h view
 export default class FirstImpressionsView {
@@ -24,7 +26,6 @@ export default class FirstImpressionsView {
 
 	// Regenerate shapes and axes
 	generateShapes() {
-
 	}
 
 	setWindow(windowsize) {
@@ -40,9 +41,23 @@ export default class FirstImpressionsView {
 
 	setup(dataset) {
 		this.svg = d3.select("#firstimpressionview");
-		d3.select(window)
-		  .on("resize.fiv", this.resize);
-		this.resize();
+		// d3.select(window)
+		//   .on("resize.fiv", this.resize);
+		// this.resize();
+
+		// Populate timezone list.
+		d3.select("#timezones")
+		  .selectAll("option")
+		  .data(timezones)
+		  .enter()
+		  .append("option")
+		  .text(d=>{
+		  	  let offset = -moment.tz.zone(d).utcOffset(0)/60;
+		  	  if (offset >= 0)
+		  	  	  return `${d} (UTC+${offset})`;
+		  	  return `${d} (UTC${offset})`;
+		  })
+		  .attr("value", d=>moment.tz.zone(d).utcOffset(0)/60);
 
 		this.windowsize = 24;
 		this.timezone = 0;
@@ -199,10 +214,6 @@ export default class FirstImpressionsView {
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
 		   .each(function(d, i) {
-		   		if (i == 0) {
-		   			console.log(d);
-		   		}
-
 		   		let sel = d3.select(this);
 		   		// Draw the long tail
 		   		sel.append("path")

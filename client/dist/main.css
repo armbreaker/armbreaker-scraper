@@ -75,10 +75,13 @@ body {
 	align-items: center;
 }
 
+#userviewcontainer h2 {
+	margin-top: 0px;
+}
+
 #userview_centercontainer {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 }
 
 .clusterbox {
@@ -228,6 +231,6 @@ text {
 	width: 800px;
 }
 
-#firstimpressions_binslider .draggertext {
+#firstimpressions_windowslider .draggertext {
 	opacity: 0;
 }
