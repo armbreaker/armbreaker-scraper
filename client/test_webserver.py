@@ -6,7 +6,9 @@ app = Flask(__name__, static_folder=".", static_url_path="/src")
 @app.route("/api/fics/<ficid>")
 def getfic(ficid=None):
 	if ficid == "549176":
-		return send_from_directory(".", "testdata.json")
+		return send_from_directory(".", "testdata-fault.json")
+	if ficid == "517894":
+		return send_from_directory(".", "testdata-ringmaker.json")
 	return "The fic API endpoint."
 
 @app.route("/viewer/<ficid>")
