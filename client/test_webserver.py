@@ -17,10 +17,10 @@ def viewer(ficid=None):
 
 # redirects to the testing site for convenience
 @app.route("/fault")
-def reroute():
+def reroute_foolt():
 	return redirect("/viewer/549176", code=302)
 
 # redirects to the testing site for convenience
 @app.route("/ringmaker")
-def reroute():
+def reroute_ringmaker():
 	return redirect("/viewer/517894", code=302)
