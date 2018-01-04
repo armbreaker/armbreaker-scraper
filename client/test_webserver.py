@@ -1,0 +1,19 @@
+# server mock for frontend development
+
+from flask import Flask, send_from_directory, redirect
+app = Flask(__name__, static_folder=".", static_url_path="/src")
+
+@app.route("/api/fics/<ficid>")
+def getfic(ficid=None):
+	if ficid == "549176":
+		return send_from_directory(".", "testdata.json")
+	return "The fic API endpoint."
+
+@app.route("/viewer/<ficid>")
+def viewer(ficid=None):
+    return send_from_directory(".", "main.html")
+
+# redirects to the testing site for convenience
+@app.route("/")
+def reroute():
+	return redirect("/viewer/549176", code=302)

@@ -794,7 +794,9 @@ function setup() {
 }
 
 function init() {
-	d3.json("testdata.json", (err, data)=>{
+	let url = window.location.href.split("/");
+	let ficid = url[url.length - 1];
+	d3.json(`../api/fics/${ficid}`, (err, data)=>{
 		dataset = data;
 		setup();
 	});
