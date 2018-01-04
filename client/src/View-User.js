@@ -30,7 +30,7 @@ export default class UserView {
 	setup(dataset) {
 		this.svg = d3.select("#userview");
 		this.userlikes = {};
-		this.usernames = {};
+		this.usernames = dataset.users;
 		this.chapterinfo = [];
 
 		// put all users in userdata since need to cmp strings
@@ -40,9 +40,8 @@ export default class UserView {
 			postobj.title = post.title;
 			postobj.likes = [];
 			for (let like of post.likes.likes) {
-				let userid = like.user.id;
+				let userid = like.user;
 				postobj.likes.push(String(userid));
-				this.usernames[userid] = like.user.name;
 				this.userlikes[userid] = "";
 			}
 			this.chapterinfo.push(postobj);
