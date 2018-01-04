@@ -737,7 +737,6 @@ class FirstImpressionsView {
 		return a([
 			[half_width, tail_start],
 			[half_width * 0.8 + half_final * 0.2, tail_end * 0.7 + tail_start * 0.3],
-			//[half_final, tail_end],
 			[half_final, tail_end + this.terminalheight]
 		]);
 	}
