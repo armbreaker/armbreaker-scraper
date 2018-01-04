@@ -724,7 +724,8 @@ class FirstImpressionsView {
 			.x0(d=>-d[0])
 			.x1(d=>d[0])
 			.y0(d=>d[1])
-			.y1(d=>d[1]);
+			.y1(d=>d[1])
+			.curve(d3.curveBasis);
 		let numlikes = datum.cappedlikes.length;
 		let lastlike = datum.cappedlikes[numlikes - 1];
 		let tail_start = this.yscale(lastlike.time.clone().diff(datum.time));
@@ -735,7 +736,8 @@ class FirstImpressionsView {
 
 		return a([
 			[half_width, tail_start],
-			[half_final, tail_end],
+			[half_width * 0.8 + half_final * 0.2, tail_end * 0.7 + tail_start * 0.3],
+			//[half_final, tail_end],
 			[half_final, tail_end + this.terminalheight]
 		]);
 	}
