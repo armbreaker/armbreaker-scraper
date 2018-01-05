@@ -63,7 +63,7 @@ export default class FirstImpressionsView {
 		timezonedata = util.arrsort(timezonedata, false, d=>-moment.tz.zone(d[0]).utcOffset(0));
 		let dropdown = new Dropdown(timezonedata, "#timezones");
 		dropdown.setup();
-		// dropdown.setdefault_value("Europe/Dublin");
+		dropdown.setdefault_value("Europe/Dublin");
 
 		this.windowsize = 24;
 		this.timezone = 0;
