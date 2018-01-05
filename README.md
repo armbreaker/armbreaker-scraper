@@ -14,13 +14,15 @@ Armbreaker is a tool to scrape and visualize like information from XenForo forum
 * Flask
 * npm
 
-#### Automatically fetched
-* d3.js
+#### Automatically fetched or included
+* d3.js (Cloudflare)
 * babel
 * webpack
 * js-levenshtein
 * popper.js
 * d3.slider
+* moment (Cloudflare)
+* moment-timezone
 
 ## Installation
 
