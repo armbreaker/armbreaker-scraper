@@ -248,7 +248,6 @@ export default class FilterableDropdownModal {
 				if (Number.isNaN(parseInt(v))) {
 					selbox.select(".filterabledropdown-selected").style("line-height", "1.5");
 					v = me.calcHeight(this, "selected", true);
-					console.log(v);
 				}
 				return v;
 			})
@@ -288,6 +287,7 @@ export default class FilterableDropdownModal {
 			.classed("filterabledropdown-filterbox filterabledropdown-padded", true)
 			.attr("type", "text")
 			.style("height", function(){return me.calcHeight(this, "selected");})
+			.style("font-size", function(){return me.calculatedProperty(this.parentNode, "font-size", "filterbox")})
 			.on("keydown", function(){
 				if (d3.event.key == "Enter") {
 					me.changeSelected(me.hoveredindex)
