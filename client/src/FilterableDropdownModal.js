@@ -24,9 +24,9 @@ export default class FilterableDropdownModal {
 		this.capsensitive = false;
 	}
 
-	calculatedProperty(me, property, name) {
+	calculatedProperty(me, property, name, override) {
 		let key = `${property}-${name}`;
-		if (!(key in this.props)){
+		if (override || !(key in this.props)){
 			let prop = window.getComputedStyle(me).getPropertyValue(property);
 			this.props[key] = prop;
 		}
@@ -39,8 +39,8 @@ export default class FilterableDropdownModal {
 		return parseInt(w) - parseInt(bw_r) * 2;
 	}
 
-	calcHeight(me, name) {
-		return this.calculatedProperty(me, "line-height", name);
+	calcHeight(me, name, override) {
+		return this.calculatedProperty(me, "line-height", name, override);
 	}
 
 	changeHovered(key) {
@@ -142,12 +142,29 @@ export default class FilterableDropdownModal {
 		  ._groups[0][0].focus();
 	}
 
+	// Set the default selected value by data index
+	setdefault_index(key) {
+		this.changeSelected(key);
+		this.renderselected();
+	}
+
+	// Set the default selected value by matching values. Selects first matching.
+	setdefault_value(value) {
+		for (let i = 0; i < this.data.length; i++) {
+			let datum = this.data[i];
+			if (datum[0] == value) {
+				this.setdefault_index(i);
+				break;
+			}
+		}
+	}
+
 	update(selector) {
 		let me = this;
 		// update filter
 		let filter = this.d3sel.select("input").property("value");
 		let filterfunc;
-		if (this.capsensitive) {
+		if (!this.capsensitive) {
 			filter = filter.toLowerCase();
 			filterfunc = d=>d[1].toLowerCase().indexOf(filter) > -1;
 		} else {
@@ -226,7 +243,15 @@ export default class FilterableDropdownModal {
 			.append("div")
 			.classed("filterabledropdown-selected filterabledropdown-padded", true)
 			.attr("tabindex", -1)
-			.style("height", function(){return me.calcHeight(this, "selected");})
+			.style("height", function(){
+				let v = me.calcHeight(this, "selected");
+				if (Number.isNaN(parseInt(v))) {
+					selbox.select(".filterabledropdown-selected").style("line-height", "1.5");
+					v = me.calcHeight(this, "selected", true);
+					console.log(v);
+				}
+				return v;
+			})
 			.text(this.selected===null?" ":this.selected[1]);
 		this.toggle = selbox
 			.append("div")

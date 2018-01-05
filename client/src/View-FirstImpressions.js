@@ -5,6 +5,7 @@ import moment from "moment";
 import "moment-timezone";
 import * as util from "utility";
 import timezones from "timezone-array";
+import Dropdown from "FilterableDropdownModal";
 
 // the likes over time for the first 24h view
 export default class FirstImpressionsView {
@@ -46,18 +47,23 @@ export default class FirstImpressionsView {
 		// this.resize();
 
 		// Populate timezone list.
-		d3.select("#timezones")
-		  .selectAll("option")
-		  .data(timezones)
-		  .enter()
-		  .append("option")
-		  .text(d=>{
-		  	  let offset = -moment.tz.zone(d).utcOffset(0)/60;
-		  	  if (offset >= 0)
-		  	  	  return `${d} (UTC+${offset})`;
-		  	  return `${d} (UTC${offset})`;
-		  })
-		  .attr("value", d=>moment.tz.zone(d).utcOffset(0)/60);
+		let timezonedata = timezones.map(d=>{
+			let o = [d, null];
+			let offset = -moment.tz.zone(d).utcOffset(0);
+			let offsethrs = Math.floor(Math.abs(offset) / 60);
+			let offsetmin = Math.floor(Math.abs(offset) % 60);
+			let hrsstr = String(Math.abs(offsethrs)).padStart(2, 0);
+			let minstr = String(Math.abs(offsetmin)).padStart(2, 0);
+			if (offset >= 0)
+				o[1] = `(UTC+${hrsstr}:${minstr}) ${d}`;
+			else
+				o[1] = `(UTC–${hrsstr}:${minstr}) ${d}`;
+			return o;
+		}); 
+		timezonedata = util.arrsort(timezonedata, false, d=>-moment.tz.zone(d[0]).utcOffset(0));
+		let dropdown = new Dropdown(timezonedata, "#timezones");
+		dropdown.setup();
+		// dropdown.setdefault_value("Europe/Dublin");
 
 		this.windowsize = 24;
 		this.timezone = 0;
