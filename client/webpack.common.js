@@ -1,12 +1,18 @@
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-    bundle: './src/main.js',
-    dropdowndemo: './src/dropdown_demo.js'
+    "bundle.js": './src/main.js',
+    "dropdowndemo.js": './src/dropdown_demo.js',
+    "bundle.css": [
+      "./src/FilterableDropdownModal.css",
+      "./d3.slider/d3.slider.css",
+      "./src/main.css"
+    ]
   },
   output: {
-    filename: '[name].js',
+    filename: '[name]',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -19,10 +25,22 @@ module.exports = {
   				presets: ['env']
   			}
   		}
-  	]
+  	],
+    rules: [
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      }
+    ]
   },
   resolve: {
   	modules: [path.resolve(__dirname, "src"), "node_modules"]
   },
+  plugins: [
+    new ExtractTextPlugin("bundle.css")
+  ],
   externals: ["d3", "moment"]
 };

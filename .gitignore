@@ -9,4 +9,5 @@ log.txt
 /cache/
 node_modules/
 bundle.js
+bundle.css
 __pycache__/
