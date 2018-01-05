@@ -5,14 +5,93 @@ import {fully_in_view, in_view} from "in_view";
 
 export default class FilterableDropdownModal {
 	// Should be pairs of [value, text]
-	constructor(data) {
+	constructor(data, selector) {
 		this.data = data.map((d,i)=>[d[0], d[1], i]); // give unique ids
+		this.selector = selector;
+		this.d3sel = null;
 		this.selected = null;
 		this.selindex = -1;
 		this.hovered = null;
-		this.hoveredindex = -1;
+		this.hoveredindex = -1; // hover index must go off of displayed elements only
 		this.visible = false;
 		this.callback = null;
+		this.filter = null;
+		this.props = {};
+
+		this.modalpopper = null;
+		this.toggle = null;
+	}
+
+	calculatedProperty(me, property, name) {
+		let key = `${property}-${name}`;
+		if (!(key in this.props)){
+			let prop = window.getComputedStyle(me).getPropertyValue(property);
+			this.props[key] = prop;
+		}
+		return this.props[key];
+	}
+
+	calcModalWidth(el) {
+		let w    = this.calculatedProperty(el, "width", "modal");
+		let bw_r = this.calculatedProperty(el, "border-width").split(" ")[1];
+		return parseInt(w) - parseInt(bw_r) * 2;
+	}
+
+	calcHeight(me, name) {
+		return this.calculatedProperty(me, "line-height", name);
+	}
+
+	changeHovered(key) {
+		this.hoveredindex = this.boundindex(key);
+		this.hovered = this.accessData(key);
+		this.d3sel.selectAll(".filterabledropdown-hovered")
+		   .classed("filterabledropdown-hovered", false);
+		let el = this.d3sel
+			.select(`.filterabledropdown-option[key="${key}"]`)
+			.classed("filterabledropdown-hovered", true);
+	}
+
+	changeSelected(key){
+		this.selindex = this.boundindex(key);
+		this.selected = this.accessData(key);
+		this.d3sel
+			.selectAll(".filterabledropdown-prevselected")
+			.classed("filterabledropdown-prevselected", false);
+		this.d3sel
+			.select(`.filterabledropdown-option[key="${key}"]`)
+			.classed("filterabledropdown-prevselected", true);
+		this.changeHovered(key);
+		this.renderselected();
+	}
+
+	toggleModal(){
+		this.visible = !this.visible;
+		this.d3sel
+			.select(".filterabledropdown-modal")
+			.classed("filterabledropdown-hidden", !this.visible);
+		if (this.visible) {
+			this.d3sel
+				.select(".filterabledropdown-filterbox")
+				._groups[0][0].focus();
+			this.modalpopper.scheduleUpdate();
+			if (this.selindex != -1)
+				this.keepInView(this.selindex);
+		}
+		this.toggle.text(this.visible?"▲":"▼");
+	};
+
+	keepInView(key) {
+		let bounds = this.d3sel.select(".filterabledropdown-options")._groups[0][0];
+		let option = this.d3sel.select(`.filterabledropdown-option[key="${key}"]`)._groups[0][0];
+		if (this.hoveredindex != -1) {
+			if (!fully_in_view(bounds, option)) {
+				let filbox = this.d3sel.select(".filterabledropdown-filterbox")._groups[0][0];
+				let style = getComputedStyle(filbox);
+				let t = parseInt(style.marginTop) + parseInt(style.borderTop);
+				let b = parseInt(style.marginBottom) + parseInt(style.borderBottom);
+				bounds.scrollTop = option.offsetTop - option.offsetHeight - t - b;
+			}
+		}
 	}
 
 	// keep i within [-1, this.data.length)
@@ -34,6 +113,7 @@ export default class FilterableDropdownModal {
 	renderFromIndex(hovered) {
 		let i;
 		if (hovered) {
+			throw "Cannot use renderFromIndex for hover anymore"
 			i = this.hoveredindex = this.boundindex(this.hoveredindex);
 		} else {
 			i = this.selindex = this.boundindex(this.selindex);
@@ -52,101 +132,36 @@ export default class FilterableDropdownModal {
 		  ._groups[0][0].focus();
 	}
 
-	render(selector) {
+	update(selector) {
+		let sel = d3.select(selector)
+			.select(".filterabledropdown-options")
+			.selectAll("")
+	}
+
+	setup() {
 		let me = this;
-		let props = {};
-		let modalpopper, toggle;
-		let sel = d3.select(selector);
+		let sel = d3.select(this.selector);
+		this.d3sel = sel;
 		sel = sel
 			.append("div")
 			.classed("filterabledropdown-container filterabledropdown-width", true);
 
-		let calculatedProperty = function(me, property, name) {
-			let key = `${property}-${name}`;
-			if (!(key in props)){
-				let prop = window.getComputedStyle(me).getPropertyValue(property);
-				props[key] = prop;
-			}
-			return props[key];
-		};
-
-		let calcHeight = function(me, name) {
-			return calculatedProperty(me, "line-height", name);
-		}
-
-		let removepx = str=>+str.slice(0, str.length - 2);
-
-		let calcModalWidth = function(el) {
-			let w    = calculatedProperty(el, "width", "modal");
-			let bw_r = calculatedProperty(el, "border-width").split(" ")[1];
-			return removepx(w) - removepx(bw_r) * 2;
-		}
-
-		let changeHovered = (key)=>{
-			this.hoveredindex = this.boundindex(key);
-			this.hovered = this.accessData(key);
-			sel.selectAll(".filterabledropdown-hovered")
-			   .classed("filterabledropdown-hovered", false);
-			let el = sel
-				.select(`.filterabledropdown-option[key="${key}"]`)
-				.classed("filterabledropdown-hovered", true);
-		}
-
-		let keepInView = (key)=>{
-			let bounds = sel.select(".filterabledropdown-options")._groups[0][0];
-			let option = sel.select(`.filterabledropdown-option[key="${key}"]`)._groups[0][0];
-			if (this.hoveredindex != -1) {
-				if (!fully_in_view(bounds, option)) {
-					let filbox = sel.select(".filterabledropdown-filterbox")._groups[0][0];
-					let style = getComputedStyle(filbox);
-					let t = parseInt(style.marginTop) + parseInt(style.borderTop);
-					let b = parseInt(style.marginBottom) + parseInt(style.borderBottom);
-					bounds.scrollTop = option.offsetTop - option.offsetHeight - t - b;
-				}
-			}
-		}
-
-		let changeSelected = (key)=>{
-			this.selindex = this.boundindex(key);
-			this.selected = this.accessData(key);
-			sel.selectAll(".filterabledropdown-prevselected")
-			   .classed("filterabledropdown-prevselected", false);
-			sel.select(`.filterabledropdown-option[key="${key}"]`)
-			   .classed("filterabledropdown-prevselected", true);
-			changeHovered(key);
-			me.renderselected();
-		}
-
 		// selbox contains the dropdown toggle and the selected element
-		let toggleModal = function(){
-				me.visible = !me.visible;
-				d3.select(".filterabledropdown-modal")
-				  .classed("filterabledropdown-hidden", !me.visible);
-				if (me.visible) {
-					d3.select(".filterabledropdown-filterbox")
-					  ._groups[0][0].focus();
-					modalpopper.scheduleUpdate();
-					if (me.selindex != -1)
-						keepInView(me.selindex);
-				}
-				toggle.text(me.visible?"▲":"▼");
-		};
-
 		let selbox = sel
 			.append("div")
 			.classed("filterabledropdown-width", true)
-			.on("click", toggleModal)
+			.on("click", ()=>me.toggleModal())
 			.attr("tabindex", 0)
 			.on("keydown", function(){
 				if (d3.event.key == "Enter")
-					toggleModal();
+					me.toggleModal();
 				else if (d3.event.key == "ArrowDown") {
-					changeSelected(me.selindex + 1);
-					keepInView(me.selindex)
+					me.changeSelected(me.selindex + 1);
+					me.keepInView(me.selindex)
 					d3.event.preventDefault();
 				} else if (d3.event.key == "ArrowUp") {
-					changeSelected(me.selindex - 1);
-					keepInView(me.selindex)
+					me.changeSelected(me.selindex - 1);
+					me.keepInView(me.selindex)
 					d3.event.preventDefault();
 				}
 			});
@@ -155,22 +170,22 @@ export default class FilterableDropdownModal {
 			.append("div")
 			.classed("filterabledropdown-selected filterabledropdown-padded", true)
 			.attr("tabindex", -1)
-			.style("height", function(){return calcHeight(this, "selected");})
+			.style("height", function(){return me.calcHeight(this, "selected");})
 			.text(this.selected===null?" ":this.selected[1]);
-		toggle = selbox
+		this.toggle = selbox
 			.append("div")
 			.classed("filterabledropdown-toggle", true)
 			.text(this.visible?"▲":"▼")
-			.style("height", props["line-height-selected"])
-			.style("width" , props["line-height-selected"]);
-		let togglepopper = new Popper(selbox._groups[0][0], toggle._groups[0][0], {
+			.style("height", this.props["line-height-selected"])
+			.style("width" , this.props["line-height-selected"]);
+		let togglepopper = new Popper(selbox._groups[0][0], this.toggle._groups[0][0], {
 			placement: "right",
 			modifiers: {
 				flip: {
 					enabled: false
 				},
 				offset: {
-					offset: `0px,-${removepx(props["line-height-selected"])+1}px`
+					offset: `0px,-${parseInt(me.props["line-height-selected"])+1}px`
 				}
 			}
 		}); 
@@ -179,7 +194,7 @@ export default class FilterableDropdownModal {
 			.append("div")
 			.classed("filterabledropdown-modal filterabledropdown-width", true)
 			.classed("filterabledropdown-hidden", !this.visible);
-		modalpopper = new Popper(selbox._groups[0][0], modal._groups[0][0], {
+		this.modalpopper = new Popper(selbox._groups[0][0], modal._groups[0][0], {
 			placement: "bottom",
 			modifiers: {
 				flip: {
@@ -191,20 +206,22 @@ export default class FilterableDropdownModal {
 			.append("input")
 			.classed("filterabledropdown-filterbox filterabledropdown-padded", true)
 			.attr("type", "text")
-			.style("height", function(){return calcHeight(this, "selected");})
+			.style("height", function(){return me.calcHeight(this, "selected");})
 			.on("keydown", function(){
 				if (d3.event.key == "Enter") {
-					changeSelected(me.hoveredindex)
-					toggleModal();
+					me.changeSelected(me.hoveredindex)
+					me.toggleModal();
 				}
 				else if (d3.event.key == "ArrowDown") {
-					changeHovered(me.hoveredindex + 1);
-					keepInView(me.hoveredindex);
+					me.changeHovered(me.hoveredindex + 1);
+					me.keepInView(me.hoveredindex);
 					d3.event.preventDefault();
 				} else if (d3.event.key == "ArrowUp") {
-					changeHovered(me.hoveredindex - 1);
-					keepInView(me.hoveredindex);
+					me.changeHovered(me.hoveredindex - 1);
+					me.keepInView(me.hoveredindex);
 					d3.event.preventDefault();
+				} else {
+					// Do the filtering.
 				}
 			});
 		modal
@@ -217,8 +234,8 @@ export default class FilterableDropdownModal {
 			.classed("filterabledropdown-option", true)
 			.text(d=>d[1])
 			.attr("key", d=>d[2])
-			.style("height", function(){return calcHeight(this, "option")})
-			.on("mouseenter", (d)=>changeHovered(d[2]))
+			.style("height", function(){return me.calcHeight(this, "option")})
+			.on("mouseenter", (d)=>me.changeHovered(d[2]))
 			.on("click", function(d){
 				d3.select(".filterabledropdown-modal")
 				  .classed("filterabledropdown-hidden", true);
@@ -228,9 +245,9 @@ export default class FilterableDropdownModal {
 				  .classed("filterabledropdown-prevselected", true);
 				me.selected = d;
 				me.renderselected();
-				toggleModal();
+				me.toggleModal();
 			});
 		modal
-			.style("width", function(){return calcModalWidth(this)});
+			.style("width", function(){return me.calcModalWidth(this)});
 	}
 }

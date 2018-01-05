@@ -7,6 +7,6 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
 	let data = timezones.map(d=>[d, d]);
-	let dropdown = new Dropdown(data);
-	dropdown.render("#modalexample");
+	let d = new Dropdown(data, "#modalexample");
+	d.setup();
 }
