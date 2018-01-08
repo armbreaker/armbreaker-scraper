@@ -1,2 +1,2 @@
 export FLASK_APP=test_webserver.py
-flask run
+python -m flask run
