@@ -1,4 +1,10 @@
-#!/bin/sh
+#!/bin/sh +x
 
 git pull
 composer install
+git submodule init
+git submodule update
+
+cd client
+# npm install
+cd ..
