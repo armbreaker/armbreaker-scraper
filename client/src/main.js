@@ -25,6 +25,7 @@ function setup() {
 		new PerDayView(),
 		new UserView(),
 		new FirstImpressionsView()
+		// new UserView()
 	];
 	for (let view of views) {
 		view.setup(dataset);

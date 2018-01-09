@@ -61,11 +61,11 @@ class Like implements \JsonSerializable {
   }
 
   public function sync() {
-    $sql = DatabaseFactory::get()->prepare('INSERT INTO armbreaker_likes (pid, uid, likeTime, lastUpdated) VALUES(?, ?, ?, ?)
-         ON DUPLICATE KEY UPDATE likeTime=VALUES(likeTime), lastUpdated=VALUES(lastUpdated);', ['integer', 'string', 'datetime', 'datetime']);
+    $sql = DatabaseFactory::get()->prepare('INSERT INTO armbreaker_likes (pid, uid, likeTime, lastUpdated) VALUES(?, ?, FROM_UNIXTIME(?), ?)
+         ON DUPLICATE KEY UPDATE likeTime=VALUES(likeTime), lastUpdated=VALUES(lastUpdated);', ['integer', 'string', 'integer', 'datetime']);
     $sql->bindValue(1, $this->post->id);
     $sql->bindValue(2, $this->user->id);
-    $sql->bindValue(3, $this->time);
+    $sql->bindValue(3, $this->time->timestamp);
     $sql->bindValue(4, \Carbon\Carbon::now());
     $sql->execute();
   }
