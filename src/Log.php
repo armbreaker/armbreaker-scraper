@@ -36,8 +36,12 @@ use Monolog\Formatter\LineFormatter;
 class Log {
 
   public function __construct() {
-
-    $l_console  = new StreamHandler("log.txt", Logger::DEBUG); //@todo: configure option
+    if (PHP_SAPI === 'cli') {
+      $dest = STDERR;
+    } else {
+      $dest = "log.txt";
+    }
+    $l_console  = new StreamHandler($dest, Logger::DEBUG); //@todo: configure option
     $l_console->setFormatter(new LineFormatter(null, null, true, true));
     $l_template = new Logger("Armbreaker");
     $l_template->pushHandler($l_console);
