@@ -68,6 +68,7 @@ class FicScraper extends Fic {
         $pid      = $matches[1];
         $title    = \qp($item, 'title')->text();
         $postDate = new \Carbon\Carbon(\qp($item, 'pubDate')->text());
+        $postDate->setTimezone("UTC");
         $posts[]  = [$pid, $title, $postDate];
       }
     });
@@ -137,6 +138,7 @@ class FicScraper extends Fic {
     } else {
       throw new \LogicException("what the fuck");
     }
+    $obj->setTimezone("UTC");
     return $obj;
   }
 
