@@ -17,11 +17,11 @@ def getfic(ficid=None):
 
 @app.route("/js/<js>")
 def js(js=None):
-    return send_from_directory("dist/js/", js)
+    return send_from_directory("dist/", js)
 
 @app.route("/css/<css>")
 def css(css=None):
-    return send_from_directory("dist/css/", css)
+    return send_from_directory("dist/", css)
 
 @app.route("/viewer/<ficid>")
 def viewer(ficid=None):

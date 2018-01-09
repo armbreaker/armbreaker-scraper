@@ -3,9 +3,9 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-    "js/bundle.js": './src/main.js',
-    "js/dropdowndemo.js": './src/dropdown_demo.js',
-    "css/bundle.css": [
+    "bundle.js": './src/main.js',
+    "dropdowndemo.js": './src/dropdown_demo.js',
+    "bundle.css": [
       "./src/FilterableDropdownModal.css",
       "./d3.slider/d3.slider.css",
       "./src/main.css"
@@ -40,7 +40,7 @@ module.exports = {
   	modules: [path.resolve(__dirname, "src"), "node_modules"]
   },
   plugins: [
-    new ExtractTextPlugin("css/bundle.css")
+    new ExtractTextPlugin("bundle.css")
   ],
   externals: ["d3", "moment"]
 };
