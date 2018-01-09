@@ -20,6 +20,10 @@ export default class UserView {
 
 		this.subgraph_height = 50;
 		this.subgraph_margintop = 40;
+
+		this.style = {
+			square: "#4c568c"
+		}
 	}
 
 	setup(dataset) {
@@ -57,7 +61,7 @@ export default class UserView {
 
 
 		// Set tolerence to 10% of chapters or 2, whichever is larger.
-		this.tolerence = Math.max(this.chapterinfo.length * 0.3, 5);
+		this.tolerence = Math.max(this.chapterinfo.length * 0.2, 5);
 
 		this.usernames_arr = []
 		for (let userid in this.usernames) {
@@ -72,6 +76,18 @@ export default class UserView {
 			this.user_userlikes.push([userid, this.userlikes[userid]]);
 		}
 		this.clustered = util.lufu_cluster(this.user_userlikes, this.tolerence, this.algo);
+		// this.clustered = util.greedy_cluster(this.user_userlikes, this.tolerence, this.algo);
+
+		// put outliers in one group
+		let clusters = [];
+		let outliers = [];
+		this.clustered.forEach(d=>{
+			if (d.length != 1)
+				clusters.push(d);
+			else
+				outliers.push(d[0]);
+		})
+		this.clustered = clusters;
 
 		// sort each cluster. renumber.
 		let counter = this.usernames_arr.length - 1;
@@ -138,7 +154,70 @@ export default class UserView {
 
 	update() {
 		let me = this;
-		let clusters = this.svg
+
+		// populate like sub-graph 
+		let band = this.xscale.bandwidth();
+		let likeline = 
+			d3.line()
+			  .x((d,i)=>this.xscale(i) + band/2)
+			  .y(d=>this.sub_yscale(d.likes.length));
+
+		let likes = this.svg.select(".likegraph");
+		let ypos = this.height + this.innerpadding * this.clustered.length + this.subgraph_margintop;
+		likes.attr("transform", `translate(0, ${ypos})`)
+		likes.append("path")
+			.classed("likeline", true)
+			.datum(this.chapterinfo)
+			.attr("d", likeline);
+		likes.append("line")
+			.classed("bottomline", true)
+			.attr("x1", this.xscale(0) + band/2)
+			.attr("x2", this.xscale(this.chapterinfo.length - 1) + band/2)
+			.attr("y1", this.sub_yscale(0) + 1)
+			.attr("y2", this.sub_yscale(0) + 1);
+		let subxaxis = 
+			likes.append("g")
+				.classed("subxaxis", true)
+				.call(this.subyaxis)
+				.attr("transform", "translate(12, 0)");
+		subxaxis
+			.append("text")
+			.classed("label", true)
+			.attr("text-anchor", "middle")
+			.attr("x", this.width / 2 - 12)
+			.attr("y", this.subgraph_height + 13)
+			.text("Likes per chapter")
+
+		// Time to use divs instead of clusters
+		let clusters = d3.select("#canvases")
+			.selectAll("canvas")
+			.data(this.clustered)
+			.enter()
+			.append("canvas")
+			.classed("canvascluster", true)
+			.attr("width", this.width)
+			.attr("height", d=>Math.ceil(this.yscale(1)) * d.length);
+
+		clusters
+			.each(function(d, i) {
+				let L = d[0][1].length; // num chapters
+				let ctx = this.getContext('2d');
+				let rect_w = Math.ceil(me.xscale.bandwidth());
+				let rect_h = Math.ceil(me.yscale(1));
+				ctx.fillStyle = me.style.square;
+				d.forEach((user, userindex)=>{
+					let likestring = user[1];
+					for (let chapter = 0; chapter < L; chapter++) {
+						if (likestring[chapter] == "x")
+							ctx.fillRect(chapter * rect_w, userindex * rect_h, rect_w, rect_h);
+					}
+				})
+			});
+
+		return;	
+
+
+		clusters = this.svg
 			.select(".bars")
 			.selectAll(".cluster")
 			.data(this.clustered);
@@ -240,38 +319,5 @@ export default class UserView {
 				  .classed("username", true)
 				  .text(d=>d);
 			});
-
-		// populate like sub-graph 
-		let band = this.xscale.bandwidth();
-		let likeline = 
-			d3.line()
-			  .x((d,i)=>this.xscale(i) + band/2)
-			  .y(d=>this.sub_yscale(d.likes.length));
-
-		let likes = this.svg.select(".likegraph");
-		let ypos = this.height + this.innerpadding * this.clustered.length + this.subgraph_margintop;
-		likes.attr("transform", `translate(0, ${ypos})`)
-		likes.append("path")
-			.classed("likeline", true)
-			.datum(this.chapterinfo)
-			.attr("d", likeline);
-		likes.append("line")
-			.classed("bottomline", true)
-			.attr("x1", this.xscale(0) + band/2)
-			.attr("x2", this.xscale(this.chapterinfo.length - 1) + band/2)
-			.attr("y1", this.sub_yscale(0) + 1)
-			.attr("y2", this.sub_yscale(0) + 1);
-		let subxaxis = 
-			likes.append("g")
-				.classed("subxaxis", true)
-				.call(this.subyaxis)
-				.attr("transform", "translate(12, 0)");
-		subxaxis
-			.append("text")
-			.classed("label", true)
-			.attr("text-anchor", "middle")
-			.attr("x", this.width / 2 - 12)
-			.attr("y", this.subgraph_height + 13)
-			.text("Likes per chapter")
 	}
 }
