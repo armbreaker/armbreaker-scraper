@@ -22,10 +22,9 @@ function init() {
 function setup() {
 	d3.select("#title h1").text(dataset.name);
 	var views = [
-		new PerDayView(),
-		new UserView(),
-		new FirstImpressionsView()
-		// new UserView()
+		// new PerDayView(),
+		new UserView()
+		// new FirstImpressionsView()
 	];
 	for (let view of views) {
 		view.setup(dataset);

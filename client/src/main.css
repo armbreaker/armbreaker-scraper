@@ -121,8 +121,8 @@ body {
 	stroke: rgba(0, 0, 0, 1);
 }
 
-.userbar .barsquare {
-	fill: #4c568c;
+.canvascluster {
+	border: 2px solid black;
 }
 
 .dataline {
