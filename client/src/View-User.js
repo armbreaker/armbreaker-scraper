@@ -28,6 +28,7 @@ export default class UserView {
 	}
 
 	setup(dataset) {
+		
 		this.svg = d3.select("#userview");
 		this.userlikes = {};
 		this.usernames = dataset.users;
@@ -48,14 +49,17 @@ export default class UserView {
 		}
 
 		// Need to tally likes per user, as well as chapter like sums
-		for (let post of this.chapterinfo) {
-			for (let userid in this.usernames) {
-				if (post.likes.indexOf(userid) >= 0)
-					this.userlikes[userid] += "x";
-				else
-					this.userlikes[userid] += " ";
+		this.chapterinfo.forEach((post, index) => {
+			for (let like of post.likes) {
+				this.userlikes[like] += "x";
 			}
-		}
+			for (let userid in this.usernames) {
+				if (this.userlikes[userid].length  == index) {
+					this.userlikes[userid] += " ";
+				}
+			}
+		})
+
 
 		// Set tolerence to 10% of chapters or 2, whichever is larger.
 		this.tolerence = Math.max(this.chapterinfo.length * 0.1, 5);
