@@ -77,8 +77,10 @@ class ArmbreakerMaster extends ArmbreakerEntity {
       return $this->view->render($response, 'index.twig', []);
     });
     $this->slim->get('/css/bundle.css', function (Request $request, Response $response, $args) {
+      return $this->view->render($response, 'dist/css/bundle.css', []);
     });
     $this->slim->get('/js/bundle.js', function (Request $request, Response $response, $args) {
+      return $this->view->render($response, 'dist/js/bundle.js', []);
     });
     $this->slim->get('/viewer', function(Request $request, Response $response) {
       return $this->view->render($response, 'browsefics.twig', []);
