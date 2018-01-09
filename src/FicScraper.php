@@ -64,7 +64,7 @@ class FicScraper extends Fic {
     \qp($this->rss, 'item')->each(function(int $index, \DOMElement $item) use (&$posts) {
       $matches = [];
       preg_match("/post-(\\d+)/i", \qp($item, 'link')->text(), $matches);
-      if (mb_strlen($matches[1]) > 0 && is_numeric($matches[1])) {
+      if (array_key_exists(1, $matches) && mb_strlen($matches[1]) > 0 && is_numeric($matches[1])) {
         $pid      = $matches[1];
         $title    = \qp($item, 'title')->text();
         $postDate = new \Carbon\Carbon(\qp($item, 'pubDate')->text());
