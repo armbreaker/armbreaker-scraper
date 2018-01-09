@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 sylae and skyyrunner.
+ * Copyright 2017 sylae & skyyrunner
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,36 +26,19 @@
 
 namespace Armbreaker;
 
-/**
- * Create a user object
- *
- * @author sylae and skyyrunner
- */
-class UserFactory {
+require_once "vendor/autoload.php";
+require_once 'config.php';
+// initialization
+ConfigFactory::make($config);
+new Log();
+DatabaseFactory::make();
 
-  public static function getUser(int $id): User {
-    static $cache = [];
-    if (array_key_exists($id, $cache)) {
-      return $cache[$id];
-    }
-    $sql  = DatabaseFactory::get()->prepare("select * from armbreaker_users where uid= ?");
-    $sql->bindValue(1, $id, 'integer');
-    $sql->execute();
-    $user = $sql->fetchAll();
-    if (count($user) == 1) {
-      $cache[$user[0]['uid']] = new User($user[0]['uid'], $user[0]['username']);
-      return $cache[$user[0]['uid']];
-    } elseif (count($user) == 0) {
-      throw new \Exception("User ID not found :(");
-    } else {
-      throw new \LogicException("More than one User ID matched?");
-    }
+try {
+  if (is_numeric($argv[1] ?? false)) {
+    $x = new FicScraper($argv[1]);
+  } else {
+    throw new \Exception("Usage: php manualscrape.php FIC_ID");
   }
-
-  public static function createUser(int $id, string $name): User {
-    $user = new User($id, $name);
-    $user->sync();
-    return $user;
-  }
-
+} catch (\Throwable $e) {
+  echo $e->getMessage() . PHP_EOL . $e->getFile() . " // Line " . $e->getLine() . PHP_EOL;
 }

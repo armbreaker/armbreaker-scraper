@@ -52,7 +52,7 @@ class ArmbreakerEntity {
   protected $slim;
 
   public function __construct() {
-    $this->sqs  = new \Aws\Sqs\SqsClient(ConfigFactory::get()['sqs']);
+    $this->sqs  = null; // new \Aws\Sqs\SqsClient(ConfigFactory::get()['sqs']);
     $this->db   = DatabaseFactory::get();
     $this->slim = new \Slim\App();
   }
