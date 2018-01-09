@@ -1,7 +1,7 @@
 # server mock for frontend development
 
 from flask import Flask, send_from_directory, redirect
-app = Flask(__name__, static_folder=".", static_url_path="/static")
+app = Flask(__name__)
 
 @app.route("/api/fics/<ficid>")
 def getfic(ficid=None):
@@ -14,6 +14,14 @@ def getfic(ficid=None):
 	if ficid == "560830":
 		return send_from_directory(".", "testdata-nimrod.json")
 	return "The fic API endpoint."
+
+@app.route("/js/<js>")
+def js(js=None):
+    return send_from_directory("dist/js/", js)
+
+@app.route("/css/<css>")
+def css(css=None):
+    return send_from_directory("dist/css/", css)
 
 @app.route("/viewer/<ficid>")
 def viewer(ficid=None):
