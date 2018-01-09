@@ -111,7 +111,7 @@ class ArmbreakerMaster extends ArmbreakerEntity {
       try {
         $fics = FicFactory::getAllFics();
         foreach ($fics as $fic) {
-          $fic->loadPosts();
+          // $fic->loadPosts();
         }
         return $response->withJson($fics);
       } catch (\Throwable $e) {
