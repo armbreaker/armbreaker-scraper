@@ -12,3 +12,5 @@ bundle.js
 bundle.css
 *.map
 __pycache__/
+/css/
+/js/
