@@ -129,28 +129,16 @@ export function findTextWidth(text, font, target) {
 	return size
 }
 
-var TOLERENCE = 1;
-export function levdist(a, b) {
-	if (a == b) return 0;
-	let dist = levenshtein(a, b);
-	if (dist == 0) return 0;
-	if (dist <= TOLERENCE) {
-		// return normal comparison if under tolerence
-		if (a > b) return 1;
-		if (a < b) return -1;
-		return 0;
+export function hammingdist(s1, s2) {
+	let L = s1.length;
+	if (L != s2.length)
+		throw "Hamming distance requires strings of same length.";
+	let d = 0;
+	for (let i = L - 1; 0 <= i; i--) {
+		if (s1[i] != s2[i])
+			d++;
 	}
-	// If the difference is too large, the one with the
-	// greater significant digit is returned as first.
-	for (let i = a.length - 1; 0 <= i; i--) {
-		// keep looping until digit isn't same
-		if (a[i] != b[i]) {
-			if (a[i] == "x") return 1;
-			return -1; // case of b[i] == "x"
-		}
-	}
-	// shouldn't get here
-	throw("levdist somehow reached end of function.");
+	return d;
 }
 
 export function getKeys(o) {

@@ -15,12 +15,7 @@ export default class UserView {
 		this.width  = 600 - this.margin_w * 2;
 		this.height = 550 - this.margin_top - this.margin_bottom;
 		this.tolerence = 0;
-		this.algoname = "damerau";
-		if (this.algoname == "damerau") {
-			this.algo = damerau;
-		} else {
-			this.algo = levenshtein;
-		}
+		this.algo = util.hammingdist;
 		this.innerpadding = 7; // distance between clusters
 
 		this.subgraph_height = 50;
@@ -62,7 +57,7 @@ export default class UserView {
 
 
 		// Set tolerence to 10% of chapters or 2, whichever is larger.
-		this.tolerence = Math.max(this.chapterinfo.length * 0.1, 5);
+		this.tolerence = Math.max(this.chapterinfo.length * 0.3, 5);
 
 		this.usernames_arr = []
 		for (let userid in this.usernames) {
