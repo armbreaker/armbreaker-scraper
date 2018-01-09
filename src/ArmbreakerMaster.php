@@ -76,6 +76,17 @@ class ArmbreakerMaster extends ArmbreakerEntity {
     $this->slim->get('/', function (Request $request, Response $response, $args) {
       return $this->view->render($response, 'index.twig', []);
     });
+    $this->slim->get('/css/bundle.css', function (Request $request, Response $response, $args) {
+    });
+    $this->slim->get('/js/bundle.js', function (Request $request, Response $response, $args) {
+    });
+    $this->slim->get('/viewer', function(Request $request, Response $response) {
+      return $this->view->render($response, 'browsefics.twig', []);
+    });
+    $this->slim->get('/viewer/{id}', function(Request $request, Response $response) {
+      $id = $request->getAttribute('id'); // unused
+      return $this->view->render($response, 'dist/main.html', []);
+    });
     $this->slim->get('/api', function(Request $request, Response $response) {
       $methods = [];
 
