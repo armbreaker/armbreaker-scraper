@@ -82,7 +82,7 @@ class Fic implements \JsonSerializable {
     if ($this->printMode) {
       $r['users'] = [];
     }
-    if ($this->posts instanceof PostCollection) {
+    if ($this->posts instanceof PostCollection && count($this->posts) > 0) {
       $r['posts'] = $this->posts;
       if ($this->printMode) {
         foreach ($this->posts as $post) {
