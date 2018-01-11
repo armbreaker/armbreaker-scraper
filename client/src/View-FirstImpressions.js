@@ -8,7 +8,7 @@ import timezones from "timezone-array";
 import Dropdown from "FilterableDropdownModal";
 
 // the likes over time for the first 24h view
-export default class FirstImpressionsView {
+export default class FirstImpressionsView { 
 	constructor() {
 		this.margin_top = 30;
 		this.margin_bottom = 30;
