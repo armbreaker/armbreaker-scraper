@@ -1,4 +1,5 @@
 "use strict";
+import format from 'date-fns/format';
 
 // keyfunc is applied to each object before comparing.
 export function arrmin(arr, keyfunc) {
@@ -71,17 +72,21 @@ export function n_digits(x, n) {
 	return Math.floor(e * x) / e;
 }
 
-export function getDate(timestr) {
-	return moment(timestr).startOf("day");
+// for a "2017-07-23T22:23:52+00:00" format timestamp,
+// strip TZ and insert into Date obj. Because
+// Date sucks.
+export function stripTimezone(timestr) {
+	let s = timestr.split("+")[0];
+	return new Date(s);
 }
 
-// accept a Moment obj, return YYYY-MM-DD
-export function getDateString(moment) {
-	return moment.format("YYYY-MM-DD");
+// accept a Date obj, return YYYY-MM-DD
+export function getDateString(date) {
+	return format(date, "YYYY-MM-DD");
 }
 
-export function getDateRangeString(moment_start, moment_end) {
-	return `${moment_start.format("YYYY-MM-DD")}\n${moment_end.format("YYYY-MM-DD")}`;
+export function getDateRangeString(datestart, dateend) {
+	return `${format(datestart, "YYYY-MM-DD")}\n${format(dateend, "YYYY-MM-DD")}`;
 }
 
 // set all times to same date

@@ -3,6 +3,7 @@
 import * as d3 from "d3";
 import * as moment from "moment";
 import * as util from "utility";
+import BinWorker from "./dobinning.worker.js";
 
 // the likes per day view
 export default class PerDayView {
@@ -13,58 +14,12 @@ export default class PerDayView {
 		this.width  = 800 - this.margin_w * 2;
 		this.height = 460 - this.margin_top - this.margin_bottom - 10;
 		this.binsize = 1;
+		this.binner = new BinWorker();
+		this.waitupdate = false;
 	}
 
-	bin(newbin) {
-		this.binsize = newbin;
-		// extract likes per day.
-		// first, initialize each day.
-		let data = [];
-		let bindur = moment.duration(this.binsize, "days");
-		let startdate = util.getDate(this.mintime);
-		let enddate = util.getDate(this.maxtime);
-		while (startdate.clone().add(bindur) < enddate) {
-			let dstart = startdate.clone();
-			let dend   = startdate.clone().add(bindur);
-			let s1 = util.getDateString(dstart);
-			let s2 = util.getDateString(dend);
-			data.push({start: dstart, 
-						 end: dend,
-					 	 count: 0,
-					 	 string: util.getDateRangeString(dstart, dend)});
-			startdate.add(bindur);
-		}
-
-		data.push({start: startdate, 
-					 end: enddate,
-				 	 count: 0,
-				 	 string: util.getDateRangeString(startdate, enddate)});
-
-		for (let time of this.alltimes) {
-			let day = util.getDate(time); // conversion puts dates into user timezone.
-			for(let bin of data) {
-				if (bin.start <= day && day <= bin.end) {
-					bin.count += 1;
-					break;
-				}
-			}
-		}
+	binCallback(data) {
 		this.data = data;
-
-		// Also create adjusted amounts
-		for (let i = 0; i < this.data.length; i++) {
-			let d = this.data[i];
-			if (i == this.data.length - 1) {
-	   			let days = d.end.diff(d.start, "days");
-	   			if (days != this.binsize){
-		   			d.adj = d.count / days * this.binsize;
-		   			d.adj = d.count + (d.adj - d.count) * .5 // discount estimate
-		   			continue;
-		   		}
-			}
-			d.adj = d.count;
-		}
-
 		// also create sparkline data.
 		this.totallikes = util.arrsum(this.data, d=>d.count);
 		this.sparkdata = [];
@@ -128,6 +83,15 @@ export default class PerDayView {
 			d3.line()
 			  .x(d=>this.xscale(d[0])+ this.xscale.bandwidth() / 2)
 			  .y(d=>this.sparklinescale(d[1]));
+
+		this.waitupdate = false;
+	}
+
+	bin(newbin) {
+		this.binsize = newbin;
+		// extract likes per day.
+		this.waitupdate = true;
+		this.binner.postMessage({type:"bin", binsize: newbin});
 	}
 
 	setup(dataset) {
@@ -143,7 +107,8 @@ export default class PerDayView {
 				this.alltimes.push(like.time);
 			}
 		}
-
+		this.binner.onmessage = (event)=>this.binCallback(event.data);
+		this.binner.postMessage({type:"init", times:this.alltimes, mintime: this.mintime, maxtime:this.maxtime})
 		let L = this.alltimes.length;
 		if (L < 120)
 			this.bin(1);
@@ -256,6 +221,10 @@ export default class PerDayView {
 	}
 
 	update() {
+		if (this.waitupdate) {
+			setTimeout(()=>this.update(), 100);
+			return;
+		}
 		let sel = this.svg
 			.select(".bars")
 			.selectAll(".view1bargroup")

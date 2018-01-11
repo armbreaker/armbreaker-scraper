@@ -3,7 +3,7 @@
 import * as d3 from "d3";
 import * as moment from "moment";
 import * as util from "utility";
-import Worker from "./docluster.worker.js";
+import ClusterWorker from "./docluster.worker.js";
 
 // the likes per chapter per user view, as well as chapter.
 export default class UserView {
@@ -23,7 +23,7 @@ export default class UserView {
 		this.style = {
 			square: "#4c568c"
 		}
-		this.clusterer = new Worker();
+		this.clusterer = new ClusterWorker();
 		this.waitupdate = false;
 	}
 

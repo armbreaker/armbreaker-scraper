@@ -1,8 +1,5 @@
 import * as util from "utility";
 
-function cluster() {
-
-}
 
 let algos = { 
 	"hamming": util.hammingdist
