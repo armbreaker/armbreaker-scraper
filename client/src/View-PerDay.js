@@ -76,7 +76,8 @@ export default class PerDayView {
 		this.xaxis =
 			d3.axisBottom(this.xscale)
 		this.yaxis =
-			d3.axisLeft(this.yscale_axis);
+			d3.axisLeft(this.yscale_axis)
+			  .tickFormat(d3.format(".2s"));
 
 		// draw axes
 		this.svg.select(".all")
