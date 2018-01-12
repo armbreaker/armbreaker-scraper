@@ -185,7 +185,6 @@ export default class UserView {
 
 		function makedot(i) {
 			let d = me.chapterinfo[i]
-			console.log(d)
 			let startdot = likes
 				.append("g")
 				.attr("transform", `translate(${me.xscale(i) + band/2}, ${me.sub_yscale(d.likes.length)})`);
