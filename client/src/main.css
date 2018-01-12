@@ -137,7 +137,6 @@ body {
 
 .canvascluster {
 	border: 2px solid black;
-	padding-left: 50px;
 }
 
 .dataline {
@@ -194,7 +193,7 @@ text {
 }
 
 #userviewdiv {
-	height: 600px;
+	height: 551px;
 	overflow-y: auto;
 }
 
@@ -206,9 +205,12 @@ text {
 #userlist {
 	height: 450px;
 	overflow-y: auto;
-	margin-left: 3px;
 	border-top: 1px solid black;
 	width: 230px;
+}
+
+#userlistdiv {
+	margin-left: 20px;
 }
 
 #userlistdiv td:nth-child(2) {
