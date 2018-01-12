@@ -11,7 +11,7 @@ export default class PerDayView {
 	constructor() {
 		this.margin_top = 80;
 		this.margin_bottom = 50;
-		this.margin_w = 25;
+		this.margin_w = 30;
 		this.width  = 800 - this.margin_w * 2;
 		this.height = 460 - this.margin_top - this.margin_bottom - 10;
 		this.binsize = 1;
