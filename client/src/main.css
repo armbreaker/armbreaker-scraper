@@ -10,6 +10,7 @@ body {
 #verticalflex {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .gear rect {
@@ -79,6 +80,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 600px;
 }
 
 #userviewcontainer h2 {
@@ -135,6 +137,7 @@ body {
 
 .canvascluster {
 	border: 2px solid black;
+	padding-left: 50px;
 }
 
 .dataline {
@@ -179,15 +182,26 @@ text {
 	font-family: "Open Sans", sans-serif;
 }
 
+.userviewdivs svg {
+	margin-bottom: 5px;
+}
+
 .userviewdivs {
-	float: left;
-	display:inline;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin-bottom: 10px;
+}
+
+#userviewdiv {
+	height: 600px;
+	overflow-y: auto;
 }
 
 #perdayviewdiv {
 	margin-bottom: 20px;
 }
+
 
 #userlist {
 	height: 450px;
