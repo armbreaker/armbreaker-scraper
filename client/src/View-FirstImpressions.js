@@ -42,10 +42,6 @@ export default class FirstImpressionsView {
 
 	setup(dataset) {
 		this.svg = d3.select("#firstimpressionview");
-		// d3.select(window)
-		//   .on("resize.fiv", this.resize);
-		// this.resize();
-
 		// Populate timezone list.
 		let timezonedata = timezones.map(d=>{
 			let o = [d, null];
