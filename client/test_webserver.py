@@ -23,6 +23,10 @@ def js(js=None):
 def css(css=None):
     return send_from_directory("dist/", css)
 
+@app.route("/client/<file>")
+def file(file=None):
+    return send_from_directory("dist/", file)
+
 @app.route("/viewer/<ficid>")
 def viewer(ficid=None):
     return send_from_directory("dist", "main.html")

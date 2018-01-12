@@ -8,7 +8,7 @@ import timezones from "timezone-array";
 import Dropdown from "FilterableDropdownModal";
 
 // the likes over time for the first 24h view
-export default class FirstImpressionsView {
+export default class FirstImpressionsView { 
 	constructor() {
 		this.margin_top = 30;
 		this.margin_bottom = 30;
@@ -42,10 +42,6 @@ export default class FirstImpressionsView {
 
 	setup(dataset) {
 		this.svg = d3.select("#firstimpressionview");
-		// d3.select(window)
-		//   .on("resize.fiv", this.resize);
-		// this.resize();
-
 		// Populate timezone list.
 		let timezonedata = timezones.map(d=>{
 			let o = [d, null];

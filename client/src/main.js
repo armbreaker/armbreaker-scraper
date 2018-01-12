@@ -7,7 +7,7 @@ import UserView from "View-User";
 import FirstImpressionsView from "View-FirstImpressions";
 
 document.addEventListener("DOMContentLoaded", init);
-var dataset;
+var dataset, views;
 
 function init() {
 	let url = window.location.href.split("/");
@@ -21,14 +21,15 @@ function init() {
 // Initialize everything.
 function setup() {
 	d3.select("#title h1").text(dataset.name);
-	var views = [
-		new PerDayView(),
-		new UserView(),
-		new FirstImpressionsView()
-		// new UserView()
-	];
-	for (let view of views) {
-		view.setup(dataset);
-		view.update();
-	}
+	setTimeout(()=>{
+		views = [
+			new PerDayView(),
+			new UserView(),
+			new FirstImpressionsView()
+		]
+		for (let view of views) {
+			view.setup(dataset);
+			view.update();
+		}
+	}, 0);
 }
