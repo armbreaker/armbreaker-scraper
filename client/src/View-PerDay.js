@@ -17,25 +17,29 @@ export default class PerDayView {
 		this.binsize = 1;
 		this.binner = new BinWorker();
 		this.waitupdate = false;
+		this.bindata = {};
 	}
 
-	binCallback(data) {
+	binCallback(data, bin, cached) {
 		// convert back to DateTime objects
-		this.data = data.map(d=>{
-			d.start = util.reTypifyDatetime(d.start);
-			d.end = util.reTypifyDatetime(d.end);
-			return d
-		});	
+		if (!cached) {
+			this.bindata[bin] = data.map(d=>{
+				d.start = util.reTypifyDatetime(d.start);
+				d.end = util.reTypifyDatetime(d.end);
+				return d
+			});	
+		}
+		data = this.bindata[bin]
 
 		// also create sparkline data.
-		this.totallikes = util.arrsum(this.data, d=>d.count);
+		this.totallikes = util.arrsum(data, d=>d.count);
 		this.sparkdata = [];
-		let datanum = this.data.length;
+		let datanum = data.length;
 		let sum = 0;
 		let slope = this.totallikes / parseFloat(datanum);
 		for (let i = 0; i < datanum; i++) {
-			let date  = this.data[i].string;
-			let likes = this.data[i].count;
+			let date  = data[i].string;
+			let likes = data[i].count;
 			// compare expected likes versus actual likes
 			// let diff = likes - slope; // likes vs average likes
 			sum += likes;
@@ -47,11 +51,11 @@ export default class PerDayView {
 		// reset axes
 
 		// find max like magnitude, then create scales & axes
-		this.maxlikes = util.arrmax(this.data, d=>d.adj).adj; // adj, to account for estimate
+		this.maxlikes = util.arrmax(data, d=>d.adj).adj; // adj, to account for estimate
 
 		this.xscale = 
 			d3.scaleBand()
-			  .domain(this.data.map(d=>d.string))
+			  .domain(data.map(d=>d.string))
 			  .paddingOuter(10)
 			  .paddingInner(this.binsize == 1 ? 0 : 0.1)
 			  .range([0, this.width]);
@@ -96,9 +100,18 @@ export default class PerDayView {
 
 	bin(newbin) {
 		this.binsize = newbin;
-		// extract likes per day.
-		this.waitupdate = true;
-		this.binner.postMessage({type:"bin", binsize: newbin});
+		if (String(newbin) in this.bindata) {
+			this.binCallback(this.bindata[newbin], newbin, true);
+		} else {
+			// extract likes per day.this.svg.select("image")
+			this.svg.select(".gear")
+				.style("opacity", 0)
+				.transition()
+				.style("opacity", 1)
+			this.waitupdate = true;
+			this.binner.onmessage = (event)=>this.binCallback(event.data, newbin, false);
+			this.binner.postMessage({type:"bin", binsize: newbin});
+		}
 	}
 
 	setup(dataset) {
@@ -114,7 +127,6 @@ export default class PerDayView {
 				this.alltimes.push(like.time);
 			}
 		}
-		this.binner.onmessage = (event)=>this.binCallback(event.data);
 		this.binner.postMessage({type:"init", times:this.alltimes, mintime: this.mintime, maxtime:this.maxtime})
 		let L = this.alltimes.length;
 		if (L < 120)
@@ -228,6 +240,8 @@ export default class PerDayView {
 	}
 
 	update() {
+		let myself = this;
+   		myself.svg.selectAll(".tooltip").style("display", "none");
 		if (this.waitupdate) {
 			setTimeout(()=>this.update(), 100);
 			return;
@@ -235,8 +249,7 @@ export default class PerDayView {
 		let sel = this.svg
 			.select(".bars")
 			.selectAll(".view1bargroup")
-			.data(this.data);
-		let myself = this;
+			.data(this.bindata[this.binsize]);
 		sel.exit().remove();
 		let enter = sel
 			.enter()
@@ -255,7 +268,7 @@ export default class PerDayView {
 	        .attr("height", this.height + this.margin_bottom)
 		    .on("mouseover", function(d, i){
 		   		myself.svg.selectAll(".tooltip").style("display", "inherit");
-		   		d = myself.data[i];
+		   		d = myself.bindata[myself.binsize][i];
 		   		let sparkline_y = myself.sparklinescale(myself.sparkdata[i][1]);
 				myself.svg.select(".tooltipDot")
 					.attr("cx", myself.xscale(d.string) + myself.xscale.bandwidth() / 2)
@@ -320,5 +333,10 @@ export default class PerDayView {
 	    this.svg.select(".dataline")
 			.datum(this.sparkdata)
 			.attr("d", this.sparkline);
+
+		this.svg.select(".gear")
+			.style("opacity", 1)
+			.transition()
+			.style("opacity", 0)
 	}
 }

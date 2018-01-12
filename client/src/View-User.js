@@ -257,5 +257,7 @@ export default class UserView {
 				  .classed("username", true)
 				  .text(d=>d);
 			});
+		d3.select("#userviewgear")
+	      .style("display", "none")
 	}
 }
