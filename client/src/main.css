@@ -43,7 +43,7 @@ body {
 	display: inherit;
 }
 
-#userview .axislabel {
+#userview_bot .axislabel, #userview_top .axislabel {
 	fill: #444;
 }
 
@@ -96,10 +96,23 @@ body {
 	stroke-width: 2px;
 }
 
+.axissvg .tick text {
+	display: none;
+}
+
 .likeline {
 	stroke: #4c568c;
 	stroke-width: 1pt;
 	fill: none;
+}
+
+.likelinedot {
+	fill: #4c568c;
+}
+
+.likelinetext {
+	font-size: 10px;
+	fill: #373f68;
 }
 
 .bottomline {
@@ -111,14 +124,8 @@ body {
 	fill: #000;
 }
 
-.boxes>.even {
-	stroke: rgba(57, 65, 105, 0.5);
-	fill: rgba(76, 86, 140, 0.2);
-}
-
-.boxes>.odd {
-	stroke: rgba(106, 141, 184, 0.5);
-	fill: rgba(140, 185, 242, 0.2);
+.label_likesperchapter {
+	font-size: 12px;
 }
 
 .clusterbox:hover {

@@ -9,13 +9,12 @@ import ClusterWorker from "./docluster.worker.js";
 export default class UserView {
 	constructor() {
 		this.margin_top = 0;
-		this.margin_bottom = 100;
+		this.margin_bottom = 0;
 		this.margin_w = 25;
 		this.width  = 600 - this.margin_w * 2;
 		this.height = 800 - this.margin_top - this.margin_bottom;
 		this.tolerence = 0;
 		this.algo = "hamming";
-		this.innerpadding = 7; // distance between clusters
 
 		this.subgraph_height = 50;
 		this.subgraph_margintop = 40;
@@ -28,8 +27,8 @@ export default class UserView {
 	}
 
 	setup(dataset) {
-		
-		this.svg = d3.select("#userview");
+		this.svgtop = d3.select("#userview_top");
+		this.svgbot = d3.select("#userview_bot");
 		this.userlikes = {};
 		this.usernames = dataset.users;
 		this.chapterinfo = [];
@@ -133,24 +132,29 @@ export default class UserView {
 		    	  .domain([0, this.likesmax])
 		    	  .range([this.subgraph_height, 0]);
 
-		    this.xaxis = 
+		    this.xaxis_bot = 
 		    	d3.axisBottom(this.xscale);
+		    this.xaxis_top = 
+		    	d3.axisTop(this.xscale);
 
-		    this.subyaxis =
-		    	d3.axisLeft(this.sub_yscale)
-		    	  .ticks(3);
-
-			this.svg
+			this.svgbot
 				.select(".yaxis")
-				.call(this.xaxis)
-				.attr("transform", `translate(0, ${this.height + 2 + this.innerpadding * this.clustered.length})`)
+				.call(this.xaxis_bot)
 				.append("text")
 				.classed("axislabel", true)
 				.attr("x", this.width - this.margin_w)
-				.attr("y", 30)
+				.attr("y", 20)
 				.text("Chapters");
-			this.svg.select(".all")
-				.attr("transform", `translate(${this.margin_w}, ${this.margin_top})`)
+
+			this.svgtop
+				.select(".yaxis")
+				.call(this.xaxis_top)
+				.attr("transform", `translate(0, 49)`)
+				.append("text")
+				.classed("axislabel", true)
+				.attr("x", this.width - this.margin_w)
+				.attr("y", -15)
+				.text("Chapters");
 
 			this.waitupdate = false;
 		}
@@ -171,13 +175,35 @@ export default class UserView {
 			  .x((d,i)=>this.xscale(i) + band/2)
 			  .y(d=>this.sub_yscale(d.likes.length));
 
-		let likes = this.svg.select(".likegraph");
-		let ypos = this.height + this.innerpadding * this.clustered.length + this.subgraph_margintop;
+		let likes = this.svgbot.select(".likegraph");
+		let ypos = this.subgraph_margintop;
 		likes.attr("transform", `translate(0, ${ypos})`)
 		likes.append("path")
 			.classed("likeline", true)
 			.datum(this.chapterinfo)
 			.attr("d", likeline);
+
+		function makedot(i) {
+			let d = me.chapterinfo[i]
+			console.log(d)
+			let startdot = likes
+				.append("g")
+				.attr("transform", `translate(${me.xscale(i) + band/2}, ${me.sub_yscale(d.likes.length)})`);
+			startdot
+				.append("circle")
+				.attr("r", 2)
+				.classed("likelinedot", true)
+			startdot
+				.append("text")
+				.classed("likelinetext", true)
+				.attr("y", -2)
+				.text(d.likes.length)
+		}
+		// Add 2 dots, for start and end
+		makedot(0);
+		makedot(this.chapterinfo.length - 1);
+
+
 		likes.append("line")
 			.classed("bottomline", true)
 			.attr("x1", this.xscale(0) + band/2)
@@ -187,11 +213,11 @@ export default class UserView {
 		let subxaxis = 
 			likes.append("g")
 				.classed("subxaxis", true)
-				.call(this.subyaxis)
 				.attr("transform", "translate(12, 0)");
 		subxaxis
 			.append("text")
 			.classed("label", true)
+			.classed("label_likesperchapter", true)
 			.attr("text-anchor", "middle")
 			.attr("x", this.width / 2 - 12)
 			.attr("y", this.subgraph_height + 13)
