@@ -267,6 +267,8 @@ export default class PerDayView {
 	        .classed("transbars", true)
 	        .attr("height", this.height + this.margin_bottom)
 		    .on("mouseover", function(d, i){
+		    	if (myself.waitupdate)
+		    		return;
 		   		myself.svg.selectAll(".tooltip").style("display", "inherit");
 		   		d = myself.bindata[myself.binsize][i];
 		   		let sparkline_y = myself.sparklinescale(myself.sparkdata[i][1]);
