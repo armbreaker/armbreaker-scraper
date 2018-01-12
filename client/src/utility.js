@@ -1,5 +1,5 @@
 "use strict";
-import format from 'date-fns/format';
+import { DateTime } from "luxon";
 
 // keyfunc is applied to each object before comparing.
 export function arrmin(arr, keyfunc) {
@@ -72,21 +72,19 @@ export function n_digits(x, n) {
 	return Math.floor(e * x) / e;
 }
 
-// for a "2017-07-23T22:23:52+00:00" format timestamp,
-// strip TZ and insert into Date obj. Because
-// Date sucks.
-export function stripTimezone(timestr) {
-	let s = timestr.split("+")[0];
-	return new Date(s);
-}
-
-// accept a Date obj, return YYYY-MM-DD
+// accept a luxon DateTime obj, return YYYY-MM-DD
 export function getDateString(date) {
-	return format(date, "YYYY-MM-DD");
+	return date.toFormat("yyyy-MM-dd");
 }
 
 export function getDateRangeString(datestart, dateend) {
-	return `${format(datestart, "YYYY-MM-DD")}\n${format(dateend, "YYYY-MM-DD")}`;
+	return `${datestart.toFormat("yyyy-MM-dd")}\n${dateend.toFormat("yyyy-MM-dd")}`;
+}
+
+// Passing data between worker and main thread
+// strips the DateTime class. Re-add it.
+export function reTypifyDatetime(date) {
+	return DateTime.fromMillis(date.ts, {zone: "utc"})
 }
 
 // set all times to same date

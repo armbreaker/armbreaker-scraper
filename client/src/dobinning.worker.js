@@ -1,9 +1,5 @@
 import * as util from "utility";
-import startOfDay from "date-fns/start_of_day";
-import addDays from 'date-fns/add_days';
-import isBefore from 'date-fns/is_before';
-import differenceInDays from 'date-fns/difference_in_days';
-
+import { DateTime } from "luxon";
 
 let timedata = null;
 let mintime, maxtime;
@@ -20,22 +16,21 @@ function bin(binsize) {
 		setTimeout(()=>bin(binsize), 100);
 	// first, initialize each day.
 	let data = [];
-	let startdate = util.stripTimezone(mintime);
-	startdate = startOfDay(startdate);
-	let enddate = util.stripTimezone(maxtime);
-	enddate = startOfDay(enddate);
+	let startdate = DateTime.fromISO(mintime, {setZone: true});
+	startdate = startdate.startOf("day");
+	let enddate = DateTime.fromISO(maxtime, {setZone: true});
+	enddate = enddate.startOf("day");
 
-	let nextday = addDays(startdate, binsize);
-	while (isBefore(nextday, enddate)) {
+	let nextday = startdate.plus({days: binsize});
+	while (nextday < enddate) {
 		let dstart = startdate;
 		let dend   = nextday;
-		let s1 = util.getDateString(dstart);
-		let s2 = util.getDateString(dend);
 		data.push({start: dstart, 
 					 end: dend,
 				 	 count: 0,
 				 	 string: util.getDateRangeString(dstart, dend)});
-		nextday = addDays(nextday, binsize);
+		startdate = nextday
+		nextday = nextday.plus({days: binsize});
 	}
 
 	data.push({start: startdate, 
@@ -44,7 +39,7 @@ function bin(binsize) {
 			 	 string: util.getDateRangeString(startdate, enddate)});
 
 	for (let time of timedata) {
-		let day = util.stripTimezone(time);
+		let day = DateTime.fromISO(time, {setZone: true});
 		for(let bin of data) {
 			if (bin.start <= day && day <= bin.end) {
 				bin.count += 1;
@@ -57,7 +52,7 @@ function bin(binsize) {
 	for (let i = 0; i < data.length; i++) {
 		let d = data[i];
 		if (i == data.length - 1) {
-   			let days = differenceInDays(d.end, d.start, "days");
+   			let days = d.end.diff(d.start, "days").days;
    			if (days != binsize){
 	   			d.adj = d.count / days * binsize;
 	   			d.adj = d.count + (d.adj - d.count) * .5 // discount estimate

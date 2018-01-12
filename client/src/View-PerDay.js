@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import * as moment from "moment";
 import * as util from "utility";
 import BinWorker from "./dobinning.worker.js";
+import { DateTime } from "luxon";
 
 // the likes per day view
 export default class PerDayView {
@@ -19,7 +20,13 @@ export default class PerDayView {
 	}
 
 	binCallback(data) {
-		this.data = data;
+		// convert back to DateTime objects
+		this.data = data.map(d=>{
+			d.start = util.reTypifyDatetime(d.start);
+			d.end = util.reTypifyDatetime(d.end);
+			return d
+		});	
+
 		// also create sparkline data.
 		this.totallikes = util.arrsum(this.data, d=>d.count);
 		this.sparkdata = [];
