@@ -21,13 +21,15 @@ function init() {
 // Initialize everything.
 function setup() {
 	d3.select("#title h1").text(dataset.name);
-	var views = [
-		new PerDayView(),
-		new UserView(),
-		new FirstImpressionsView()
-	]
-	for (let view of views) {
-		view.setup(dataset);
-		view.update();
-	}
+	setTimeout(()=>{
+		var views = [
+			new PerDayView(),
+			new UserView(),
+			new FirstImpressionsView()
+		]
+		for (let view of views) {
+			view.setup(dataset);
+			view.update();
+		}
+	}, 0);
 }
