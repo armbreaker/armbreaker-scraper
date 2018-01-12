@@ -214,10 +214,8 @@ export default class PerDayView {
     		.callback(()=>{
     			let val = this.slider.value();
     			val = binFromSlider(val);
-    			if (this.alltimes.length / val >= 1) {
-		    		this.bin(this.slider.value());
-		    		this.update();
-    			}
+	    		this.bin(val);
+	    		this.update();
 	    	});
 
 	    // Hook up controls.
