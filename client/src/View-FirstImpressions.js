@@ -70,6 +70,8 @@ export default class FirstImpressionsView {
 					break;
 				}
 			}
+			// Add one more like at the end of the timeframe
+			obj.cappedlikes.push({userid:"", username:"", time:obj.time.plus(Duration.fromObject({milliseconds:totalduration / 2}))})
 			// make area generator
 			obj.markscale = d3.scaleLinear()
 				.domain([0, obj.likes.length])
@@ -83,6 +85,9 @@ export default class FirstImpressionsView {
 			data.push(obj);
 		}
 		this.data = data;
+
+		this.svg.select(".yaxis")
+		   .call(this.yaxis);
 	}
 
 	setWindow(windowsize) {
@@ -93,6 +98,12 @@ export default class FirstImpressionsView {
 	// change timezone for axis (default UTC+0)
 	setTimezone(timezone) {
 		this.timezone = timezone;
+		this.generateShapes();
+	}
+
+	// how many days after posting to track impressions of 
+	setWindowSize(window) {
+		this.windowsize = window;
 		this.generateShapes();
 	}
 
@@ -124,14 +135,12 @@ export default class FirstImpressionsView {
 		}, 0)
 		
 
-		this.generateShapes(dataset);
+		this.generateShapes();
 
 		// Initialize
 		let svg = this.svg;
 		svg.select(".all")
 		   .attr("transform", `translate(${this.margin_w}, ${this.margin_top})`);
-		svg.select(".yaxis")
-		   .call(this.yaxis);
 
 	    this.drag = d3.drag()
 	    	.on("drag", d=>{
@@ -145,8 +154,8 @@ export default class FirstImpressionsView {
 	       .call(this.drag);
 
         // adding slider...
-		this.binsizes    = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
-		this.sliderticks = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
+		this.binsizes    = [1, 2, 3, 7, 14];
+		this.sliderticks = [1, 2, 3, 7, 14];
 		var sliderFromBin = val=>{
 			let i = this.binsizes.indexOf(val);
 			return this.sliderticks[i];
@@ -159,9 +168,9 @@ export default class FirstImpressionsView {
 
 		let slidertickformat = (d)=>{
 			d = binFromSlider(d);
-			if (d <= 48)
-				return d + " hours";
-			return d/24 + " days";
+			if (d <= 2)
+				return (d * 24) + " hours";
+			return d + " days";
 		}
 
     	this.slider = d3
@@ -175,10 +184,8 @@ export default class FirstImpressionsView {
     		.callback(()=>{
     			let val = this.slider.value();
     			val = binFromSlider(val);
-    			if (this.alltimes.length / val >= 1) {
-		    		// this.bin(val);
-		    		// this.update();
-    			}
+	    		this.setWindowSize(val);
+	    		this.update();
 	    	});
 
 	    // Hook up controls.
@@ -199,7 +206,7 @@ export default class FirstImpressionsView {
 		let lastlike = datum.cappedlikes[numlikes - 1];
 		let tail_start = this.yscale(lastlike.time.diff(datum.time).as("milliseconds"));
 		let time_above_cap = datum.time.diff(datum.time.startOf("day")).as("milliseconds");
-		let tail_end = this.yscale(Duration.fromObject({day:2}).as("milliseconds") - time_above_cap);
+		let tail_end = this.yscale(Duration.fromObject({day:this.windowsize * 2}).as("milliseconds") - time_above_cap);
 		let half_width = datum.markscale(numlikes) * 0.5;
 		let half_final = 0.5 * this.markwidth;
 
@@ -214,32 +221,38 @@ export default class FirstImpressionsView {
 		let me = this;
 		let sel = this.svg.select(".marks")
 			.selectAll(".mark")
-			.data(this.data);
-		sel.enter()
+			.data(this.data, (d,i)=>i);
+		sel.exit().remove();
+		let enter = sel.enter()
 		   .append("g")
-		   .classed("mark", true)
+		   .classed("mark", true);
+		enter
+			.append("path")
+			.classed("longtail", true);
+		enter
+			.append("path")
+			.classed("markpath", true);
+		enter
+			.append("circle")
+			.classed("markcap", true)
+	       .attr("cx", 0)
+	       .attr("cy", 0)
+	       .attr("r", 2.5)
+
+		sel = enter.merge(sel);
+		sel
 		   .attr("transform", (d,i)=>{
 		   		let dur = d.time.diff(d.time.startOf("day")).as("milliseconds");
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
-		   .each(function(d, i) {
-		   		let sel = d3.select(this);
-		   		// Draw the long tail
-		   		sel.append("path")
-		   		   .classed("longtail", true)
-		   		   // four corners, starting top-left
-		   		   .attr("d", me.drawLongtail(d));
-
-		   		// append the main mark
-		   		sel.append("path")
-		   		   .classed("markpath", true)
-		   		   .attr("d", d.areagen(d.cappedlikes));
-	   		    // append the start time
-	   		    sel.append("circle")
-	   		       .classed("markcap", true)
-	   		       .attr("cx", 0)
-	   		       .attr("cy", 0)
-	   		       .attr("r", 2.5);
-		   });
+			.each(function(d){
+				let el = d3.select(this);
+				el
+					.select(".longtail")
+					.attr("d", me.drawLongtail(d));
+				el
+					.select(".markpath")
+					.attr("d", d.areagen(d.cappedlikes));
+			});
 	}
 }
