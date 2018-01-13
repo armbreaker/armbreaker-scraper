@@ -46,5 +46,5 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("bundle.css")
   ],
-  externals: ["d3", "moment"]
+  externals: ["d3"]
 };

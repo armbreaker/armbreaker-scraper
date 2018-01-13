@@ -1,7 +1,6 @@
 "use strict";
 
 import * as d3 from "d3";
-import * as moment from "moment";
 import * as util from "utility";
 import ClusterWorker from "./docluster.worker.js";
 

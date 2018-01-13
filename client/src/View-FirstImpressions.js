@@ -1,24 +1,25 @@
 "use strict";
 
 import * as d3 from "d3";
-import moment from "moment";
-import "moment-timezone";
 import * as util from "utility";
 import timezones from "timezone-array";
 import Dropdown from "FilterableDropdownModal";
+import {DateTime, Duration} from "luxon";
 
 // the likes over time for the first 24h view
 export default class FirstImpressionsView { 
 	constructor() {
-		this.margin_top = 30;
+		this.margin_top = 30; 
 		this.margin_bottom = 30;
-		this.margin_w = 25;
+		this.margin_w = 55;
 		this.width  = 800 - this.margin_w;
 		this.height = 350 - this.margin_top - this.margin_bottom;
 		this.markwidth = 50;
 		this.markmargin = 5;
 		this.scroll = 0; // amount scrolls
 		this.terminalheight = 20; // how much below 48 hours to draw terminal width
+		this.timezone = "utc";
+		this.windowsize = 1; // in days
 	}
 
 	resize() {
@@ -27,6 +28,61 @@ export default class FirstImpressionsView {
 
 	// Regenerate shapes and axes
 	generateShapes() {
+		// Create scales and axes
+		let totalduration = Duration.fromObject({days:this.windowsize * 2}).as("milliseconds");
+		let onetick = Duration.fromObject({days:this.windowsize * 2}).as("milliseconds") / 24;
+		this.yscale = d3.scaleLinear()
+			.domain([0, totalduration])
+			.range([0, this.height]);
+		let ticks = [];
+		for (let i = 0; i < 24; i++) {
+			ticks.push(i * onetick);
+		}
+		this.yaxis = d3.axisLeft(this.yscale)
+			.tickValues(ticks)
+			.tickFormat(d=>DateTime.fromObject({year:2015, month:1, day:1, zone:this.timezone}).plus(Duration.fromMillis(d)).toFormat("d'd'hha"));
+		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
+
+		// Want to extract pertinent information
+		let posts = this.dataset.posts.posts;
+		let data = [];
+		for (let post of posts) {
+			let obj = {};
+			obj.time = DateTime.fromISO(post.time, {zone:this.timezone});
+			obj.title = post.title;
+			let likes = [];
+			for (let like_src of post.likes.likes) {
+				let like_dst = {};
+				like_dst.userid = like_src.user.id;
+				like_dst.username = like_src.user.name;
+				like_dst.time = like_src.time;
+				likes.push(like_dst);
+			}
+			util.arrsort(likes, false, d=>d.time);
+			for (let like of likes)
+				like.time = DateTime.fromISO(like.time, {zone:this.timezone});
+			obj.likes = likes;
+			// find only likes that are within 24h
+			for (let i = 0; i < obj.likes.length; i++) {
+				let like = obj.likes[i];
+				if (like.time.diff(obj.time).as("milliseconds") >= totalduration / 2) {
+					obj.cappedlikes = obj.likes.slice(0, i);
+					break;
+				}
+			}
+			// make area generator
+			obj.markscale = d3.scaleLinear()
+				.domain([0, obj.likes.length])
+				.range([0, this.markwidth]);
+
+			obj.areagen = d3.area()
+				.x0((d,i)=>-0.5 * obj.markscale(i))
+				.x1((d,i)=> 0.5 * obj.markscale(i))
+				.y0((d,i)=>this.yscale(d.time.diff(obj.time).as("milliseconds")))
+				.y1((d,i)=>this.yscale(d.time.diff(obj.time).as("milliseconds")));
+			data.push(obj);
+		}
+		this.data = data;
 	}
 
 	setWindow(windowsize) {
@@ -42,82 +98,33 @@ export default class FirstImpressionsView {
 
 	setup(dataset) {
 		this.svg = d3.select("#firstimpressionview");
+		this.dataset = dataset;
 		// Populate timezone list.
-		let timezonedata = timezones.map(d=>{
-			let o = [d, null];
-			let offset = -moment.tz.zone(d).utcOffset(0);
-			let offsethrs = Math.floor(Math.abs(offset) / 60);
-			let offsetmin = Math.floor(Math.abs(offset) % 60);
-			let hrsstr = String(Math.abs(offsethrs)).padStart(2, 0);
-			let minstr = String(Math.abs(offsetmin)).padStart(2, 0);
-			if (offset >= 0)
-				o[1] = `(UTC+${hrsstr}:${minstr}) ${d}`;
-			else
-				o[1] = `(UTC–${hrsstr}:${minstr}) ${d}`;
-			return o;
-		}); 
-		timezonedata = util.arrsort(timezonedata, false, d=>-moment.tz.zone(d[0]).utcOffset(0));
-		let dropdown = new Dropdown(timezonedata, "#timezones");
-		dropdown.setup();
-		dropdown.setdefault_value("Europe/Dublin");
+		setTimeout(()=>{
+			let timezonedata = timezones.map(d=>{
+				let o = [d, null];
+				let offset = DateTime.fromObject({year:2017, zone:d}).offset;
+				if (Number.isNaN(offset))
+					return null;
+				let offsethrs = Math.floor(Math.abs(offset) / 60);
+				let offsetmin = Math.floor(Math.abs(offset) % 60);
+				let hrsstr = String(Math.abs(offsethrs)).padStart(2, 0);
+				let minstr = String(Math.abs(offsetmin)).padStart(2, 0);
+				if (offset >= 0)
+					o[1] = `(UTC+${hrsstr}:${minstr}) ${d}`;
+				else
+					o[1] = `(UTC–${hrsstr}:${minstr}) ${d}`;
+				return o;
+			});
+			timezonedata = timezonedata.filter(d=>d!=null)
+			timezonedata = util.arrsort(timezonedata, false, d=>DateTime.fromObject({year:2017, zone:d[0]}).offset);
+			let dropdown = new Dropdown(timezonedata, "#timezones");
+			dropdown.setup();
+			dropdown.setdefault_value("Etc/UTC");
+		}, 0)
+		
 
-		this.windowsize = 24;
-		this.timezone = 0;
-		this.generateShapes();
-
-		// Create scales and axes
-		this.yscale = d3.scaleLinear()
-			.domain([0, moment.duration(2, "days").asMilliseconds()])
-			.range([0, this.height]);
-		let ticks = [];
-		for (let i = 0; i < 24; i++) {
-			ticks.push(i * moment.duration(2, "hours").asMilliseconds());
-		}
-		this.yaxis = d3.axisLeft(this.yscale)
-			.tickValues(ticks)
-			.tickFormat(d=>moment({y:2015, M:1, d:15}).add(d, "ms").format("HH"));
-		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
-
-		// Want to extract pertinent information
-		let posts = dataset.posts.posts;
-		let data = [];
-		for (let post of posts) {
-			let obj = {};
-			obj.time = moment(post.time);
-			obj.title = post.title;
-			let likes = [];
-			for (let like_src of post.likes.likes) {
-				let like_dst = {};
-				like_dst.userid = like_src.user.id;
-				like_dst.username = like_src.user.name;
-				like_dst.time = like_src.time;
-				likes.push(like_dst);
-			}
-			util.arrsort(likes, false, d=>d.time);
-			for (let like of likes)
-				like.time = moment(like.time);
-			obj.likes = likes;
-			// find only likes that are within 24h
-			for (let i = 0; i < obj.likes.length; i++) {
-				let like = obj.likes[i];
-				if (like.time.diff(obj.time) >= moment.duration(1, "day").asMilliseconds()) {
-					obj.cappedlikes = obj.likes.slice(0, i);
-					break;
-				}
-			}
-			// make area generator
-			obj.markscale = d3.scaleLinear()
-				.domain([0, obj.likes.length])
-				.range([0, this.markwidth]);
-
-			obj.areagen = d3.area()
-				.x0((d,i)=>-0.5 * obj.markscale(i))
-				.x1((d,i)=> 0.5 * obj.markscale(i))
-				.y0((d,i)=>this.yscale(d.time.clone().diff(obj.time)))
-				.y1((d,i)=>this.yscale(d.time.clone().diff(obj.time)));
-			data.push(obj);
-		}
-		this.data = data;
+		this.generateShapes(dataset);
 
 		// Initialize
 		let svg = this.svg;
@@ -138,7 +145,7 @@ export default class FirstImpressionsView {
 	       .call(this.drag);
 
         // adding slider...
-		this.binsizes = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
+		this.binsizes    = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
 		this.sliderticks = [24, 24 * 2, 24 * 3, 24 * 7, 24 * 14];
 		var sliderFromBin = val=>{
 			let i = this.binsizes.indexOf(val);
@@ -169,7 +176,7 @@ export default class FirstImpressionsView {
     			let val = this.slider.value();
     			val = binFromSlider(val);
     			if (this.alltimes.length / val >= 1) {
-		    		// this.bin(this.slider.value());
+		    		// this.bin(val);
 		    		// this.update();
     			}
 	    	});
@@ -190,9 +197,9 @@ export default class FirstImpressionsView {
 			.curve(d3.curveBasis);
 		let numlikes = datum.cappedlikes.length;
 		let lastlike = datum.cappedlikes[numlikes - 1];
-		let tail_start = this.yscale(lastlike.time.clone().diff(datum.time));
-		let time_above_cap = util.makeTimeOnlyMoment(datum.time).diff(moment("2015-01-15"));
-		let tail_end = this.yscale(moment.duration(2, "day").asMilliseconds() - time_above_cap);
+		let tail_start = this.yscale(lastlike.time.diff(datum.time).as("milliseconds"));
+		let time_above_cap = datum.time.diff(datum.time.startOf("day")).as("milliseconds");
+		let tail_end = this.yscale(Duration.fromObject({day:2}).as("milliseconds") - time_above_cap);
 		let half_width = datum.markscale(numlikes) * 0.5;
 		let half_final = 0.5 * this.markwidth;
 
@@ -212,7 +219,7 @@ export default class FirstImpressionsView {
 		   .append("g")
 		   .classed("mark", true)
 		   .attr("transform", (d,i)=>{
-		   		let dur = util.makeTimeOnlyMoment(d.time).diff(moment("2015-01-15"));
+		   		let dur = d.time.diff(d.time.startOf("day")).as("milliseconds");
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
 		   .each(function(d, i) {
