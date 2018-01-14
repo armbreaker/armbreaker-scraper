@@ -9,7 +9,7 @@ import {DateTime, Duration} from "luxon";
 // the likes over time for the first 24h view
 export default class FirstImpressionsView { 
 	constructor() {
-		this.margin_top = 30; 
+		this.margin_top = 50; 
 		this.margin_bottom = 30;
 		this.margin_w = 55;
 		this.width  = 800 - this.margin_w;
@@ -114,6 +114,7 @@ export default class FirstImpressionsView {
 	}
 
 	setup(dataset) {
+		let me = this;
 		this.svg = d3.select("#firstimpressionview");
 		this.dataset = dataset;
 		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
@@ -144,6 +145,15 @@ export default class FirstImpressionsView {
 		
 
 		this.generateShapes();
+
+
+		this.fillcolor = "rgba(255, 218, 96, 1.0)";
+		// find max
+		let max = util.arrmax(this.dataset.posts.posts, d=>d.likes.likes.length).likes.likes.length;
+		let min = util.arrmin(this.dataset.posts.posts, d=>d.likes.likes.length).likes.likes.length;
+		this.opacityscale = d3.scaleLinear()
+			.domain([min, max])
+			.range([0.2, 1.0]);
 
 		// Initialize
 		let svg = this.svg;
@@ -191,6 +201,7 @@ export default class FirstImpressionsView {
     		.tickFormat(slidertickformat)
     		.callback(()=>{
     			let val = this.slider.value();
+    			me.svg.select(".tooltip").style("display", "none")
     			val = binFromSlider(val);
 	    		this.setWindowSize(val);
 	    		this.update();
@@ -255,14 +266,39 @@ export default class FirstImpressionsView {
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
 		sel
+			.on("mouseenter", function(d, i){
+		   		let dur = d.time.diff(d.time.startOf("day")).as("milliseconds");
+				d3.select(this)
+				  .select(".markpath")
+				  .style("stroke-width", "2px");
+				let g = me.svg
+				  .select(".tooltip")
+				  .style("display", null)
+				  .attr("transform", `translate(${me.xscale(i)},${me.yscale(dur)-4})`);
+				g
+				  .select(".line1")
+				  .text(d.title);
+			    g
+				  .select(".line2")
+				  .text(`(${d.likes.length})`);
+			})
+			.on("mouseout", function(){
+				d3.select(this)
+				  .select(".markpath")
+				  .style("stroke-width", null);	
+			})
 			.each(function(d){
 				let el = d3.select(this);
 				el
 					.select(".longtail")
 					.attr("d", me.drawLongtail(d));
+				let fill = d3.hsl(me.fillcolor);
+				fill.opacity = me.opacityscale(d.likes.length);
+				fill.s = me.opacityscale(d.likes.length);
 				el
 					.select(".markpath")
-					.attr("d", d.areagen(d.cappedlikes));
+					.attr("d", d.areagen(d.cappedlikes))
+					.style("fill", fill)
 			});
 	}
 }

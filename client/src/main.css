@@ -237,7 +237,6 @@ text {
 .markpath {
 	stroke-width: 1px;
 	stroke: #000;
-	fill: rgba(0, 0, 0, 0.1);
 }
 
 .longtail {
@@ -262,4 +261,9 @@ text {
 
 #firstimpressions_windowslider .draggertext {
 	opacity: 0;
+}
+
+#firstimpressionview .tooltip text {
+	text-anchor: middle;
+	font-size: 10pt;
 }
