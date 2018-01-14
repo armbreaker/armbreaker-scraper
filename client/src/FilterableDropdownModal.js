@@ -141,6 +141,8 @@ export default class FilterableDropdownModal {
 		  .text(this.selected===null?"":this.selected[1]);
 		if (skipfocus !== true)
 			s._groups[0][0].focus();
+		if (this.callback)
+			this.callback(this.selected[0])
 	}
 
 	// Set the default selected value by data index

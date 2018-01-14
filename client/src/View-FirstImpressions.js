@@ -34,15 +34,8 @@ export default class FirstImpressionsView {
 		this.yscale = d3.scaleLinear()
 			.domain([0, totalduration])
 			.range([0, this.height]);
-		let ticks = [];
-		for (let i = 0; i < 24; i++) {
-			ticks.push(i * onetick);
-		}
-		this.yaxis = d3.axisLeft(this.yscale)
-			.tickValues(ticks)
-			.tickFormat(d=>DateTime.fromObject({year:2015, month:1, day:1, zone:this.timezone}).plus(Duration.fromMillis(d)).toFormat("d'd'hha"));
-		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
-
+		
+		this.drawAxis()
 		// Want to extract pertinent information
 		let posts = this.dataset.posts.posts;
 		let data = [];
@@ -85,9 +78,6 @@ export default class FirstImpressionsView {
 			data.push(obj);
 		}
 		this.data = data;
-
-		this.svg.select(".yaxis")
-		   .call(this.yaxis);
 	}
 
 	setWindow(windowsize) {
@@ -95,21 +85,38 @@ export default class FirstImpressionsView {
 		this.generateShapes();
 	}
 
+	drawAxis() {
+		let totalduration = 2 * 24 * 60 * 60 * 1000; // 2 days
+		let onetick = totalduration / 24; // 2 days/24 in milliseconds
+		let ticks = [];
+		for (let i = 0; i < 24; i++) {
+			ticks.push(i * onetick);
+		}
+		this.yaxis = d3.axisLeft(this.yscale)
+			.tickValues(ticks)
+			.tickFormat(d=>DateTime.fromISO("2015-01-01T00:00:00+00:00", {zone:this.timezone}).plus(Duration.fromMillis(d)).toFormat("d'd'hha"));
+
+		this.svg.select(".yaxis")
+		   .transition()
+		   .call(this.yaxis);
+	}
+
 	// change timezone for axis (default UTC+0)
 	setTimezone(timezone) {
 		this.timezone = timezone;
-		this.generateShapes();
+		this.drawAxis();
 	}
 
 	// how many days after posting to track impressions of 
-	setWindowSize(window) {
-		this.windowsize = window;
+	setWindowSize(windowsize) {
+		this.windowsize = windowsize;
 		this.generateShapes();
 	}
 
 	setup(dataset) {
 		this.svg = d3.select("#firstimpressionview");
 		this.dataset = dataset;
+		this.xscale = i=>(this.markwidth + this.markmargin) * i + 0.5 * this.markwidth;
 		// Populate timezone list.
 		setTimeout(()=>{
 			let timezonedata = timezones.map(d=>{
@@ -132,6 +139,7 @@ export default class FirstImpressionsView {
 			let dropdown = new Dropdown(timezonedata, "#timezones");
 			dropdown.setup();
 			dropdown.setdefault_value("Etc/UTC");
+			dropdown.callback = (d)=>this.setTimezone(d)
 		}, 0)
 		
 
@@ -241,10 +249,12 @@ export default class FirstImpressionsView {
 
 		sel = enter.merge(sel);
 		sel
-		   .attr("transform", (d,i)=>{
+			.transition()
+		    .attr("transform", (d,i)=>{
 		   		let dur = d.time.diff(d.time.startOf("day")).as("milliseconds");
 		   		return `translate(${this.xscale(i)},${this.yscale(dur)+4})`;
 			})
+		sel
 			.each(function(d){
 				let el = d3.select(this);
 				el
