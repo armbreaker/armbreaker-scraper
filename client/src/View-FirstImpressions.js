@@ -86,7 +86,7 @@ export default class FirstImpressionsView {
 	}
 
 	drawAxis() {
-		let totalduration = 2 * 24 * 60 * 60 * 1000; // 2 days
+		let totalduration = 2 * this.windowsize * 24 * 60 * 60 * 1000; // twice windowsize
 		let onetick = totalduration / 24; // 2 days/24 in milliseconds
 		let ticks = [];
 		for (let i = 0; i < 24; i++) {
