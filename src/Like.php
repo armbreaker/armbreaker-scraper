@@ -44,7 +44,6 @@ class Like implements \JsonSerializable {
   public $post;
 
   /**
-   *
    * @var bool
    */
   public $printMode = false;

@@ -30,12 +30,16 @@ use Slim\Http\Request as Request;
 use Slim\Http\Response as Response;
 
 /**
- * Description of ArmbreakerMaster
+ * This is our public view i.e., the website and API. It'll queue up stuff for
+ * the scrapers as well.
  *
  * @author sylae and skyyrunner
  */
 class ArmbreakerMaster extends ArmbreakerEntity {
 
+  /**
+   * Mostly this is setting up Slim.
+   */
   public function __construct() {
     parent::__construct();
 
@@ -72,6 +76,9 @@ class ArmbreakerMaster extends ArmbreakerEntity {
     $this->slim->run();
   }
 
+  /**
+   * @todo move the callables to their own functions.
+   */
   protected function setupEndpoints() {
     $this->slim->get('/', function (Request $request, Response $response, $args) {
       return $this->view->render($response, 'index.twig', []);

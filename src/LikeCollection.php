@@ -27,7 +27,7 @@
 namespace Armbreaker;
 
 /**
- * Description of LikeCollection
+ * Holds many likes
  *
  * @author sylae and skyyrunner
  */
@@ -44,13 +44,11 @@ class LikeCollection implements \Iterator, \Countable, \JsonSerializable {
   private $likes = [];
 
   /**
-   *
    * @var \Carbon\Carbon
    */
   public $earliest;
 
   /**
-   *
    * @var \Carbon\Carbon
    */
   public $latest;

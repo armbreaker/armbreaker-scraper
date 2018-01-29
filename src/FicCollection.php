@@ -27,7 +27,7 @@
 namespace Armbreaker;
 
 /**
- * Description of FicCollection
+ * Simple wrapper to hold multiple fics. Eventually maybe sorting and stuff?
  *
  * @author sylae and skyyrunner
  */
