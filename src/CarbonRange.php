@@ -57,6 +57,16 @@ class CarbonRange {
     }
   }
 
+  public function addRange(CarbonRange $new) {
+    if (is_null($this->earliest) || is_null($this->latest)) {
+      $this->earliest = clone $new->earliest;
+      $this->latest   = clone $new->latest;
+    } else {
+      $this->earliest = clone $new->earliest->min($this->earliest);
+      $this->latest   = clone $new->latest->max($this->latest);
+    }
+  }
+
   public function atomEarliest(): ?string {
     if ($this->earliest instanceof \Carbon\Carbon) {
       return $this->earliest->toAtomString();
