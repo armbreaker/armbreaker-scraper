@@ -10,6 +10,12 @@ body {
 #verticalflex {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+}
+
+.gear rect {
+	fill: rgba(238, 238, 238, 0.8);
+	stroke: none;
 }
 
 /* per day view */
@@ -38,7 +44,7 @@ body {
 	display: inherit;
 }
 
-#userview .axislabel {
+#userview_bot .axislabel, #userview_top .axislabel {
 	fill: #444;
 }
 
@@ -74,6 +80,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 600px;
 }
 
 #userviewcontainer h2 {
@@ -91,10 +98,23 @@ body {
 	stroke-width: 2px;
 }
 
+.axissvg .tick text {
+	display: none;
+}
+
 .likeline {
 	stroke: #4c568c;
 	stroke-width: 1pt;
 	fill: none;
+}
+
+.likelinedot {
+	fill: #4c568c;
+}
+
+.likelinetext {
+	font-size: 10px;
+	fill: #373f68;
 }
 
 .bottomline {
@@ -106,14 +126,8 @@ body {
 	fill: #000;
 }
 
-.boxes>.even {
-	stroke: rgba(57, 65, 105, 0.5);
-	fill: rgba(76, 86, 140, 0.2);
-}
-
-.boxes>.odd {
-	stroke: rgba(106, 141, 184, 0.5);
-	fill: rgba(140, 185, 242, 0.2);
+.label_likesperchapter {
+	font-size: 12px;
 }
 
 .clusterbox:hover {
@@ -121,8 +135,8 @@ body {
 	stroke: rgba(0, 0, 0, 1);
 }
 
-.userbar .barsquare {
-	fill: #4c568c;
+.canvascluster {
+	border: 2px solid black;
 }
 
 .dataline {
@@ -167,22 +181,36 @@ text {
 	font-family: "Open Sans", sans-serif;
 }
 
+.userviewdivs svg {
+	margin-bottom: 5px;
+}
+
 .userviewdivs {
-	float: left;
-	display:inline;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin-bottom: 10px;
+}
+
+#userviewdiv {
+	height: 551px;
+	overflow-y: auto;
 }
 
 #perdayviewdiv {
 	margin-bottom: 20px;
 }
 
+
 #userlist {
 	height: 450px;
 	overflow-y: auto;
-	margin-left: 3px;
 	border-top: 1px solid black;
 	width: 230px;
+}
+
+#userlistdiv {
+	margin-left: 20px;
 }
 
 #userlistdiv td:nth-child(2) {
@@ -209,7 +237,6 @@ text {
 .markpath {
 	stroke-width: 1px;
 	stroke: #000;
-	fill: rgba(0, 0, 0, 0.1);
 }
 
 .longtail {
@@ -234,4 +261,9 @@ text {
 
 #firstimpressions_windowslider .draggertext {
 	opacity: 0;
+}
+
+#firstimpressionview .tooltip text {
+	text-anchor: middle;
+	font-size: 10pt;
 }

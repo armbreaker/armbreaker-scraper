@@ -53,7 +53,7 @@ export default class FilterableDropdownModal {
 			.classed("filterabledropdown-hovered", true);
 	}
 
-	changeSelected(key){
+	changeSelected(key, skipfocus){
 		this.selindex = this.boundindex(key);
 		this.selected = this.accessData(key, this.data);
 		this.d3sel
@@ -63,7 +63,7 @@ export default class FilterableDropdownModal {
 			.select(`.filterabledropdown-option[key="${key}"]`)
 			.classed("filterabledropdown-prevselected", true);
 		this.changeHovered(key);
-		this.renderselected();
+		this.renderselected(skipfocus);
 	}
 
 	toggleModal(){
@@ -136,16 +136,18 @@ export default class FilterableDropdownModal {
 		this.renderselected();
 	}
 
-	renderselected() {
-		this.d3sel.select(".filterabledropdown-selected")
-		  .text(this.selected===null?"":this.selected[1])
-		  ._groups[0][0].focus();
+	renderselected(skipfocus) {
+		let s = this.d3sel.select(".filterabledropdown-selected")
+		  .text(this.selected===null?"":this.selected[1]);
+		if (skipfocus !== true)
+			s._groups[0][0].focus();
+		if (this.callback)
+			this.callback(this.selected[0])
 	}
 
 	// Set the default selected value by data index
 	setdefault_index(key) {
-		this.changeSelected(key);
-		this.renderselected();
+		this.changeSelected(key, true);
 	}
 
 	// Set the default selected value by matching values. Selects first matching.
@@ -252,6 +254,7 @@ export default class FilterableDropdownModal {
 				return v;
 			})
 			.text(this.selected===null?" ":this.selected[1]);
+
 		this.toggle = selbox
 			.append("div")
 			.classed("filterabledropdown-toggle", true)

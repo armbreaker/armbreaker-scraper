@@ -33,6 +33,10 @@ module.exports = {
           fallback: 'style-loader',
           use: 'css-loader'
         })
+      },
+      {
+        test: /\.worker\.js$/,
+        use: { loader: "worker-loader", options:{publicPath: "/js/", name:"[name].js"} }
       }
     ]
   },
@@ -42,5 +46,5 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("bundle.css")
   ],
-  externals: ["d3", "moment"]
+  externals: ["d3"]
 };

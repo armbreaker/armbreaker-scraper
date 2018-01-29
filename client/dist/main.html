@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Armbreaker Frontend</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
 	<script src="/js/bundle.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/bundle.css">
@@ -19,10 +18,10 @@
   gtag('config', 'UA-112170386-1');
 </script>
 <body>
-	<div id="title"><h1></h2></div>
+	<div id="title" tabindex="0"><h1></h2></div>
 	<div id="verticalflex">
 		<div id="perdayviewdiv">
-			<h2>Likes per day</h2>
+			<h2 tabindex="0" autofocus>Likes per day</h2>
 			<svg id="perdayview" width="815" height="460">
 				<rect height="460" width="815" style="fill:rgba(255,255,255,0)"></rect>
 				<g class="all">
@@ -34,25 +33,41 @@
 					<g class="bars"></g>
 					<g class="tooltip tooltiptext"></g>
 				</g>
+				<g class="gear" >
+					<rect width="815" height="460" rx="20" ry="20" style="pointer-events:none"></rect>
+					<image transform="translate(355, 180)" width="100" height="100" xlink:href="/client/gear.svg"/>
+				</g>
 			</svg>
 			<div id="bincontrols">
 				<div id="binslider"></div>
 			</div>
 		</div>
 		<div id="userviewcontainer">
-			<h2>User like patterns</h2>
+			<h2 tabindex="0">User likes by chapter</h2>
 			<div id="userview_centercontainer">
 				<div id="userviewdiv" class="userviewdivs">
-					<svg id="userview" width="600" height="650">
-						<g class="all">
-							<g class="axes">
-								<g class="yaxis"></g>
+					<div>
+						<svg id="userview_top" class="axissvg" width="550" height="50">
+							<g class="all">
+								<g class="axes">
+									<g class="yaxis"></g>
+								</g>
 							</g>
-							<g class="bars"></g>
-							<g class="boxes"></g>
-							<g class="likegraph"></g>
-						</g>
-					</svg>
+						</svg>
+					</div>
+					<div id="canvases">
+						<image id="userviewgear" width="100" height="100" src="/client/gear.svg"/>
+					</div>
+					<div>
+						<svg id="userview_bot" class="axissvg" width="550" height="150">
+							<g class="all">
+								<g class="axes">
+									<g class="yaxis"></g>
+								</g>
+								<g class="likegraph"></g>
+							</g>
+						</svg>
+					</div>
 				</div>
 				<div id="userlistdiv" class="userviewdivs" style="color: rgba(0,0,0,0)">
 					<h2>Details</h2>
@@ -73,13 +88,17 @@
 			</div>
 		</div>
 		<div id="firstimpressionsdiv">
-			<h2>First Impressions</h2>
+			<h2 tabindex="0">First Impressions</h2>
 			<div id="timezones"></div>
 			<svg id="firstimpressionview" width="800" height="350">
 				<rect class="drag_hitbox" width="800" height="350"></rect>
 				<g class="all">
 					<g class="marks_drag">
 						<g class="marks"></g>
+						<g class="tooltip" style="display:none">
+							<text class="line1" y="-14"></text>
+							<text class="line2"></text>
+						</g>
 					</g>
 					<g class="axes">
 						<g class="xaxis"></g>

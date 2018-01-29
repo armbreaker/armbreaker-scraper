@@ -1,4 +1,5 @@
 "use strict";
+import { DateTime } from "luxon";
 
 // keyfunc is applied to each object before comparing.
 export function arrmin(arr, keyfunc) {
@@ -71,24 +72,19 @@ export function n_digits(x, n) {
 	return Math.floor(e * x) / e;
 }
 
-export function getDate(timestr) {
-	return moment(timestr).startOf("day");
+// accept a luxon DateTime obj, return YYYY-MM-DD
+export function getDateString(date) {
+	return date.toFormat("yyyy-MM-dd");
 }
 
-// accept a Moment obj, return YYYY-MM-DD
-export function getDateString(moment) {
-	return moment.format("YYYY-MM-DD");
+export function getDateRangeString(datestart, dateend) {
+	return `${datestart.toFormat("yyyy-MM-dd")}\n${dateend.toFormat("yyyy-MM-dd")}`;
 }
 
-export function getDateRangeString(moment_start, moment_end) {
-	return `${moment_start.format("YYYY-MM-DD")}\n${moment_end.format("YYYY-MM-DD")}`;
-}
-
-// set all times to same date
-export function makeTimeOnlyMoment(timestr) {
-	let m = moment(timestr);
-	m.year(2015).month(0).date(15).day("Thursday");
-	return m;
+// Passing data between worker and main thread
+// strips the DateTime class. Re-add it.
+export function reTypifyDatetime(date) {
+	return DateTime.fromMillis(date.ts, {zone: "utc"})
 }
 
 // good ol' text width estimator. i seriously use this everywhere

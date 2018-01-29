@@ -55,6 +55,30 @@ class PostCollection implements \Iterator, \Countable, \JsonSerializable {
    */
   public $latest;
 
+  /**
+   *
+   * @var \Carbon\Carbon
+   */
+  public $earliestCh;
+
+  /**
+   *
+   * @var \Carbon\Carbon
+   */
+  public $latestCh;
+
+  /**
+   *
+   * @var \Carbon\Carbon
+   */
+  public $earliestLi;
+
+  /**
+   *
+   * @var \Carbon\Carbon
+   */
+  public $latestLi;
+
   public function addPost(Post $post): void {
     $this->posts[] = $post;
     $this->setRange();
@@ -67,9 +91,13 @@ class PostCollection implements \Iterator, \Countable, \JsonSerializable {
       return;
     }
     foreach ($this->posts as $post) {
-      $this->earliest = clone $post->time->min($this->earliest);
-      $this->latest   = clone $post->time->max($this->latest);
+      $this->earliestCh = clone $post->time->min($this->earliestCh);
+      $this->latestCh   = clone $post->time->max($this->latestCh);
+      $this->earliestLi = clone $post->likes->earliest->min($this->earliestLi);
+      $this->latestLi   = clone $post->likes->latest->max($this->latestLi);
     }
+    $this->earliest = clone $this->earliestCh->min($this->earliestLi);
+    $this->latest   = clone $this->latestCh->max($this->latestLi);
   }
 
   public function jsonSerialize() {
@@ -79,11 +107,23 @@ class PostCollection implements \Iterator, \Countable, \JsonSerializable {
       $earliest = $this->earliest->toAtomString();
       $latest   = $this->latest->toAtomString();
     }
+    $chRange = ['earliest' => null, 'latest' => null];
+    if ($this->earliestCh instanceof \Carbon\Carbon && $this->latestCh instanceof \Carbon\Carbon) {
+      $chRange['earliest'] = $this->earliestCh->toAtomString();
+      $chRange['latest']   = $this->latestCh->toAtomString();
+    }
+    $liRange = ['earliest' => null, 'latest' => null];
+    if ($this->earliestLi instanceof \Carbon\Carbon && $this->latestLi instanceof \Carbon\Carbon) {
+      $liRange['earliest'] = $this->earliestLi->toAtomString();
+      $liRange['latest']   = $this->latestLi->toAtomString();
+    }
 
     return [
-        'earliest' => $earliest,
-        'latest'   => $latest,
-        'posts'    => $this->posts,
+        'earliest'   => $earliest,
+        'latest'     => $latest,
+        'rangeLikes' => $liRange,
+        'rangePosts' => $chRange,
+        'posts'      => $this->posts,
     ];
   }
 
