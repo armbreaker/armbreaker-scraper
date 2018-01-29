@@ -13,5 +13,6 @@ cd ..
 mkdir -p css
 mkdir -p js
 
+cp client/src/ js/
 cp client/dist/bundle.css css/bundle.css
 cp client/dist/bundle.js js/bundle.js
