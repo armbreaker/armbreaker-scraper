@@ -7,7 +7,7 @@ git submodule update
 
 cd client
 npm install
-npm build
+npm run-script build
 cd ..
 
 mkdir -p css
