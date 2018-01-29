@@ -57,4 +57,18 @@ class CarbonRange {
     }
   }
 
+  public function atomEarliest(): ?string {
+    if ($this->earliest instanceof \Carbon\Carbon) {
+      return $this->earliest->toAtomString();
+    }
+    return null;
+  }
+
+  public function atomLatest(): ?string {
+    if ($this->latest instanceof \Carbon\Carbon) {
+      return $this->latest->toAtomString();
+    }
+    return null;
+  }
+
 }
