@@ -58,6 +58,9 @@ class CarbonRange {
   }
 
   public function addRange(CarbonRange $new) {
+    if (is_null($new->earliest) || is_null($new->latest)) {
+      return;
+    }
     if (is_null($this->earliest) || is_null($this->latest)) {
       $this->earliest = clone $new->earliest;
       $this->latest   = clone $new->latest;
