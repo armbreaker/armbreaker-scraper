@@ -27,7 +27,7 @@
 namespace Armbreaker;
 
 /**
- * Description of FicScraper
+ * This is the messy bit. Scrape SB and return info to parse.
  *
  * @author sylae and skyyrunner
  */
@@ -37,17 +37,23 @@ class FicScraper extends Fic {
   const SB_LIKES = "https://forums.spacebattles.com/posts/%s/likes?page=%s";
 
   /**
-   * Whether or not to introduce delays for reasons
+   * Whether or not to introduce delays for reasons (basically pls dont ddos sb
+   * by mistake)
    * @var bool
    */
   public $sleppy = true;
 
   /**
-   *
+   * Just holding data here dont mind me.
    * @var string
    */
   private $rss;
 
+  /**
+   * Constructor
+   * @param int $id SB topic ID to scrape.
+   * @todo dont call child methods, let ArmbreakerScraper do that for you :v
+   */
   public function __construct(int $id) {
     Log::l()->info("Scraping ficID $id");
     ini_set('user_agent', "sylae/armbreaker (https://github.com/sylae/armbreaker");
@@ -59,6 +65,9 @@ class FicScraper extends Fic {
     $this->updateChapters();
   }
 
+  /**
+   * Get our chapter information from the topic's RSS information.
+   */
   public function scrapePostInfo() {
     $posts = [];
     \qp($this->rss, 'item')->each(function(int $index, \DOMElement $item) use (&$posts) {
@@ -78,12 +87,19 @@ class FicScraper extends Fic {
     }
   }
 
+  /**
+   * foreach wrapper around updateChapter :v
+   */
   public function updateChapters() {
     foreach ($this->posts as $post) {
       $this->updateChapter($post);
     }
   }
 
+  /**
+   * Scrape a particular post's likes and add them to the DB.
+   * @param \Armbreaker\Post $post
+   */
   public function updateChapter(Post $post) {
     $likes      = [];
     $page       = 1;
@@ -119,17 +135,34 @@ class FicScraper extends Fic {
     }
   }
 
+  /**
+   * Get data. includes a sleppy so we don't ddos SB.
+   * @param string $url
+   * @return string
+   * @todo error checking
+   */
   private function get(string $url): string {
     $this->slep();
     return file_get_contents($url);
   }
 
+  /**
+   * sleep for between 1 and 2.5 seconds.
+   * @todo config option
+   * @return void
+   */
   private function slep(): void {
     if ($this->sleppy) {
       usleep(random_int(1000, 2500) * 1000);
     }
   }
 
+  /**
+   * Spacebattles sends us dates in...weird formats. Standardize and parse them.
+   * @param \QueryPath\DOMQuery $qp
+   * @return \Carbon\Carbon
+   * @throws \LogicException
+   */
   private function unfuckDates(\QueryPath\DOMQuery $qp): \Carbon\Carbon {
     if ($qp->is("span")) {
       $obj = new \Carbon\Carbon(str_replace(" at", "", $qp->attr("title")), "America/New_York");
@@ -142,6 +175,11 @@ class FicScraper extends Fic {
     return $obj;
   }
 
+  /**
+   * Turn a messy username/string into a nice integer
+   * @param string $uid
+   * @return int
+   */
   private function unfuckUserID(string $uid): int {
     $matches = [];
     preg_match("/\\.(\\d+)\\//i", $uid, $matches);

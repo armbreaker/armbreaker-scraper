@@ -44,85 +44,46 @@ class PostCollection implements \Iterator, \Countable, \JsonSerializable {
   private $posts = [];
 
   /**
-   *
-   * @var \Carbon\Carbon
+   * @var CarbonRange
    */
-  public $earliest;
+  public $timeRange;
 
   /**
-   *
-   * @var \Carbon\Carbon
+   * @var CarbonRange
    */
-  public $latest;
+  public $timeRangeChapters;
 
   /**
-   *
-   * @var \Carbon\Carbon
+   * @var CarbonRange
    */
-  public $earliestCh;
+  public $timeRangeLikes;
 
-  /**
-   *
-   * @var \Carbon\Carbon
-   */
-  public $latestCh;
-
-  /**
-   *
-   * @var \Carbon\Carbon
-   */
-  public $earliestLi;
-
-  /**
-   *
-   * @var \Carbon\Carbon
-   */
-  public $latestLi;
+  public function __construct() {
+    $this->timeRange         = new CarbonRange();
+    $this->timeRangeChapters = new CarbonRange();
+    $this->timeRangeLikes    = new CarbonRange();
+  }
 
   public function addPost(Post $post): void {
     $this->posts[] = $post;
-    $this->setRange();
-  }
-
-  private function setRange() {
-    if (count($this->posts) == 1) {
-      $this->earliest = clone $this->posts[0]->time;
-      $this->latest   = clone $this->posts[0]->time;
-      return;
-    }
-    foreach ($this->posts as $post) {
-      $this->earliestCh = clone $post->time->min($this->earliestCh);
-      $this->latestCh   = clone $post->time->max($this->latestCh);
-      $this->earliestLi = clone $post->likes->earliest->min($this->earliestLi);
-      $this->latestLi   = clone $post->likes->latest->max($this->latestLi);
-    }
-    $this->earliest = clone $this->earliestCh->min($this->earliestLi);
-    $this->latest   = clone $this->latestCh->max($this->latestLi);
+    $this->timeRangeChapters->addDate($post->time);
+    $this->timeRangeLikes->addRange($post->likes->timeRange);
+    $this->timeRange->addRange($this->timeRangeChapters);
+    $this->timeRange->addRange($this->timeRangeLikes);
   }
 
   public function jsonSerialize() {
-    $earliest = null;
-    $latest   = null;
-    if ($this->earliest instanceof \Carbon\Carbon && $this->latest instanceof \Carbon\Carbon) {
-      $earliest = $this->earliest->toAtomString();
-      $latest   = $this->latest->toAtomString();
-    }
-    $chRange = ['earliest' => null, 'latest' => null];
-    if ($this->earliestCh instanceof \Carbon\Carbon && $this->latestCh instanceof \Carbon\Carbon) {
-      $chRange['earliest'] = $this->earliestCh->toAtomString();
-      $chRange['latest']   = $this->latestCh->toAtomString();
-    }
-    $liRange = ['earliest' => null, 'latest' => null];
-    if ($this->earliestLi instanceof \Carbon\Carbon && $this->latestLi instanceof \Carbon\Carbon) {
-      $liRange['earliest'] = $this->earliestLi->toAtomString();
-      $liRange['latest']   = $this->latestLi->toAtomString();
-    }
-
     return [
-        'earliest'   => $earliest,
-        'latest'     => $latest,
-        'rangeLikes' => $liRange,
-        'rangePosts' => $chRange,
+        'earliest'   => $this->timeRange->atomEarliest(),
+        'latest'     => $this->timeRange->atomLatest(),
+        'rangeLikes' => [
+            'earliest' => $this->timeRangeLikes->atomEarliest(),
+            'latest'   => $this->timeRangeLikes->atomLatest(),
+        ],
+        'rangePosts' => [
+            'earliest' => $this->timeRangeChapters->atomEarliest(),
+            'latest'   => $this->timeRangeChapters->atomLatest(),
+        ],
         'posts'      => $this->posts,
     ];
   }

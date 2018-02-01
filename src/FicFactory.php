@@ -33,6 +33,13 @@ namespace Armbreaker;
  */
 class FicFactory {
 
+  /**
+   * Pull a fic from the database.
+   * @param int $id SB topic ID
+   * @return \Armbreaker\Fic
+   * @throws NotFoundError
+   * @throws \LogicException
+   */
   public static function getFic(int $id): Fic {
     // todo: caching
     $sql = DatabaseFactory::get()->prepare("select * from armbreaker_fics where tid= ?");
@@ -48,12 +55,23 @@ class FicFactory {
     }
   }
 
+  /**
+   * Create an empty fic instance
+   * @param int $id SB topic ID
+   * @param string $name Fic name
+   * @return \Armbreaker\Fic
+   */
   public static function createFic(int $id, string $name): Fic {
     $fic = new Fic($id, $name);
     $fic->sync();
     return $fic;
   }
 
+  /**
+   * Get all databased fics.
+   * @return \Armbreaker\FicCollection
+   * @todo where age > time
+   */
   public static function getAllFics(): FicCollection {
     $sql  = DatabaseFactory::get()->prepare("select * from armbreaker_fics");
     $sql->execute();

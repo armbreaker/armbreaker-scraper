@@ -27,7 +27,7 @@
 namespace Armbreaker;
 
 /**
- * Description of LikeCollection
+ * Holds many likes
  *
  * @author sylae and skyyrunner
  */
@@ -44,45 +44,23 @@ class LikeCollection implements \Iterator, \Countable, \JsonSerializable {
   private $likes = [];
 
   /**
-   *
-   * @var \Carbon\Carbon
+   * @var CarbonRange
    */
-  public $earliest;
+  public $timeRange;
 
-  /**
-   *
-   * @var \Carbon\Carbon
-   */
-  public $latest;
+  public function __construct() {
+    $this->timeRange = new CarbonRange();
+  }
 
   public function addLike(Like $like): void {
     $this->likes[] = $like;
-    $this->setRange();
-  }
-
-  private function setRange() {
-    if (count($this->likes) == 1) {
-      $this->earliest = clone $this->likes[0]->time;
-      $this->latest   = clone $this->likes[0]->time;
-      return;
-    }
-    foreach ($this->likes as $like) {
-      $this->earliest = clone $like->time->min($this->earliest);
-      $this->latest   = clone $like->time->max($this->latest);
-    }
+    $this->timeRange->addDate($like->time);
   }
 
   public function jsonSerialize() {
-    $earliest = null;
-    $latest   = null;
-    if ($this->earliest instanceof \Carbon\Carbon && $this->latest instanceof \Carbon\Carbon) {
-      $earliest = $this->earliest->toAtomString();
-      $latest   = $this->latest->toAtomString();
-    }
-
     return [
-        'earliest' => $earliest,
-        'latest'   => $latest,
+        'earliest' => $this->timeRange->atomEarliest(),
+        'latest'   => $this->timeRange->atomLatest(),
         'likes'    => $this->likes,
     ];
   }

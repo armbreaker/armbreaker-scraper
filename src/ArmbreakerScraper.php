@@ -27,8 +27,8 @@
 namespace Armbreaker;
 
 /**
- * Description of ArmbreakerScraper
- *
+ * Actual class for eventually managing a scraper daemon. We'll get there some
+ * day...
  * @author sylae and skyyrunner
  */
 class ArmbreakerScraper extends ArmbreakerEntity {
