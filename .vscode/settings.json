@@ -1,3 +1,3 @@
 {
-    "phpcs.standard": "./.vscode/keirascodingstandard.xml",
+    "phpcs.standard": "PSR2",
 }
