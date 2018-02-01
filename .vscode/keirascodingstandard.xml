@@ -2,7 +2,7 @@
 <ruleset name="Keira's Coding Standard">
     <rule ref="PSR2"/>
 
-    <arg name="tab-width" value="4"/>
+    <arg name="tab-width" value="2"/>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
         <properties>
