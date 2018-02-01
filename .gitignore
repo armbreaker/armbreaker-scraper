@@ -13,3 +13,8 @@ bundle.css
 *.map
 __pycache__/
 **/dist/*.worker.js
+client/gear.svg
+
+.vagrant/*
+ubuntu-xenial-16.04-cloudimg-console.log
+armbreaker.code-workspace
