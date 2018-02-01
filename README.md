@@ -16,7 +16,7 @@ Armbreaker is a tool to scrape and visualize like information from XenForo forum
 
 * Python 3
 * Flask
-* npm
+* npm 5.6+
 
 #### Automatically fetched or included
 
