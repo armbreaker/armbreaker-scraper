@@ -35,7 +35,7 @@ new Log();
 DatabaseFactory::make();
 
 try {
-  $ab = new ArmbreakerMaster();
+    $ab = new ArmbreakerMaster();
 } catch (\Throwable $e) {
-  var_dump($e);
+    var_dump($e);
 }

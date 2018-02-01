@@ -31,6 +31,7 @@ namespace Armbreaker;
  * day...
  * @author sylae and skyyrunner
  */
-class ArmbreakerScraper extends ArmbreakerEntity {
-  //put your code here
+class ArmbreakerScraper extends ArmbreakerEntity
+{
+    //put your code here
 }

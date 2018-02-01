@@ -33,27 +33,29 @@ use Monolog\Formatter\LineFormatter;
  *
  * @author Keira Sylae Aro <sylae@calref.net>
  */
-class Log {
+class Log
+{
 
-  public function __construct() {
-    if (PHP_SAPI === 'cli') {
-      $dest = STDERR;
-    } else {
-      $dest = "log.txt";
+    public function __construct()
+    {
+        if (PHP_SAPI === 'cli') {
+            $dest = STDERR;
+        } else {
+            $dest = "log.txt";
+        }
+        $l_console  = new StreamHandler($dest, Logger::DEBUG); //@todo: configure option
+        $l_console->setFormatter(new LineFormatter(null, null, true, true));
+        $l_template = new Logger("Armbreaker");
+        $l_template->pushHandler($l_console);
+        ErrorHandler::register($l_template);
+        // $l_template->pushProcessor(new IntrospectionProcessor());
+        // $l_template->pushProcessor(new GitProcessor());
+        Registry::addLogger($l_template);
+        ErrorHandler::register(Registry::getInstance("Armbreaker"));
     }
-    $l_console  = new StreamHandler($dest, Logger::DEBUG); //@todo: configure option
-    $l_console->setFormatter(new LineFormatter(null, null, true, true));
-    $l_template = new Logger("Armbreaker");
-    $l_template->pushHandler($l_console);
-    ErrorHandler::register($l_template);
-    // $l_template->pushProcessor(new IntrospectionProcessor());
-    // $l_template->pushProcessor(new GitProcessor());
-    Registry::addLogger($l_template);
-    ErrorHandler::register(Registry::getInstance("Armbreaker"));
-  }
 
-  public static function l(): Logger {
-    return Registry::getInstance("Armbreaker");
-  }
-
+    public static function l(): Logger
+    {
+        return Registry::getInstance("Armbreaker");
+    }
 }
