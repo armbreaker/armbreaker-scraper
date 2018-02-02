@@ -110,7 +110,7 @@ class FicScraper extends Fic
         $page       = 1;
         $checkAgain = true;
         while ($checkAgain) {
-            Log::l()->info("Scraping likes for post {$post->id} // Page $page");
+            Log::l()->info("Scraping likes for post {$post->id} ({$post->title}) // Page $page");
             $html = $this->get(sprintf(self::SB_LIKES, $post->id, $page));
             $obj  = \html5qp($html, 'li.memberListItem');
             $obj->each(function (int $index, \DOMElement $item) use (&$likes) {

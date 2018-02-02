@@ -1,15 +1,16 @@
 {
-  "require": {
-    "doctrine/dbal": "^2.6",
-    "monolog/monolog": "^1.23",
-    "querypath/querypath": "^3.0",
-    "nesbot/carbon": "^1.22",
-    "slim/slim": "^3.9",
-    "slim/twig-view": "^2.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "Armbreaker\\": "src/"
+    "require": {
+        "doctrine/dbal": "^2.6",
+        "monolog/monolog": "^1.23",
+        "querypath/querypath": "^3.0",
+        "nesbot/carbon": "^1.22",
+        "slim/slim": "^3.9",
+        "slim/twig-view": "^2.3",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Armbreaker\\": "src/"
+        }
     }
-  }
 }

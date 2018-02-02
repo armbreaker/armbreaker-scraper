@@ -52,6 +52,11 @@ class ArmbreakerEntity
      */
     protected $slim;
 
+    const ENTITYTYPE_MASTER  = 0;
+    const ENTITYTYPE_SCRAPER = 1;
+    const QUEUE_INTERNAL     = 0;
+    const QUEUE_SQS          = 1;
+
     /**
      * Constructor. Just does some basic setup :v
      */
