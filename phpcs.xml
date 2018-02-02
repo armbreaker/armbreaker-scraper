@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="Armbreaker">
+    <description>Armbreaker config for phpcs.</description>
+
+    <exclude-pattern>vendor</exclude-pattern>
+    <exclude-pattern>client</exclude-pattern>
+
+    <rule ref="PSR2" />
+
+</ruleset>

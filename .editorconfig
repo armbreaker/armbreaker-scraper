@@ -8,6 +8,7 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+<<<<<<< HEAD
 
 [*.php]
 indent_size = 2
@@ -16,3 +17,5 @@ indent_size = 2
 indent_size = 2
 #fucks with .md
 trim_trailing_whitespace = false
+=======
+>>>>>>> a8c2109... update coding standards to use psr-2 :v
