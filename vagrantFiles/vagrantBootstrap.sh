@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #variables
 DBPASSWRD="armbreaker"
+DBNAME="armbreaker"
 
 #adding PPA
 sudo add-apt-repository -y ppa:ondrej/php
@@ -33,7 +34,9 @@ sudo a2enmod rewrite
 sudo service apache2 restart
 
 #setup MySQL
-
+mysql -u root -p${DBPASSWRD} -e "CREATE DATABASE IF NOT EXISTS ${DBNAME} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p${DBPASSWRD} -D ${DBNAME} < /vagrant/armbreaker.sql
+mysql -u root -p${DBPASSWRD} -D ${DBNAME} < /vagrant/vagrantFiles/sample_data.sql
 
 #setup webserver files
 if ! [ -L /var/www/html ]; then
@@ -46,5 +49,6 @@ sudo /vagrant/vagrantFiles/getComposer.sh
 cd /vagrant/
 ./update
 /bin/cp -rf /vagrant/config.sample.php /vagrant/config.php
+sed -i "s\mysqli://x:x@y/z\mysql://root:${DBPASSWRD}@localhost/${DBNAME}\g" /vagrant/config.php
 touch /vagrant/log.txt
 chmod o+w /vagrant/log.txt

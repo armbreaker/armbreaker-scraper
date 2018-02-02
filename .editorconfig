@@ -12,3 +12,6 @@ insert_final_newline = true
 #this is needed becouse else it screws up new line formating
 [*.md]
 trim_trailing_whitespace = false
+
+[*.sql]
+indent_size = 2
