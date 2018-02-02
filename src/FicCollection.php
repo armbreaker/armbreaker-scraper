@@ -31,48 +31,56 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class FicCollection implements \Iterator, \Countable, \JsonSerializable {
+class FicCollection implements \Iterator, \Countable, \JsonSerializable
+{
 
-  /**
-   * @var int
-   */
-  private $position = 0;
+    /**
+     * @var int
+     */
+    private $position = 0;
 
-  /**
-   * @var array
-   */
-  private $fics = [];
+    /**
+     * @var array
+     */
+    private $fics = [];
 
-  public function addFic(Fic $fic): void {
-    $this->fics[] = $fic;
-  }
+    public function addFic(Fic $fic): void
+    {
+        $this->fics[] = $fic;
+    }
 
-  public function jsonSerialize() {
-    return $this->fics;
-  }
+    public function jsonSerialize()
+    {
+        return $this->fics;
+    }
 
-  public function rewind() {
-    $this->position = 0;
-  }
+    public function rewind()
+    {
+        $this->position = 0;
+    }
 
-  public function current(): Fic {
-    return $this->fics[$this->position];
-  }
+    public function current(): Fic
+    {
+        return $this->fics[$this->position];
+    }
 
-  public function key(): int {
-    return $this->position;
-  }
+    public function key(): int
+    {
+        return $this->position;
+    }
 
-  public function next() {
-    ++$this->position;
-  }
+    public function next()
+    {
+        ++$this->position;
+    }
 
-  public function valid(): bool {
-    return isset($this->fics[$this->position]);
-  }
+    public function valid(): bool
+    {
+        return isset($this->fics[$this->position]);
+    }
 
-  public function count(): int {
-    return count($this->fics);
-  }
-
+    public function count(): int
+    {
+        return count($this->fics);
+    }
 }

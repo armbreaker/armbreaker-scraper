@@ -31,33 +31,34 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class ArmbreakerEntity {
+class ArmbreakerEntity
+{
 
-  /**
-   * Stores an AWS SQS client. Unused right now :v
-   * @var \Aws\Sqs\SqsClient
-   */
-  protected $aws;
+    /**
+     * Stores an AWS SQS client. Unused right now :v
+     * @var \Aws\Sqs\SqsClient
+     */
+    protected $aws;
 
-  /**
-   * Reference to the db object for convenience
-   * @var \Doctrine\DBAL\Connection
-   */
-  protected $db;
+    /**
+     * Reference to the db object for convenience
+     * @var \Doctrine\DBAL\Connection
+     */
+    protected $db;
 
-  /**
-   * Hey you like sending web requests yeah?
-   * @var \Slim\App
-   */
-  protected $slim;
+    /**
+     * Hey you like sending web requests yeah?
+     * @var \Slim\App
+     */
+    protected $slim;
 
-  /**
-   * Constructor. Just does some basic setup :v
-   */
-  public function __construct() {
-    $this->sqs  = null; // new \Aws\Sqs\SqsClient(ConfigFactory::get()['sqs']);
-    $this->db   = DatabaseFactory::get();
-    $this->slim = new \Slim\App();
-  }
-
+    /**
+     * Constructor. Just does some basic setup :v
+     */
+    public function __construct()
+    {
+        $this->sqs  = null; // new \Aws\Sqs\SqsClient(ConfigFactory::get()['sqs']);
+        $this->db   = DatabaseFactory::get();
+        $this->slim = new \Slim\App();
+    }
 }

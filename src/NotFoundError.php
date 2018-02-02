@@ -31,6 +31,7 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class NotFoundError extends \Exception {
-  //put your code here
+class NotFoundError extends \Exception
+{
+    //put your code here
 }

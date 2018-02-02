@@ -31,62 +31,71 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class LikeCollection implements \Iterator, \Countable, \JsonSerializable {
+class LikeCollection implements \Iterator, \Countable, \JsonSerializable
+{
 
-  /**
-   * @var int
-   */
-  private $position = 0;
+    /**
+     * @var int
+     */
+    private $position = 0;
 
-  /**
-   * @var array
-   */
-  private $likes = [];
+    /**
+     * @var array
+     */
+    private $likes = [];
 
-  /**
-   * @var CarbonRange
-   */
-  public $timeRange;
+    /**
+     * @var CarbonRange
+     */
+    public $timeRange;
 
-  public function __construct() {
-    $this->timeRange = new CarbonRange();
-  }
+    public function __construct()
+    {
+        $this->timeRange = new CarbonRange();
+    }
 
-  public function addLike(Like $like): void {
-    $this->likes[] = $like;
-    $this->timeRange->addDate($like->time);
-  }
+    public function addLike(Like $like): void
+    {
+        $this->likes[] = $like;
+        $this->timeRange->addDate($like->time);
+    }
 
-  public function jsonSerialize() {
-    return [
-        'earliest' => $this->timeRange->atomEarliest(),
-        'latest'   => $this->timeRange->atomLatest(),
-        'likes'    => $this->likes,
-    ];
-  }
+    public function jsonSerialize()
+    {
+        return [
+            'earliest' => $this->timeRange->atomEarliest(),
+            'latest'   => $this->timeRange->atomLatest(),
+            'likes'    => $this->likes,
+        ];
+    }
 
-  public function rewind() {
-    $this->position = 0;
-  }
+    public function rewind()
+    {
+        $this->position = 0;
+    }
 
-  public function current(): Like {
-    return $this->likes[$this->position];
-  }
+    public function current(): Like
+    {
+        return $this->likes[$this->position];
+    }
 
-  public function key(): int {
-    return $this->position;
-  }
+    public function key(): int
+    {
+        return $this->position;
+    }
 
-  public function next() {
-    ++$this->position;
-  }
+    public function next()
+    {
+        ++$this->position;
+    }
 
-  public function valid(): bool {
-    return isset($this->likes[$this->position]);
-  }
+    public function valid(): bool
+    {
+        return isset($this->likes[$this->position]);
+    }
 
-  public function count(): int {
-    return count($this->likes);
-  }
-
+    public function count(): int
+    {
+        return count($this->likes);
+    }
 }

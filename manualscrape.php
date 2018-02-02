@@ -34,11 +34,11 @@ new Log();
 DatabaseFactory::make();
 
 try {
-  if (is_numeric($argv[1] ?? false)) {
-    $x = new FicScraper($argv[1]);
-  } else {
-    throw new \Exception("Usage: php manualscrape.php FIC_ID");
-  }
+    if (is_numeric($argv[1] ?? false)) {
+        $x = new FicScraper($argv[1]);
+    } else {
+        throw new \Exception("Usage: php manualscrape.php FIC_ID");
+    }
 } catch (\Throwable $e) {
-  echo $e->getMessage() . PHP_EOL . $e->getFile() . " // Line " . $e->getLine() . PHP_EOL;
+    echo $e->getMessage() . PHP_EOL . $e->getFile() . " // Line " . $e->getLine() . PHP_EOL;
 }

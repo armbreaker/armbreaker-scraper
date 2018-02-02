@@ -31,33 +31,35 @@ namespace Armbreaker;
  *
  * @author sylae and skyyrunner
  */
-class DatabaseFactory {
+class DatabaseFactory
+{
 
-  /**
-   * Our DB object. Sacred is thy name.
-   * @var \Doctrine\DBAL\Connection
-   */
-  private static $db = null;
+    /**
+     * Our DB object. Sacred is thy name.
+     * @var \Doctrine\DBAL\Connection
+     */
+    private static $db = null;
 
-  /**
-   * Get a reference to the db object. :snug:
-   * @return \Doctrine\DBAL\Connection
-   * @throws \Exception
-   */
-  public static function get(): \Doctrine\DBAL\Connection {
-    if (is_null(self::$db)) {
-      throw new \Exception("Database not set up! Have you run DatabaseFactory::make() yet?");
+    /**
+     * Get a reference to the db object. :snug:
+     * @return \Doctrine\DBAL\Connection
+     * @throws \Exception
+     */
+    public static function get(): \Doctrine\DBAL\Connection
+    {
+        if (is_null(self::$db)) {
+            throw new \Exception("Database not set up! Have you run DatabaseFactory::make() yet?");
+        }
+        return self::$db;
     }
-    return self::$db;
-  }
 
-  /**
-   * Initialize the database. Make sure config is set beforehand or it'll
-   * throw shit.
-   * @return void
-   */
-  public static function make(): void {
-    self::$db = \Doctrine\DBAL\DriverManager::getConnection(['url' => ConfigFactory::get()['database']], new \Doctrine\DBAL\Configuration());
-  }
-
+    /**
+     * Initialize the database. Make sure config is set beforehand or it'll
+     * throw shit.
+     * @return void
+     */
+    public static function make(): void
+    {
+        self::$db = \Doctrine\DBAL\DriverManager::getConnection(['url' => ConfigFactory::get()['database']], new \Doctrine\DBAL\Configuration());
+    }
 }
