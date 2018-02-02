@@ -60,6 +60,6 @@ class DatabaseFactory
      */
     public static function make(): void
     {
-        self::$db = \Doctrine\DBAL\DriverManager::getConnection(['url' => ConfigFactory::get()['db']], new \Doctrine\DBAL\Configuration());
+        self::$db = \Doctrine\DBAL\DriverManager::getConnection(['url' => ConfigFactory::get()['database']], new \Doctrine\DBAL\Configuration());
     }
 }
