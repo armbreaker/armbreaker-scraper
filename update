@@ -10,11 +10,12 @@ npm install
 npm run-script build
 cd ..
 
-mkdir -p css
-mkdir -p js
+#clients needs to be fixed so we dont use this
+#mkdir -p css
+#mkdir -p js
 
-cp client/dist/bundle.css css/bundle.css
-cp client/dist/bundle.js js/bundle.js
-cp client/dist/dobinning.worker.js js/dobinning.worker.js
-cp client/dist/docluster.worker.js js/docluster.worker.js
-cp client/dist/gear.svg client/gear.svg
+#cp client/dist/bundle.css css/bundle.css
+#cp client/dist/bundle.js js/bundle.js
+#cp client/dist/dobinning.worker.js js/dobinning.worker.js
+#cp client/dist/docluster.worker.js js/docluster.worker.js
+#cp client/dist/gear.svg client/gear.svg
