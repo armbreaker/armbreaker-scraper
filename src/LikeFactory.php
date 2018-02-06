@@ -33,7 +33,6 @@ namespace Armbreaker;
  */
 class LikeFactory
 {
-
     public static function getLike(User $user, Post $post): Like
     {
         $sql  = DatabaseFactory::get()->prepare("select * from armbreaker_likes where uid=? and pid=?");

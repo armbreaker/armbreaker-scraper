@@ -33,7 +33,6 @@ namespace Armbreaker;
  */
 class UserFactory
 {
-
     public static function getUser(int $id): User
     {
         static $cache = [];
