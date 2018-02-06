@@ -33,7 +33,6 @@ namespace Armbreaker;
  */
 class PostFactory
 {
-
     public static function getPost(int $pid): Post
     {
         Log::l()->debug("Loading post $pid.");

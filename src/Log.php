@@ -35,7 +35,6 @@ use Monolog\Formatter\LineFormatter;
  */
 class Log
 {
-
     public function __construct()
     {
         if (PHP_SAPI === 'cli') {

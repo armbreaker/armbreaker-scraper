@@ -33,7 +33,6 @@ namespace Armbreaker;
  */
 class FicScraper extends Fic
 {
-
     const SB_RSS   = "https://forums.spacebattles.com/threads/%s/threadmarks.rss?category_id=1";
     const SB_LIKES = "https://forums.spacebattles.com/posts/%s/likes?page=%s";
 
