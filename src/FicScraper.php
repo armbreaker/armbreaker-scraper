@@ -43,7 +43,6 @@ class FicScraper extends Fic
     /**
      * Constructor
      * @param int $id SB topic ID to scrape.
-     * @todo dont call child methods, let ArmbreakerScraper do that for you :v
      */
     public function __construct(int $id)
     {
@@ -56,9 +55,6 @@ class FicScraper extends Fic
                 'X-Armbreaker' => sprintf('entityType %s; hostID %s', ConfigFactory::get()['type'], ConfigFactory::get()['id']),
             ]
         ]);
-
-        $this->scrapePostInfo();
-        $this->updateChapters();
     }
 
     /**
