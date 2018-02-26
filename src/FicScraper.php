@@ -17,7 +17,6 @@ use \GuzzleHttp\Client;
  */
 class FicScraper extends Fic
 {
-
     const SB       = "https://forums.spacebattles.com";
     const SB_RSS   = "/threads/%s/threadmarks.rss?category_id=1";
     const SB_LIKES = "/posts/%s/likes?page=%s";
