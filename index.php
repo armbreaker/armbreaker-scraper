@@ -17,7 +17,14 @@ new Log();
 DatabaseFactory::make();
 
 try {
-    $ab = new ArmbreakerMaster();
+    $run = ConfigFactory::get('type');
+    if ($run == ArmbreakerEntity::ENTITYTYPE_MASTER) {
+        $ab = new ArmbreakerMaster();
+    } elseif ($run == ArmbreakerEntity::ENTITYTYPE_SCRAPER) {
+        $ab = new ArmbreakerScraper();
+    }
 } catch (\Throwable $e) {
-    var_dump($e);
+    $code = $e->getResponse()->getStatusCode();
+    $line = $e->getResponse()->getReasonPhrase();
+    Log::l()->addError("Exception thrown!", ['resp' => $code . " " . $line, 'exception' => $e]);
 }
