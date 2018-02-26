@@ -8,6 +8,8 @@
 
 namespace Armbreaker;
 
+use \GuzzleHttp\Client;
+
 /**
  * This is the messy bit. Scrape SB and return info to parse.
  *
@@ -16,8 +18,9 @@ namespace Armbreaker;
 class FicScraper extends Fic
 {
 
-    const SB_RSS   = "https://forums.spacebattles.com/threads/%s/threadmarks.rss?category_id=1";
-    const SB_LIKES = "https://forums.spacebattles.com/posts/%s/likes?page=%s";
+    const SB       = "https://forums.spacebattles.com";
+    const SB_RSS   = "/threads/%s/threadmarks.rss?category_id=1";
+    const SB_LIKES = "/posts/%s/likes?page=%s";
 
     /**
      * Whether or not to introduce delays for reasons (basically pls dont ddos sb
@@ -33,17 +36,27 @@ class FicScraper extends Fic
     private $rss;
 
     /**
+     * Our HTTP library
+     * @var \GuzzleHttp\Client
+     */
+    private $http;
+
+    /**
      * Constructor
      * @param int $id SB topic ID to scrape.
      * @todo dont call child methods, let ArmbreakerScraper do that for you :v
      */
     public function __construct(int $id)
     {
-        Log::l()->info("Scraping ficID $id");
-        ini_set('user_agent', "sylae/armbreaker (https://github.com/sylae/armbreaker");
-        $this->rss = $this->get(sprintf(self::SB_RSS, $id));
-        parent::__construct($id, str_replace("Spacebattles Forums - ", "", \qp($this->rss, 'channel>title')->text()));
-        $this->sync();
+        $this->id   = $id;
+        $this->http = new Client([
+            'base_uri' => self::SB,
+            'timeout'  => 30,
+            'headers'  => [
+                'User-Agent'   => 'sylae/armbreaker (https://github.com/sylae/armbreaker)',
+                'X-Armbreaker' => sprintf('entityType %s; hostID %s', ConfigFactory::get()['type'], ConfigFactory::get()['id']),
+            ]
+        ]);
 
         $this->scrapePostInfo();
         $this->updateChapters();
@@ -123,15 +136,19 @@ class FicScraper extends Fic
     }
 
     /**
-     * Get data. includes a sleppy so we don't ddos SB.
+     * Get data. includes a sleppy by default so we don't ddos SB.
      * @param string $url
+     * @param bool $slep
      * @return string
      * @todo error checking
      */
-    private function get(string $url): string
+    private function get(string $url, bool $slep = true): string
     {
-        $this->slep();
-        return file_get_contents($url);
+        if ($slep) {
+            $this->slep();
+        }
+        $r = $this->http->get($url);
+        return $r->getBody();
     }
 
     /**
