@@ -109,10 +109,8 @@ class FicScraper extends Fic
             $html = $this->get(sprintf(self::SB_LIKES, $post->id, $page));
             $obj  = \html5qp($html, 'li.memberListItem');
             $obj->each(function (int $index, \DOMElement $item) use (&$likes) {
-                $likes[] = [
-                    'time' => $this->unfuckDates(\qp($item, '.DateTime')),
-                    'user' => [
-                        'name' => \qp($item, 'h3.username')->text(),
+                $likes[] = ['time' => $this->unfuckDates(\qp($item, '.DateTime')),
+                    'user' => ['name' => \qp($item, 'h3.username')->text(),
                         'id'   => \qp($item, 'a.username')->attr("href"),
                     ],
                 ];
