@@ -17,11 +17,13 @@ new Log();
 DatabaseFactory::make();
 
 try {
-    $run = ConfigFactory::get('type');
+    $run = ConfigFactory::get()['type'];
     if ($run == ArmbreakerEntity::ENTITYTYPE_MASTER) {
         $ab = new ArmbreakerMaster();
     } elseif ($run == ArmbreakerEntity::ENTITYTYPE_SCRAPER) {
         $ab = new ArmbreakerScraper();
+    } else {
+        die("No valid Entity type selected!");
     }
 } catch (\Throwable $e) {
     $code = $e->getResponse()->getStatusCode();
