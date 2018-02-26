@@ -15,12 +15,11 @@ namespace Armbreaker;
  */
 class ArmbreakerEntity
 {
-
     /**
      * Stores an AWS SQS client. Unused right now :v
      * @var \Aws\Sqs\SqsClient
      */
-    protected $aws;
+    protected $sqs;
 
     /**
      * Reference to the db object for convenience
@@ -44,8 +43,12 @@ class ArmbreakerEntity
      */
     public function __construct()
     {
-        $this->sqs  = null; // new \Aws\Sqs\SqsClient(ConfigFactory::get()['sqs']);
-        $this->db   = DatabaseFactory::get();
-        $this->slim = new \Slim\App();
+        try {
+            $this->sqs  = new \Aws\Sqs\SqsClient(ConfigFactory::get()['sqs']);
+            $this->db   = DatabaseFactory::get();
+            $this->slim = new \Slim\App();
+        } catch (\Throwable $e) {
+            var_dump($e);
+        }
     }
 }
