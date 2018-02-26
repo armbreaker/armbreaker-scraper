@@ -67,21 +67,31 @@ class FicScraper extends Fic
      */
     public function scrapePostInfo()
     {
-        $posts = [];
-        \qp($this->rss, 'item')->each(function (int $index, \DOMElement $item) use (&$posts) {
-            $matches = [];
-            preg_match("/post-(\\d+)/i", \qp($item, 'link')->text(), $matches);
-            if (array_key_exists(1, $matches) && mb_strlen($matches[1]) > 0 && is_numeric($matches[1])) {
-                $pid      = $matches[1];
-                $title    = \qp($item, 'title')->text();
-                $postDate = new \Carbon\Carbon(\qp($item, 'pubDate')->text());
-                $postDate->setTimezone("UTC");
-                $posts[]  = [$pid, $title, $postDate];
+        try {
+            Log::l()->info("Scraping chapters for ficID {$this->id}");
+            $this->rss = $this->get(sprintf(self::SB_RSS, $this->id));
+            parent::__construct($this->id, str_replace("Spacebattles Forums - ", "", \qp($this->rss, 'channel>title')->text()));
+            $this->sync();
+            $posts     = [];
+            \qp($this->rss, 'item')->each(function (int $index, \DOMElement $item) use (&$posts) {
+                $matches = [];
+                preg_match("/post-(\\d+)/i", \qp($item, 'link')->text(), $matches);
+                if (array_key_exists(1, $matches) && mb_strlen($matches[1]) > 0 && is_numeric($matches[1])) {
+                    $pid      = $matches[1];
+                    $title    = \qp($item, 'title')->text();
+                    $postDate = new \Carbon\Carbon(\qp($item, 'pubDate')->text());
+                    $postDate->setTimezone("UTC");
+                    $posts[]  = [$pid, $title, $postDate];
+                }
+            });
+            foreach ($posts as $post) {
+                Log::l()->info("Scraping post {$post[0]} - {$post[1]}");
+                $this->posts->addPost(PostFactory::createPost($post[0], $this, $post[1], $post[2]));
             }
-        });
-        foreach ($posts as $post) {
-            Log::l()->info("Scraping post {$post[0]} - {$post[1]}");
-            $this->posts->addPost(PostFactory::createPost($post[0], $this, $post[1], $post[2]));
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $code = $e->getResponse()->getStatusCode();
+            $line = $e->getResponse()->getReasonPhrase();
+            Log::l()->addError("Guzzle error pulling RSS in scraper", ['resp' => $code . " " . $line]);
         }
     }
 
