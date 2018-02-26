@@ -15,7 +15,6 @@ namespace Armbreaker;
  */
 class Post implements \JsonSerializable
 {
-
     /**
      *
      * @var int
@@ -51,7 +50,7 @@ class Post implements \JsonSerializable
      */
     public $time;
 
-    public function __construct(int $pid, Fic $fic, string $title, \Carbon\Carbon $time)
+    public function __construct(int $pid, Fic $fic = null, string $title, \Carbon\Carbon $time)
     {
         $this->id    = $pid;
         $this->fic   = $fic;
