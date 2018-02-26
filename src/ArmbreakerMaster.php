@@ -138,5 +138,52 @@ class ArmbreakerMaster extends ArmbreakerEntity
                 return $response->withJson($err, 500);
             }
         });
+
+        // @TODO split this off to its own class or something, tbh.
+        $sqs = $this->sqs;
+        $this->slim->get('/api/scrape/{id}', function (Request $request, Response $response) use ($sqs) {
+            try {
+                $x     = new FicScraper($request->getAttribute('id'));
+                $x->scrapePostInfo();
+                $fic   = new Fic($x->id, $x->name);
+                $queue = [];
+                foreach ($x->posts as $post) {
+                    $isolated = new Post($post->id, $fic, $post->title, $post->time);
+                    $queue[]  = [
+                        'Id'                => $post->id * time(),
+                        'MessageBody'       => json_encode([
+                            'post' => $isolated,
+                            'fic'  => $fic,
+                        ]),
+                        'MessageAttributes' => [
+                            "command" => [
+                                'DataType'    => "String",
+                                'StringValue' => 'scrapePost',
+                            ],
+                            "from"    => [
+                                'DataType'    => "Number",
+                                'StringValue' => ConfigFactory::get()['id'],
+                            ]
+                        ],
+                    ];
+                }
+                foreach (array_chunk($queue, 10) as $payload) {
+                    $sqs->sendMessageBatch([
+                        'QueueUrl' => ConfigFactory::get()['sqsURL'],
+                        'Entries'  => $payload,
+                    ]);
+                }
+                return $response->withJson([
+                            'request' => true,
+                ]);
+            } catch (\Throwable $e) {
+                $err = [
+                    'error'         => true,
+                    'error_message' => $e->getMessage(),
+                    'error_trace'   => $e->getTraceAsString(),
+                ];
+                return $response->withJson($err, 500);
+            }
+        });
     }
 }
