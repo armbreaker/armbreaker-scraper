@@ -36,7 +36,7 @@ try {
         echo ":thonk:";
     }
 } catch (\Throwable $e) {
-    $code = $e->getResponse()->getStatusCode();
-    $line = $e->getResponse()->getReasonPhrase();
+    $code = $e->getCode();
+    $line = $e->getLine();
     Log::l()->addError("Exception thrown!", ['resp' => $code . " " . $line, 'exception' => $e]);
 }
