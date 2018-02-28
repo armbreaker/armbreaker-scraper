@@ -15,17 +15,9 @@ def getfic(ficid=None):
 		return send_from_directory(".", "testdata-nimrod.json")
 	return "The fic API endpoint."
 
-@app.route("/js/<js>")
-def js(js=None):
-    return send_from_directory("dist/", js)
-
-@app.route("/css/<css>")
-def css(css=None):
-    return send_from_directory("dist/", css)
-
-@app.route("/client/<file>")
-def file(file=None):
-    return send_from_directory("dist/", file)
+@app.route("/vsrc/<files>")
+def files(files=None):
+    return send_from_directory("dist/", files)
 
 @app.route("/viewer/<ficid>")
 def viewer(ficid=None):
