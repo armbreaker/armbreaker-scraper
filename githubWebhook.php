@@ -27,7 +27,7 @@ try {
     $our_token   = ConfigFactory::get()['GithubPullToken'] ?? null;
     $their_token = $_REQUEST['webhook-token'] ?? null;
 
-    if (!is_null($our_token) && !is_null($their_token) && slow_equals($out_token, $their_token)) {
+    if (!is_null($our_token) && !is_null($their_token) && slow_equals($our_token, $their_token)) {
         log::l()->addNotice("webhook hit passed authentication, running ./update now!");
         passthru("./update");
     } else {
