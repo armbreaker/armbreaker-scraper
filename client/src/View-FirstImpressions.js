@@ -94,7 +94,14 @@ export default class FirstImpressionsView {
 		}
 		this.yaxis = d3.axisLeft(this.yscale)
 			.tickValues(ticks)
-			.tickFormat(d=>DateTime.fromISO("2015-01-01T00:00:00+00:00", {zone:this.timezone}).plus(Duration.fromMillis(d)).toFormat("d'd'hha"));
+			.tickFormat(d => {
+				let dt = DateTime.
+					fromISO("2015-01-01T00:00:00+00:00", {zone:this.timezone})
+					.plus(Duration.fromMillis(d))
+					.toFormat("HH");
+
+				return `${Math.floor(d / 60 / 60 / 24 / 1000)}d ${dt}:00`;
+			});
 
 		this.svg.select(".yaxis")
 		   .transition()
