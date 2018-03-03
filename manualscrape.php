@@ -18,6 +18,8 @@ DatabaseFactory::make();
 try {
     if (is_numeric($argv[1] ?? false)) {
         $x = new FicScraper($argv[1]);
+        $x->scrapePostInfo();
+        $x->updateChapters();
     } else {
         throw new \Exception("Usage: php manualscrape.php FIC_ID");
     }
