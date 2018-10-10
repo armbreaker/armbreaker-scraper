@@ -162,7 +162,7 @@ class FicScraper extends Fic
     private function slep(): void
     {
         if ($this->sleppy) {
-            usleep(random_int(1000, 2500) * 1000);
+            usleep(random_int(500, 2500) * 1000);
         }
     }
 
