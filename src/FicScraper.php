@@ -101,7 +101,7 @@ class FicScraper extends Fic
         $posts = [];
         \htmlqp($threadmarkHTML, 'li.threadmarkListItem')->each(function (int $index, \DOMElement $item) use (&$posts) {
             $matches = [];
-            preg_match("/post-(\\d+)/i", \htmlqp($item, 'a')->attr("href"), $matches);
+            preg_match("/posts\/(\\d+)\/threadmarkpreview/i", \htmlqp($item, 'a')->attr("data-previewurl"), $matches);
             if (array_key_exists(1, $matches) && mb_strlen($matches[1]) > 0 && is_numeric($matches[1])) {
                 $pid         = $matches[1];
                 $title       = trim(\htmlqp($item, 'a')->text());
