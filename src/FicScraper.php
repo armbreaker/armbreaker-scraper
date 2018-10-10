@@ -151,13 +151,14 @@ class FicScraper extends Fic
             try {
                 $user = UserFactory::createUser($this->unfuckUserID($like['user']['id']), $like['user']['name']);
                 $post->likes->addLike(LikeFactory::createLike($user, $post, $like['time']));
-                Log::l()->info("Adding like for {$post->id} - {$user->name}");
+                // Log::l()->info("Adding like for {$post->id} - {$user->name}");
             } catch (\Throwable $e) {
                 var_dump($like);
                 echo $e->xdebug_message;
                 die();
             }
         }
+        Log::l()->info("Post {$post->id} has like count of " . count($likes));
     }
 
     /**
