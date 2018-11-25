@@ -43,7 +43,7 @@ class PostFactory
     public static function getPostsInFic(Fic $fic, bool $loadLikes = false): PostCollection
     {
         Log::l()->debug("Loading posts for fic id {$fic->id}, loadLikes is $loadLikes.");
-        $sql   = DatabaseFactory::get()->prepare("select * from armbreaker_posts where tid=? order by postTime asc");
+        $sql   = DatabaseFactory::get()->prepare("select * from armbreaker_posts where tid=? order by postTime asc, pid asc");
         $sql->bindValue(1, $fic->id, 'integer');
         $sql->execute();
         $posts = new PostCollection();
