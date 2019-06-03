@@ -43,7 +43,7 @@
     "worker-loader": "^1.1.0"
   },
   "dependencies": {
-    "luxon": "^0.3.0",
+    "luxon": "^1.16.0",
     "popper.js": "^1.12.9"
   }
 }
