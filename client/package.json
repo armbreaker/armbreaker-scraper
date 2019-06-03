@@ -40,7 +40,7 @@
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-merge": "^4.1.1",
-    "worker-loader": "^1.1.0"
+    "worker-loader": "^2.0.0"
   },
   "dependencies": {
     "luxon": "^0.3.0",
