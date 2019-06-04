@@ -1,6 +1,6 @@
 composer.phar
 config.php
-/nbproject/private/
+/.idea/
 dropdowndemo.js
 
 # generated files
