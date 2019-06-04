@@ -6,8 +6,12 @@
         "nesbot/carbon": "^2.19",
         "slim/slim": "^3.9",
         "slim/twig-view": "^2.3",
-        "guzzlehttp/guzzle": "~6.0",
-        "aws/aws-sdk-php": "^3.52"
+        "react/event-loop": "^1.1",
+        "clue/buzz-react": "^2.6",
+        "php": "^7.3",
+        "charlottedunois/collection": "^0.2.0",
+        "ext-json": "*",
+        "clue/mq-react": "^1.1"
     },
     "autoload": {
         "psr-4": {
