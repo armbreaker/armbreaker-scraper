@@ -4,8 +4,6 @@
         "monolog/monolog": "^1.23",
         "querypath/querypath": "^3.0",
         "nesbot/carbon": "^2.19",
-        "slim/slim": "^3.9",
-        "slim/twig-view": "^2.3",
         "react/event-loop": "^1.1",
         "clue/buzz-react": "^2.6",
         "php": "^7.3",
@@ -15,7 +13,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Armbreaker\\": "src/"
+            "": "src/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
     }
 }
