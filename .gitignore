@@ -1,19 +1,8 @@
 composer.phar
 config.php
 /.idea/
-dropdowndemo.js
-
-# generated files
-log.txt
 /vendor/
 /cache/
-node_modules/
-bundle.js
-bundle.css
-*.map
-__pycache__/
-**/dist/*.worker.js
-client/gear.svg
 
 .vagrant/*
 ubuntu-xenial-16.04-cloudimg-console.log
