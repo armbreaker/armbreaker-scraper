@@ -10,7 +10,6 @@ namespace Armbreaker;
 use Clue\React\Buzz\Browser;
 use Clue\React\Mq\Queue;
 use React\EventLoop\LoopInterface;
-use React\Promise\PromiseInterface;
 
 /**
  * This is the base for our async implementations of Armbreaker stuff. Both the scraper (Shard) and manager
@@ -19,6 +18,7 @@ use React\Promise\PromiseInterface;
 abstract class ArmbreakerAsync
 {
     use ArmbreakerBaseTrait;
+    use AsyncRequestTrait;
 
     /**
      * @var LoopInterface
@@ -26,30 +26,18 @@ abstract class ArmbreakerAsync
     protected $loop;
 
     /**
-     * @var Browser
-     */
-    protected $buzz;
-
-    /**
      *
      * @var EventManager
      */
     protected $eventManager;
 
-    /**
-     * @var Queue
-     */
-    protected $requestQueue;
-
     public function __construct(LoopInterface $loop, array $config)
     {
-        $this->setupBaseTrait($config);
-
         $this->loop = $loop;
-
+        $this->setupBaseTrait($config);
         $this->eventManager = new EventManager($this);
 
-        $this->buzz = new Browser($this->loop);
+        $this->buzz = new Browser($loop);
         $this->requestQueue = new Queue(1, null, function ($url) use (&$config) {
             return $this->buzz->get($url, [
                 'User-Agent' => 'sylae/armbreaker (https://github.com/sylae/armbreaker)',
@@ -76,12 +64,6 @@ abstract class ArmbreakerAsync
             $this->eventManager->fire("ready");
         });
         $this->loop->run();
-    }
-
-    public function get(string $url): PromiseInterface
-    {
-        $q = $this->requestQueue;
-        return $q($url);
     }
 
     /**

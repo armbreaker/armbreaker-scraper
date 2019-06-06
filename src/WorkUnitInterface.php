@@ -8,6 +8,7 @@
 namespace Armbreaker;
 
 
+use Clue\React\Mq\Queue;
 use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerInterface;
 use React\Promise\PromiseInterface;
@@ -40,7 +41,7 @@ interface WorkUnitInterface
 
     public function isOutdated(): bool;
 
-    public function setReqClient($client);
+    public function setReqQueue(Queue $client);
 
     public function setLogger(LoggerInterface $logger);
 }

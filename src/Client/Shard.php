@@ -48,7 +48,7 @@ class Shard extends ArmbreakerAsync
 
         $this->hasJob = true;
 
-        $job->setReqClient($this->requestQueue);
+        $job->setReqQueue($this->requestQueue);
         $job->setLogger($this->log);
         $job->process()->then(function (bool $result) use ($job) {
             var_dump("done", $result);

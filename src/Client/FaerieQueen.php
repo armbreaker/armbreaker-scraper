@@ -60,7 +60,7 @@ class FaerieQueen extends ArmbreakerAsync
         $job = new FrontpageScraper($this->db, []);
         $job->setQueue($this->queue);
         $job->setLogger($this->log);
-        $job->setReqClient($this->requestQueue);
+        $job->setReqQueue($this->requestQueue);
         if ($job->isOutdated()) {
             $this->queue->addJob($job);
         }
