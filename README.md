@@ -1,65 +1,28 @@
 # Armbreaker
 
-Armbreaker is a tool to scrape and visualize like information from XenForo forums such as Spacebattles.com.
+Armbreaker is a tool to scrape and visualize like information from XenForo forums such as Spacebattles.com. This repository contains the backend scraping code used to extract data from the site.
 
 ## Requirements
 
-### Server
-
-* PHP 7.1
+* PHP 7.3
 * Composer
-* A SQL database that doctrine/dbal can use
-
-### Client
-
-#### Required
-
-* Python 3
-* Flask
-* npm 5.6+
-
-#### Automatically fetched or included
-
-* d3.js (Cloudflare)
-* babel
-* webpack
-* js-levenshtein
-* popper.js
-* d3.slider
-* moment (Cloudflare)
-* moment-timezone
+* A SQL database that doctrine/dbal can use (tested with mysql8)
 
 ## Installation
 
-### Manual
-
-#### Server
+### Manual/Unmanaged installation
 
 1. `composer install`
-2. Fill your database with `armbreaker.sql`
-3. Profit?
+2. Fill your database with `armbreaker.sql` (note: file outdated rn)
+3. set `config.php` with the database credentials and a unique ID (0..255)
+4. fire up one (1) instance of `runFaerieQueen.php` per cluster and however many `runShard.php` you want. Recommended to limit yourself to one Shard per IP addr / network interface.
 
-#### Client
-
-1. Navigate to `client/`
-2. Init submodules, if you haven't already:
-    ```bash
-    git submodule init
-    git submodule update
-    ```
-3. `npm install` to download requirements
-4. `npm start` for dev, `npm build` for prod. `npm run-script watch` for an automatically updating dev build.
-5. Run `run_webserver.bat/run_webserver.sh` to start the Flask webserver.
-6. Navigate to the proper page for testing.
-
-Page|Content
-----|-------
-<http://localhost:5000/fault> | Fault
-<http://localhost:5000/ringmaker> | Ringmaker
-<http://localhost:5000/api/fic/[FICID]> | API endpoint mockup
-<http://localhost:5000/static/dist/demo_dropdown.html> | Dropdown testing.
+### Automatic installation
+(this will automatically spin up additional Shards based on demand. WIP.)
 
 ### Vagrant
+
+(old info)
 
 1. Install [Vagrant](https://www.vagrantup.com/downloads.html)
 2. Install [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
