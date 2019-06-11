@@ -51,19 +51,18 @@ class Shard extends ArmbreakerAsync
         $job->setReqQueue($this->requestQueue);
         $job->setLogger($this->log);
         $job->process()->then(function (bool $result) use ($job) {
-            var_dump("done", $result);
             $id = $job->getQID();
             if ($result) {
                 $this->log->info("Job {$id} completed successfully.");
             } else {
                 $this->log->warning("Job {$id} failed!");
             }
-            // $this->queue->completeJob($job);
-            // $this->hasJob = false;
+            $this->queue->completeJob($job);
+            $this->hasJob = false;
         }, function (Throwable $e) use ($job) {
             $this->log->warning("Job {$job->getQID()} failed!", ['exception' => $e]);
-            // $this->queue->completeJob($job);
-            // $this->hasJob = false;
+            $this->queue->completeJob($job);
+            $this->hasJob = false;
         });
     }
 }

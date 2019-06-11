@@ -10,6 +10,7 @@ namespace Armbreaker;
 
 use Armbreaker\WorkUnit\ChapterScraper;
 use Armbreaker\WorkUnit\FrontpageScraper;
+use Armbreaker\WorkUnit\PostScraper;
 use Doctrine\DBAL\Connection;
 use Exception;
 
@@ -49,8 +50,11 @@ class MySQLQueue implements QueueInterface
             case "scrapeFrontpage":
                 $unit = new FrontpageScraper($this->db, json_decode(null));
                 break;
-            case "scrapeChapters":
+            case "scrapeChapter":
                 $unit = new ChapterScraper($this->db, json_decode($work['payload']));
+                break;
+            case "scrapePosts":
+                $unit = new PostScraper($this->db, json_decode($work['payload']));
                 break;
             default:
                 return null;
@@ -75,7 +79,7 @@ class MySQLQueue implements QueueInterface
     public function completeJob(WorkUnitInterface $job)
     {
         $this->db->executeQuery("update armbreaker_queue set isComplete = true where qid = ?",
-            [$job->getQID()], ['int']);
+            [$job->getQID()], ['integer']);
     }
 
     public function addJob(WorkUnitInterface $job)
