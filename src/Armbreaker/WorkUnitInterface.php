@@ -41,6 +41,8 @@ interface WorkUnitInterface
 
     public function isOutdated(): bool;
 
+    public function isAlreadyQueued(): bool;
+
     public function setReqQueue(Queue $client);
 
     public function setLogger(LoggerInterface $logger);
