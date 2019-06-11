@@ -85,4 +85,14 @@ trait WorkUnitTrait
     {
         $this->log = $logger;
     }
+
+    public function __debugInfo()
+    {
+        return [
+            'id' => $this->qid,
+            'payload' => $this->payload,
+            'publisher' => $this->publisher,
+            'claimant' => $this->claimant,
+        ];
+    }
 }
