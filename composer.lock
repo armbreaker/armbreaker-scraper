@@ -44,6 +44,7 @@
             ],
             "description": "Collection, an utility to conventionally store a key-value pair.",
             "homepage": "https://github.com/CharlotteDunois/Collection",
+            "abandoned": true,
             "time": "2018-12-04T18:43:09+00:00"
         },
         {
@@ -109,16 +110,16 @@
         },
         {
             "name": "clue/mq-react",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-mq-react.git",
-                "reference": "f012cb0735b018acdda66db9438d028b93a93f24"
+                "url": "https://github.com/clue/reactphp-mq.git",
+                "reference": "d04c4fa7ba607f649a83d946c23fc7b7c57f1125"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-mq-react/zipball/f012cb0735b018acdda66db9438d028b93a93f24",
-                "reference": "f012cb0735b018acdda66db9438d028b93a93f24",
+                "url": "https://api.github.com/repos/clue/reactphp-mq/zipball/d04c4fa7ba607f649a83d946c23fc7b7c57f1125",
+                "reference": "d04c4fa7ba607f649a83d946c23fc7b7c57f1125",
                 "shasum": ""
             },
             "require": {
@@ -127,7 +128,7 @@
             },
             "require-dev": {
                 "clue/block-react": "^1.0",
-                "clue/buzz-react": "^2.0",
+                "clue/buzz-react": "^2.4",
                 "phpunit/phpunit": "^7.0 || ^6.4 || ^5.7 || ^4.8.35",
                 "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3"
             },
@@ -144,11 +145,11 @@
             "authors": [
                 {
                     "name": "Christian Lück",
-                    "email": "christian@lueck.tv"
+                    "email": "christian@clue.engineering"
                 }
             ],
             "description": "Mini Queue, the lightweight in-memory message queue to concurrently do many (but not too many) things at once, built on top of ReactPHP",
-            "homepage": "https://github.com/clue/php-mq-react",
+            "homepage": "https://github.com/clue/reactphp-mq",
             "keywords": [
                 "Mini Queue",
                 "async",
@@ -162,7 +163,7 @@
                 "throttle",
                 "worker"
             ],
-            "time": "2018-04-30T09:46:20+00:00"
+            "time": "2019-12-05T08:45:06+00:00"
         },
         {
             "name": "doctrine/cache",
