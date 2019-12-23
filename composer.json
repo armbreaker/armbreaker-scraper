@@ -1,7 +1,7 @@
 {
     "require": {
         "doctrine/dbal": "^2.6",
-        "monolog/monolog": "^1.23",
+        "monolog/monolog": "^2.0",
         "querypath/querypath": "^3.0",
         "nesbot/carbon": "^2.19",
         "react/event-loop": "^1.1",
